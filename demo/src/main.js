@@ -30,18 +30,22 @@ Vue.use(ElementUI);
 import Vant from 'vant';
 import 'vant/lib/index.css';
 
+
+import { Icon } from 'vant';
+Vue.use(Icon);
+
+
 Vue.use(Vant);
 //移动端双击操作设置  // 防止页面双击，放大页面
 import FastClick from "fastclick"
 //使用fastclick
-if ('addEventListener' in document) {
-  document.addEventListener('DOMContentLoaded', function() {
-    FastClick.attach(document.body);
-  }, false);
-}
+// if ('addEventListener' in document) {
+//   document.addEventListener('DOMContentLoaded', function() {
+//     FastClick.attach(document.body);
+//   }, false);
+// }
 
 Vue.config.productionTip = false
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
