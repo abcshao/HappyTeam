@@ -1,26 +1,25 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png" >
-    <router-view/>
+    <Sheader></Sheader>
+    <div class="s-body">
+      <router-view/>
+
+    </div>
   </div>
 </template>
 
 <script>
+import Sheader from "./components/Sheader/Sheader";
 export default {
-  name: 'App'
+  name: 'App',
+  components: {Sheader}
 }
 </script>
 
 <style scoped  lang="less">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-  img{
-    width: 500px;
+  .s-body{
+    margin-top: 1.95rem;
   }
 }
 </style>
