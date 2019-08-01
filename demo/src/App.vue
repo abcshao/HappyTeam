@@ -1,10 +1,13 @@
 <template>
   <div id="app">
+
     <Sheader></Sheader>
     <div class="s-body">
       <router-view/>
-
     </div>
+
+    <!--<router-view/>-->
+
   </div>
 </template>
 
@@ -17,9 +20,11 @@ export default {
 </script>
 
 <style scoped  lang="less">
+
 #app {
   .s-body{
     margin-top: 1.95rem;
   }
 }
+
 </style>

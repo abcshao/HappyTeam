@@ -4,10 +4,12 @@ import Router from 'vue-router'
 const home = ()=>import("@/pages/home/home")
 const searchAddress = ()=>import("@/pages/searchAddress/searchAddress")
 const shophome = ()=>import("@/pages/shophome/shophome")
-Vue.use(Router)
 
+Vue.use(Router)
+import Filtrate from "../pages/Filtrate/FootFiltrate"
 export default new Router({
   routes: [
+
     {
       path: '/',
      redirect:'/home'
@@ -27,6 +29,9 @@ export default new Router({
       path:'/shophome',
       name:'shophome',
       component:shophome
-    }
+    },
+    {path:"/",
+      component:Filtrate},
+
   ]
 })
