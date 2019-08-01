@@ -2,8 +2,8 @@ import {get , post} from "../config/http"
 
 //使用axios 调用接口 封装的方法 ，以后调用接口 直接在这里设置function函数
 // // 获取商品列表
-// export const apiGoodsList = () => get('/getGoodsList');
-//
+export const apiGoodsList = () => get('/getGoodsList');
+
 // //添加商品
 // export const apiAddGoods = (p) => post('/addData',p);
 //
