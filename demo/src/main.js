@@ -11,6 +11,16 @@ import store from './store/index'
 //引入公共common.less 重置样式
 import "./style/common.less"
 
+
+
+//引入插件组件
+
+// import Vant from 'vant';
+// import 'vant/lib/index.css';
+//
+// Vue.use(Vant);
+
+
 //使用element ui
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';

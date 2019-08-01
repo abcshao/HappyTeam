@@ -21,3 +21,6 @@ import {get , post} from "../config/http"
 //
 // // 购物车修改
 // export const  apiUpdateCar =(p)=>post("/updateShopCar",p);
+
+//请求验证码
+export const yzmjmx = () => get('/getGoodsList');

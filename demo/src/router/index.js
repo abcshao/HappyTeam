@@ -1,15 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-const helloword  = () => import("../components/HelloWorld");
-Vue.use(Router)
 
+Vue.use(Router)
+import DL from "../center/denglujmx"
 export default new Router({
   routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: helloword
-    }
+    {path: '/',component:DL},
+    // {path:"/denglu",component:DL}
   ]
 })
