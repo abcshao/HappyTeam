@@ -1,4 +1,17 @@
 <template>
+  <div>
+
+
+    <Sheader>
+          <div class="arrow left" slot="arrow" @click="$router.go(-1)">
+            <router-link to="/" class="el-icon-search"> </router-link>
+          </div>
+          <div class="address left" slot="address">
+              <span>{{cityname}}</span>
+          </div>
+
+    </Sheader>
+
   <div class="s-city-search">
     <div class="s-city-search-list">
       <el-row class="s-input-search">
@@ -23,26 +36,30 @@
         v-for="(item,index) in searchPoisList"
         :key="index"
         @click="dirmiste(index)"
-
       >
         <h3>{{item.name}}</h3>
         <p>{{item.address}}</p>
       </li>
     </ul>
   </div>
+  </div>
 </template>
-
 <script>
   import {getSearchCity} from "../../serivice/api"
   import {setStore,getStore,removeStore}  from "../../config/mUtils"
+  import Sheader from "../../components/Sheader/Sheader";
   export default {
     name: "searchAddress",
+    components:{
+      Sheader
+    },
     data(){
       return {
         searchValue:'',
         isShow:true,
         isShowHistory:true,
         isShowClear:false,
+        cityname:"",//获取选择的城市名称
         search_city_id:"",
         searchPoisList:[],  // 搜索的相关地点位置
         searchHisotryList:[], //搜索历史记录信息
@@ -81,17 +98,16 @@
       },
       //跳转点击地址跳转到对应的页面
       dirmiste(index){
-
          this.latitude=this.searchPoisList[index].latitude;
          this.longitude= this.searchPoisList[index].longitude;
          this.setHistory(index);
-        this.$router.push({path:'/shophome'})
+        this.$router.push({name:'shophome',params:{geohash:this.latitude+","+this.longitude} });
       },
       //点击历史记录进行跳转
       dirmisteHistory(value){
         this.latitude=value.latitude;
         this.longitude= value.longitude;
-        this.$router.push({path:'/shophome'})
+        this.$router.push({name:'shophome',params:{geohash:this.latitude+","+this.longitude} });
 
       },
 
@@ -113,6 +129,8 @@
     },
     created(){
       this.search_city_id=this.$route.params.city;
+      this.cityname=this.$route.params.guessCity;
+      console.log(this.cityname)
     },
     mounted(){
       //获取搜索历史记录
@@ -122,6 +140,18 @@
 </script>
 
 <style scoped lang="less">
+  .address{
+    color: #000;
+
+    line-height: 1.95rem;
+    text-align: center;
+    color: white;
+    margin-left: 6rem;
+    font-size: 0.75rem;
+  }
+  .changecity{
+    width:3rem;
+  }
   .s-city-search{
     .s-city-search-list{
       margin-top: 2.5rem;
