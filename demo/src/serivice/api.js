@@ -31,26 +31,18 @@ export const getSearchCity=(p)=>get('/v1/pois',p);
 export const  getEntryList = ()=>get("/v2/index_entry");
 
 
-export const apiGoodsList = () => get('/getGoodsList');
 
-// //添加商品
-// export const apiAddGoods = (p) => post('/addData',p);
-//
-// //删除商品
-// export const  apiDelGoods=(p)=>get("/delGoods",p);
-//
-// //添加购物车
-// export const  apiAddShopCar=(p)=>post("/addShopCar",p);
-//
-// //获取所有购车所有信息
-// export const  apiGetShopCar=()=>get("/getShopCar");
-//
-// //删除购物车
-// export const  apiDelCar=(p)=>get("/delCar",p);
-//
-// // 购物车修改
-// export const  apiUpdateCar =(p)=>post("/updateShopCar",p);
+
 
 //请求验证码
 export const yzmjmx = () => get('/getGoodsList');
+
+// 根据经纬度获取详细地址
+
+export const pois = (p) => get('/v2/pois/'+p);
+
+
+//获取商铺列表
+
+export const getrestaurants = (p) => get('/shopping/restaurants',p);
 

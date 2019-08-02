@@ -1,7 +1,6 @@
 <template>
   <div id="app">
 
-    <Sheader></Sheader>
     <div class="s-body">
       <router-view/>
     </div>
@@ -9,10 +8,9 @@
 </template>
 
 <script>
-import Sheader from "./components/Sheader/Sheader";
 export default {
   name: 'App',
-  components: {Sheader}
+  components: {}
 }
 </script>
 

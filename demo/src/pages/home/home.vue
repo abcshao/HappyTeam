@@ -3,7 +3,7 @@
     <div class="s-local-city">
       <van-cell-group >
         <van-cell title="当前定位城市:" value="定位不准时，请在列表中选择" value-class="fontss" />
-        <van-cell :title="guessCity" is-link :to="{name:'searchaddress',params:{city:guessCityid} }" title-class="fonttt"/>
+        <van-cell :title="guessCity" is-link :to="{name:'searchaddress',params:{city:guessCityid,guessCity:guessCity} }" title-class="fonttt"/>
       </van-cell-group>
     </div>
     <div class="s-hot-city">
@@ -80,7 +80,7 @@
     methods:{
           //点击跳转到对应的城市地址搜索页面
       goSearch(value){
-        this.$router.push({name:'searchaddress',params:{city:value.id} })
+        this.$router.push({name:'searchaddress',params:{city:value.id,guessCity:value.name} })
       }
 
     }

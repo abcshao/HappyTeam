@@ -20,13 +20,13 @@ export default new Router({
       component:home
     },
     {
-       path:'/searchaddress/:city',
+       path:'/searchaddress/:city/:guessCity',
       name:'searchaddress',
       component:searchAddress
     }
     ,
     {
-      path:'/shophome',
+      path:'/shophome/:geohash',
       name:'shophome',
       component:shophome
     },
