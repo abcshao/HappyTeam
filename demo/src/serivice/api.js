@@ -35,7 +35,7 @@ export const  getEntryList = ()=>get("/v2/index_entry");
 
 
 //请求验证码
-export const yzmjmx = () => get('/getGoodsList');
+export const yzmjmx = () => post('/v1/captchas');
 
 // 根据经纬度获取详细地址
 

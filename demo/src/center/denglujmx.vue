@@ -3,17 +3,19 @@
       <!--头部-->
       <van-nav-bar
         title="密码登录"
+
         left-arrow
+        @click-left="onClickLeft"
       />
 
       <van-cell-group>
 
         <!--用户名框-->
-        <van-field  placeholder="请输入用户名" />
+        <van-field  placeholder="请输入用户名" id="input1"/>
       <!--密码框-->
         <section class="one">
           <span >
-            <input :type="checked ? show1:show2" placeholder="请输入密码" style="font-size: 0.64rem; color: rgb(150,151,145); padding-left: 0.7rem">
+            <input :type="checked ? show1:show2" placeholder="请输入密码" style="font-size: 0.64rem; color: rgb(150,151,145); padding-left: 0.7rem" id="input2">
           </span>
           <span class="right">
             <span class="tex">abc...</span>
@@ -27,33 +29,101 @@
         </section>
 
             <!--验证码框-->
-        <van-field placeholder="验证码"></van-field>
+        <section class="two">
+          <span>
+             <van-field placeholder="验证码" ></van-field>
+          </span>
+        </section>
+
 
       </van-cell-group>
 
-      <p>温馨提示：未注册过的账户，登录时将自动注册</p>
-      <p>注册过的用户可凭账户密码登录</p>
+      <p class="p">温馨提示：未注册过的账户，登录时将自动注册</p>
+      <p class="p">注册过的用户可凭账户密码登录</p>
 
       <!--登录按钮-->
-      <van-button slot="button" size="small" type="primary">登录</van-button>
+      <!--<router-link :to="{path:'/minejmx'}">-->
+        <van-button type="primary" size="large" >登录</van-button>
+
+      <!--</router-link>-->
+
+
+      <span class="two_s1">
+               <img :src="picture" alt="" style="display: inline-block;">
+            </span>
+      <span @click="postPic" class="two_s2">
+               <p > 看不清</p>
+               <p class="pp">换一张</p>
+            </span>
+
     </div>
 </template>
 
 <script>
+  import {yzmjmx} from "../serivice/api"
     export default {
         name: "denglujmx",
       data(){
           return{
+
             checked:"false",
             show1:'password',
             show2:'text',
+            input1:"",
+            input2:"",
+            input3:"",
+
+          //  获取提取到的验证码图片信息
+            picture:"",
           }
+      },
+      methods:{
+        // postPic(){
+        //   yzmjmx().then((result=>{
+        //     this.picture=result.code
+        //   }))  // this.picture=result.code
+        // }
+        // postPic(){
+        //   this.$http({
+        //     method:'post',
+        //     url:"https://elm.cangdu.org/v1/captchas",
+        //     withCredentials:true,
+        //   }).then((result=>{
+        //     this.picture=result.code
+        //   }))
+        // },
+      
+        // postMessage(){
+        //   this.$http({
+        //     method:'post',
+        //     url:"https://elm.cangdu.org/v2/login",
+        //     withCredentials:true,
+        //     data:{
+        //     //  用户名
+        //       username:input1.value,
+        //       password:input2.value,
+        //       captcha_code:input3.value,
+        //     }
+        //   }).then((result=>{
+        //
+        //   }))
+        // }
+        onClickLeft(){
+          this.$router.go(-1);
+        }
+      },
+      mounted(){
+        yzmjmx().then((result=>{
+          this.picture=result.code
+        }))
       }
     }
 </script>
 
 <style scoped>
-
+.denglu{
+position: relative;
+}
   .tex{
     font-size: 0.6rem;
   }
@@ -78,20 +148,42 @@
   }
   .van-nav-bar {
     background-color: #3190e8;
+    margin-bottom: 1rem;
   }
   .van-nav-bar__title {
     color: white;
   }
   :before{
     color: white;
+    text-align: center;
   }
-p{
+.p{
   color: red;
   font-size: 0.5rem;
   margin: 0.5rem 0.3rem;
 }
   .van-button{
-    width: 80%;
-    text-align: center;
+    width: 90%;
+    /*text-align: center;*/
+    /*height: 1.5rem;*/
+    margin-left: 5%;
+
+  }
+
+  p{
+    font-size: 0.3rem;
+  }
+  .pp{
+    color: blue;
+  }
+  .two_s1{
+    position: absolute;
+    right: 3rem;
+    top:6.8rem
+  }
+  .two_s2{
+    position: absolute;
+    right: 1rem;
+    top:6.8rem;
   }
 </style>

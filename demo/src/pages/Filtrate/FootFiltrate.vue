@@ -1,50 +1,57 @@
 <template>
   <div class="option_c">
     <!--筛选组件-->
-    <div class="foot_c left all_c" @click="btnClassify">奶茶果汁<span class="el-icon-caret-bottom"></span>
-    <div class="classifyA_c">
-      <div class="leftA_c">
-        <!--<p class="allFoot_c">全部</p>-->
-        <!--<ul v-for="(pro, index) in shop" :key="index" >-->
-          <!--<li v-for="(txt, string_c) in classTxt_c" :key="string_c"><span :class="txt"></span>{{pro}}</li>-->
-        <!--</ul>-->
-        <ul>
-          <li>全部<span class="el-icon-arrow-right"></span></li>
-          <li>快餐便当<span class="el-icon-arrow-right"></span></li>
-          <li>小吃夜宵<span class="el-icon-arrow-right"></span></li>
-          <li>果蔬生鲜<span class="el-icon-arrow-right"></span></li>
-          <li>特色菜系<span class="el-icon-arrow-right"></span></li>
-          <li>商店超市<span class="el-icon-arrow-right"></span></li>
-          <li>鲜花蛋糕<span class="el-icon-arrow-right"></span></li>
-          <li>全部商家<span class="el-icon-arrow-right"></span></li>
-          <li>甜品饮品<span class="el-icon-arrow-right"></span></li>
-        </ul>
-      </div>
-      <div class="rightA_c"></div>
+    <div class="foot_c left all_c" >
+      <span @click="btnScreen_c(1)">奶茶果汁<span :class="classA_c"></span></span>
+    <div class="classifyA_c" v-show='classifyB_c==1'>
+      <Classify></Classify>
+      <div class="empty"></div>
     </div>
 
     </div>
-    <div class="sork_c left all_c">排序<span class="el-icon-caret-bottom"></span></div>
-    <div class="screen_c left all_c">筛选<span class="el-icon-caret-bottom"></span></div>
-
+    <div class="sork_c left all_c">
+      <span @click="btnScreen_c(2)">排序<span :class="classA_c"></span></span>
+      <div class="sorkA_c" v-show='classifyB_c==2'>
+      <Sork></Sork>
+    </div>
+    </div>
+    <div class="screen_c left all_c">
+      <span @click="btnScreen_c(3)">筛选<span :class="classA_c"></span></span>
+      <div class="screenA_c" v-show='classifyB_c==3'>
+      <Screen></Screen>
+    </div>
+    </div>
   </div>
 
 </template>
 
 <script>
+  import Classify from "../../pages/Filtrate/chidren_c/Classify_c";
+  import Sork from "../../pages/Filtrate/chidren_c/Sork_c";
+  import Screen from "../../pages/Filtrate/chidren_c/Screen_c";
     export default {
         name: "FootFiltrate",
         data(){
           return {
-            // classTxt_c:["el-icon-success","el-icon-sort-down","el-icon-sort-up"],
-            // shop:["快餐便当","小吃夜宵","果蔬生鲜"]
+            classifyB_c:0,
+            classA_c:"el-icon-caret-bottom",
           }
         },
-        methods:{
-          btnClassify(){
 
-          }
-        }
+        components: {Classify,Sork,Screen},
+        methods:{
+          btnScreen_c(val){
+            if(this.classifyB_c ==val){
+              this.classA_c = "el-icon-caret-bottom"
+              this.classifyB_c =0
+            }else{
+              this.classA_c = "el-icon-caret-top"
+              this.classifyB_c =val
+
+            }
+
+          },
+        },
     }
 </script>
 
@@ -55,7 +62,7 @@
   }
   html,body {
     width: 100%;
-    height: 100%;
+    height: 80%;
   }
   .option_c {
     width: 100%;
@@ -63,6 +70,7 @@
     line-height: 2rem;
     background: white;
     position: relative;
+    border-bottom: 1px solid silver;
 
     .all_c {
       width: 5.33rem;
@@ -71,7 +79,6 @@
       margin-top: 0.3rem;
       border-right: 1px solid silver;
       text-align: center;
-      /*padding: 0 1.695rem;*/
       font-size: 0.7rem;
       .el-icon-caret-bottom {
         font-size: 0.2rem;
@@ -87,26 +94,30 @@
       position: absolute;
       top: 2rem;
       left: 0;
-      .leftA_c {
-        width: 50%;
-        height: 100%;
-        background: cyan;
-        position:absolute;
-        left: 0;
-        .allFoot_c {
-          text-align: left;
-        }
-        ul {
-          line-height: 2.26rem;
-        }
-      }
-      .rightA_c {
-        width: 50%;
-        height: 100%;
+    }
+    .sork_c {
+      .sorkA_c {
+        width: 100%;
+        height: 15rem;
+        line-height: 100%;
         background: white;
         position: absolute;
-        right: 0;
+        top: 2rem;
+        left: 0;
+        text-align: left;
       }
     }
+    .screenA_c {
+      width: 100%;
+      height: 11rem;
+      background: white;
+      position: absolute;
+      top: 2rem;
+      left: 0;
+      font-size: 0.6rem;
+      }
+  }
+  .empty {
+    clear: both;
   }
 </style>
