@@ -19,6 +19,33 @@
               <router-link :to="{}" class="shuoming">红包说明</router-link>
             </section>
           </div>
+
+          <ul>
+            <li>
+              <section>
+                <!--左边优惠金额-->
+                <div class="div1">
+                  <span class="span1">￥</span>
+                  <span class="span2">1</span>
+                  <span class="span3">.</span>
+                  <span class="span4">0</span>
+                  <p class="p1">满20可用</p>
+                </div>
+
+                <!--中间详细信息-->
+                <div class="div2">
+                  <p class="p2">分享红包</p>
+                  <p class="p3">2017-05-27到期</p>
+                  <p class="p4">限收货手机号为 13681711254</p>
+                </div>
+
+                <!--剩余日期-->
+                <div class="div3">
+                  剩3日
+                </div>
+              </section>
+            </li>
+          </ul>
         </van-tab>
           <van-tab title="商家代金券"></van-tab>
       </van-tabs>
@@ -73,4 +100,8 @@
     right: 0.5rem;
     top: 0.5rem;
   }
+  .div1{
+    border-right: 0.1rem dotted #ccc;
+  }
+
 </style>
