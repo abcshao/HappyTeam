@@ -52,5 +52,5 @@ export const apiGoodsList = () => get('/getGoodsList');
 // export const  apiUpdateCar =(p)=>post("/updateShopCar",p);
 
 //请求验证码
-export const yzmjmx = () => get('/getGoodsList');
+export const yzmjmx = () => post('/v1/captchas');
 

@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import DL from "../center/denglujmx"
-
+import MineJmx from  "../center/minejmx"
+import balabce from "../center/balance"
+import explain from "../center/explain"
+import discounts from "../center/discounts"
 const home = ()=>import("@/pages/home/home")
 const searchAddress = ()=>import("@/pages/searchAddress/searchAddress")
 const shophome = ()=>import("@/pages/shophome/shophome")
@@ -37,6 +40,22 @@ export default new Router({
     {
       path: '/dl',
       component:DL
+    },
+    {
+      path:'/minejmx',
+      component:MineJmx
+    },
+    {
+      path:"/balabce",
+      component:balabce
+    },
+    {
+      path:"/explain",
+      component:explain
+    },
+    {
+      path:"/discounts",
+      component:discounts
     }
   ]
 })
