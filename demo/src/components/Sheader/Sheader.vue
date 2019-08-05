@@ -1,14 +1,13 @@
 <template>
-<<<<<<< HEAD
 
-=======
+
+
     <div class="s-header clear">
        <div class="right">
           <router-link :to="{}">登录</router-link>|<router-link :to="{}">注册</router-link>
        </div>
        <slot name="changecity"></slot>
     </div>
->>>>>>> 73e11ccb43a14b9237de04fb271ccb1afa04aef4
 </template>
 
 <script>
