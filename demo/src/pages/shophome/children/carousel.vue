@@ -4,7 +4,7 @@
     <van-swipe-item >
       <ul class="s-one-goods clear">
         <li v-for="(item,index) in listone" :key="index" class="left">
-          <router-link :to="{}">
+          <router-link :to="{path:'/filtrate',query:{geohash:geohash,title:item.title,restaurant_category_id:item.id}}">
             <img :src="'https://fuss10.elemecdn.com'+item.image_url" alt="">
              <h3>{{item.title}}   </h3>
           </router-link>
@@ -14,7 +14,7 @@
     <van-swipe-item>
       <ul class="s-one-goods clear">
         <li v-for="(item,index) in listtwo" :key="index" class="left">
-          <router-link :to="{}">
+          <router-link  :to="{path:'/filtrate',query:{geohash:geohash,title:item.title,restaurant_category_id:item.id}}">
             <img :src="'https://fuss10.elemecdn.com'+item.image_url" alt="">
             <h3>{{item.title}}</h3>
           </router-link>
@@ -27,7 +27,7 @@
 <script>
     export default {
         name: "carousel",
-        props:['list'],
+        props:['list','geohash'],
       computed:{
           //把数据一分8
           listone(){

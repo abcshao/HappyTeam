@@ -9,6 +9,8 @@ Vue.use(Vuex)
 
 const state = {
   city:"北京",
+  restaurant_categoryids:'',//商店分类id
+  classifyB_c:0,//点击导航是否显示
 };
 
 export default new Vuex.Store({

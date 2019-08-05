@@ -17,9 +17,6 @@ export default {
 <style scoped  lang="less">
 
 #app {
-  .s-body{
-    margin-top: 1.95rem;
-  }
 }
 
 </style>

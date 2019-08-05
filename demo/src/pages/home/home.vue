@@ -1,5 +1,15 @@
 <template>
   <div class="s-home">
+    <div class="div1">
+      <router-link :to="{path:'/home'}"></router-link>
+      <span class="span1">ele.me</span>
+      <router-link :to="{path:'/dl'}">
+         <span class="span2">
+        <i class="iconfont">&#xe607;</i>
+      </span>
+      </router-link>
+
+    </div>
     <div class="s-local-city">
       <van-cell-group >
         <van-cell title="当前定位城市:" value="定位不准时，请在列表中选择" value-class="fontss" />
@@ -139,6 +149,27 @@
        }
     }
   }
-
-
+  .div1{
+    width: 100%;
+    height: 2rem;
+    background: #3190e8;
+    text-align: center;
+    position: relative;
+  }
+.span1{
+  font-size: .7rem;
+  color: #fff;
+ position: absolute;
+  left: .5rem;
+  top: 0.5rem;
+}
+.iconfont{
+  color: white;
+  font-size: 1rem;
+}
+  .span2{
+    position: absolute;
+    right: .5rem;
+    top: 0.2rem;
+  }
 </style>

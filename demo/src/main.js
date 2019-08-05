@@ -11,6 +11,7 @@ import store from './store/index'
 //引入公共common.less 重置样式
 import "./style/common.less"
 
+import  '../node_modules/animate.css/animate.min.css'
 
 
 //引入插件组件
@@ -51,6 +52,7 @@ new Vue({
   el: '#app',
   router,
   store,
+
   components: { App },
   template: '<App/>'
 })
