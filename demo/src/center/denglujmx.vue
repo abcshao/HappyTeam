@@ -11,11 +11,11 @@
       <van-cell-group>
 
         <!--用户名框-->
-        <van-field  placeholder="请输入用户名" id="input1"/>
+        <van-field  placeholder="账号" v-model="landingA_c"/>
       <!--密码框-->
         <section class="one">
           <span >
-            <input :type="checked ? show1:show2" placeholder="请输入密码" style="font-size: 0.64rem; color: rgb(150,151,145); padding-left: 0.7rem" id="input2">
+            <input :type="checked ? 'text':'password'" placeholder="密码" style="font-size: 0.64rem; color: rgb(150,151,145); padding-left: 0.7rem" v-model="passwordA_c">
           </span>
           <span class="right">
             <span class="tex">abc...</span>
@@ -31,7 +31,7 @@
             <!--验证码框-->
         <section class="two">
           <span>
-             <van-field placeholder="验证码" ></van-field>
+             <van-field placeholder="验证码" v-model="verifyA_c"></van-field>
           </span>
         </section>
 
@@ -40,101 +40,133 @@
 
       <p class="p">温馨提示：未注册过的账户，登录时将自动注册</p>
       <p class="p">注册过的用户可凭账户密码登录</p>
-
       <!--登录按钮-->
       <!--<router-link :to="{path:'/minejmx'}">-->
-        <van-button type="primary" size="large" >登录</van-button>
+        <van-button type="primary" size="large" @click="postLanding_c">登录</van-button>
 
       <!--</router-link>-->
 
 
       <span class="two_s1">
-               <img :src="picture" alt="" style="display: inline-block;">
+               <img :src="picture" style="display: inline-block;">
             </span>
       <span @click="postPic" class="two_s2">
                <p > 看不清</p>
                <p class="pp">换一张</p>
             </span>
-
+      <router-link :to="{path:'/Reset'}">重置密码 ?</router-link>
+      <div class="empty"></div>
+      <transition name="fade" enter-active-class="animated bounceIn"
+                  :duration="400">
+        <Pop_c v-if="show" :popKuang="popKuang"></Pop_c>
+      </transition>
     </div>
 </template>
 
 <script>
-  import {yzmjmx} from "../serivice/api"
+  import {yzmjmx, landing_c} from "../serivice/api"
+  import Pop_c from "../components/Cpm_c/Pop_c"
     export default {
         name: "denglujmx",
+      components: {Pop_c},
       data(){
           return{
-
-            checked:"false",
-            show1:'password',
-            show2:'text',
-            input1:"",
-            input2:"",
-            input3:"",
-
+            //登录名
+            landingA_c:"",
+            passwordA_c:"",
+            verifyA_c:'',
+            checked:false,
           //  获取提取到的验证码图片信息
             picture:"",
+            show: false,
+            popKuang:"",
           }
+
       },
       methods:{
-        // postPic(){
-        //   yzmjmx().then((result=>{
-        //     this.picture=result.code
-        //   }))  // this.picture=result.code
-        // }
-        // postPic(){
-        //   this.$http({
-        //     method:'post',
-        //     url:"https://elm.cangdu.org/v1/captchas",
-        //     withCredentials:true,
-        //   }).then((result=>{
-        //     this.picture=result.code
-        //   }))
-        // },
-      
-        // postMessage(){
-        //   this.$http({
-        //     method:'post',
-        //     url:"https://elm.cangdu.org/v2/login",
-        //     withCredentials:true,
-        //     data:{
-        //     //  用户名
-        //       username:input1.value,
-        //       password:input2.value,
-        //       captcha_code:input3.value,
-        //     }
-        //   }).then((result=>{
-        //
-        //   }))
-        // }
+        postPic(){
+          yzmjmx().then((result)=>{
+            this.picture=result.code
+          })
+        },
         onClickLeft(){
           this.$router.go(-1);
+        },
+        postLanding_c(){
+          //判断用户名是否为空
+          if(this.landingA_c == ""){
+            this.show = true;
+            this.popKuang = "请输入手机号/邮箱/用户名";
+            return;
+          }
+          // 判断密码是否为空
+          if(this.passwordA_c == ""){
+            this.show = true;
+            this.popKuang = "请输入密码";
+            return;
+          }
+          //判断验证码输入是否为空
+          if(this.verifyA_c == ""){
+            this.show = true;
+            this.popKuang = "请输入验证码";
+            return;
+          }
+          landing_c({username:this.landingA_c,password:this.passwordA_c,captcha_code:this.verifyA_c}).then((result)=>{
+
+            //判断密码是否错误
+            if(result.type == "ERROR_PASSWORD"){
+              this.show = true;
+              this.popKuang = "密码错误";
+            }
+
+            //判断验证码是否正确
+            if(result.type=="ERROR_CAPTCHA"){
+              this.postPic();
+              this.show = true;
+              this.popKuang = "验证码不正确";
+            }
+            console.log(result);
+          }).catch((error)=>{
+            console.log(error);
+          })
+
+        },
+        btntxt_c(show){
+          this.show = show;
         }
       },
       mounted(){
-        yzmjmx().then((result=>{
+        yzmjmx().then((result)=>{
           this.picture=result.code
-        }))
+        })
       }
     }
+
 </script>
 
 <style scoped>
 .denglu{
 position: relative;
 }
+  a {
+    color: rgb(59,149,233);
+    font-size: 0.6rem;
+    float: right;
+    margin-top: 0.7rem;
+    margin-right: 0.5rem;
+  }
   .tex{
     font-size: 0.6rem;
   }
   .one{
-    padding: 0.1rem 0;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding: 0.26rem 0;
+    border-bottom: 1px solid rgb(241,241,241);
   }
   .right{
     /*position: relative;*/
     right: 2rem;
   }
+
   .tex{
     position: absolute;
     right: 1rem;
@@ -148,14 +180,16 @@ position: relative;
   }
   .van-nav-bar {
     background-color: #3190e8;
-    margin-bottom: 1rem;
+    margin-bottom: 0.6rem;
   }
   .van-nav-bar__title {
     color: white;
+    font-size: 0.8rem;
   }
   :before{
     color: white;
     text-align: center;
+    font-size: 0.6rem;
   }
 .p{
   color: red;
@@ -174,7 +208,7 @@ position: relative;
     font-size: 0.3rem;
   }
   .pp{
-    color: blue;
+    color: rgb(59,149,233);
   }
   .two_s1{
     position: absolute;
@@ -186,4 +220,8 @@ position: relative;
     right: 1rem;
     top:6.8rem;
   }
+  .empty {
+    clear: both;
+  }
+
 </style>
