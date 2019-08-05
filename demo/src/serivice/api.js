@@ -32,10 +32,16 @@ export const  getEntryList = ()=>get("/v2/index_entry");
 
 
 
-
-
 //请求验证码
 export const yzmjmx = () => post('/v1/captchas');
+
+//获取登陆用户名密码数据
+export const landing_c = (p) => post('/v2/login',p);
+
+//修改用户密码
+export const amend_c = (p) => post('/v2/changepassword',p);
+
+
 
 // 根据经纬度获取详细地址
 

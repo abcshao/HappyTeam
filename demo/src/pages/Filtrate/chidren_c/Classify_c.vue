@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="clear">
   <div class="leftA_c left">
     <ul>
       <li v-for="(pro, index) in shop" :key="index">{{pro}}</li>
@@ -28,7 +28,7 @@
         name: "Classify_c",
       data(){
           return {
-            shop:["异国料理","快餐便当","小吃夜宵","果蔬生鲜","商店超市","烧烤"],
+            shop:["异国料理","快餐便当","小吃夜宵","果蔬生鲜","商店超市","烧烤","1232","qwd","qwd","qwdd","qwd","qwdq"],
           }
       },
     }

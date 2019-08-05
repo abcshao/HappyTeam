@@ -18,7 +18,6 @@ export default {
 
 #app {
   .s-body{
-    margin-top: 1.95rem;
   }
 }
 
