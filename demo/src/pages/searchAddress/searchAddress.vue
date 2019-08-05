@@ -2,15 +2,14 @@
   <div>
 
 
-    <Sheader>
+    <div class="s-header">
           <div class="arrow left" slot="arrow" @click="$router.go(-1)">
-            <router-link to="/" class="el-icon-search"> </router-link>
+           <span style="display: inline-block;margin-top: 0.4rem"><i class="iconfont">&#xe606; </i></span>
           </div>
-          <div class="address left" slot="address">
+          <div class="address left" >
               <span>{{cityname}}</span>
           </div>
-
-    </Sheader>
+    </div>
 
   <div class="s-city-search">
     <div class="s-city-search-list">
@@ -140,6 +139,31 @@
 </script>
 
 <style scoped lang="less">
+  .iconfont {
+    color: white;
+    margin-top: 0.8rem;
+    font-size: 1rem;
+  }
+  .s-header{
+
+    background-color: #3190e8;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 1.95rem;
+    padding: 0 0.75rem;
+    font-size: 0.65rem;
+    .right{
+      line-height: 1.95rem;
+      color: white;
+
+      a{
+        color: white;
+      }
+    }
+  }
   .address{
     color: #000;
 
@@ -154,7 +178,7 @@
   }
   .s-city-search{
     .s-city-search-list{
-      margin-top: 2.5rem;
+      margin-top: 1.9rem;
       background-color: white;
       border-top: 1px solid #DCDFE6;
       border-bottom: 1px solid #DCDFE6;

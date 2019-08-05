@@ -1,15 +1,22 @@
 <template>
 
      <div>
-       <Sheader>
+       <div class="s-header">
         <div class="search left" slot="search">
           <router-link to="/" class="el-icon-search"> </router-link>
         </div>
-        <div slot="title" class="title left ellipsis">
+        <div class="title left ellipsis">
           <router-link to="/"> <span>{{localaddress}}</span></router-link>
         </div>
-       </Sheader>
-    <div class="s-shop-home">
+         <div class="right">
+           <router-link :to="{path:'/dl'}">
+         <span>
+        <i class="iconfont">&#xe607;</i>
+      </span>
+           </router-link>
+         </div>
+       </div>
+    <div class="s-shop-home" style="margin-top: 1.8rem">
         <carousel :list="getcarousellist"></carousel>
       <div class="shop_list_container">
            <header class="shop_header">
@@ -72,6 +79,31 @@
 </script>
 
 <style scoped lang="less">
+  .iconfont{
+    color: white;
+    font-size: 1rem;
+  }
+  .s-header{
+
+    background-color: #3190e8;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 1.95rem;
+    padding: 0 0.75rem;
+    font-size: 0.65rem;
+    .right{
+      line-height: 1.95rem;
+      color: white;
+
+      a{
+        color: white;
+      }
+    }
+  }
+
   .search{
     width: 1rem;
     line-height: 1.95rem;
@@ -104,6 +136,7 @@
         line-height: 1.75rem;
         .el-icon-s-shop{
           padding:0 .4rem
+
         }
       }
 

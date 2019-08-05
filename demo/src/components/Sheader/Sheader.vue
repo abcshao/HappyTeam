@@ -1,13 +1,5 @@
 <template>
-    <div class="s-header clear">
-        <slot name="search"></slot>
-        <slot name="title" ></slot>
-        <slot name="address" ></slot>
-       <div class="right">
-          <router-link :to="{}">登录</router-link>|<router-link :to="{}">注册</router-link>
-       </div>
-       <slot name="changecity"></slot>
-    </div>
+
 </template>
 
 <script>

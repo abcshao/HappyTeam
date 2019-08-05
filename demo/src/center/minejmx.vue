@@ -1,5 +1,10 @@
 <template>
     <div class="mine">
+      <van-nav-bar
+        title="我的"
+        left-arrow
+        @click-left="onClickLeft"
+      />
     <!--上面个人中心界面-->
       <div class="top">
         <router-link :to="{path:'/dl'}">
@@ -7,11 +12,9 @@
           <p id="p1">登录/注册</p>
           <img src="../imags/download.png" alt="" id="img1">
           <p id="p2">暂无绑定手机号</p>
-          <van-icon name="arrow" />
+          <van-icon name="arrow" class="van1"/>
         </router-link>
-
       </div>
-
       <!--中间部分-->
       <van-row>
       <router-link :to="{path:'/balabce'}">
@@ -35,38 +38,44 @@
         </van-col>
         </router-link>
 
-        <van-col span="8">
+        <router-link :to="{path:'/jifen'}">
+          <van-col span="8">
          <span class="left2">
              <strong class="left1" style="color: #6ac20b">0</strong>
             分
           </span>
-          <p class="left3">我的积分</p>
-        </van-col>
+            <p class="left3">我的积分</p>
+          </van-col>
+        </router-link>
+
 
       </van-row>
 
       <!--单元格-->
       <div class="until">
-        <span class="all">
-           <van-cell title="我的订单" is-link />
-        </span>
-        <span>
+        <!--<span class="all">-->
+          <van-cell title="我的订单" is-link />
+        <!--</span>-->
+        <!--<span>-->
            <van-cell title="积分商城" is-link  class="b"/>
-        </span>
-        <span>
+        <!--</span>-->
+        <!--<span>-->
            <van-cell title="饿了么会员卡" is-link  />
-        </span>
+        <!--</span>-->
 
       </div>
 
       <!--服务中心-->
       <div>
-        <span>
-           <van-cell title="服务中心" is-link url="//youzan.github.io/vant/mobile.html" />
+        <router-link :to="{path:'/serve'}">
+           <span>
+           <van-cell title="服务中心" is-link  />
         </span>
+        </router-link>
+
 
         <span>
-           <van-cell title="下载饿了么APP" is-link url="//youzan.github.io/vant/mobile.html" />
+           <van-cell title="下载饿了么APP" is-link  />
         </span>
 
       </div>
@@ -77,18 +86,41 @@
 
 <script>
     export default {
-        name: "minejmx"
+        name: "minejmx",
+      methods:{
+        onClickLeft(){
+          this.$router.go(-1);
+        }
+      }
     }
 </script>
 
 <style scoped>
+  .van-cell__right-icon {
+    margin-left: 5px;
+    color: black;
+  }
+  .iconfont{
+    color: #666;
+    font-size: 0.3rem;
+  }
+  .van-nav-bar {
+    background-color: #3190e8;
+  }
+  .van-nav-bar__title {
+    color: white;
+    font-weight: 400;
+  }
+  :before{
+    color: white;
+    text-align: center;
+  }
   .top{
     width: 100%;
     height: 10%;
     background: rgb(49,144,232);
     position: relative;
     padding: 0.5rem 0.5rem;
-    margin-top: 0.1rem;
   }
 #img{
   width: 3rem;
@@ -113,12 +145,16 @@
     left: 4.9rem;
     top: 2.7rem;
   }
-  .van-icon{
+  .van1{
     color: white;
     font-size:0.6rem;
     position: absolute;
     right: 1rem;
     top: 3rem;
+  }
+
+  .van1 :before{
+    color: red;
   }
 
   .left1{
@@ -145,6 +181,12 @@
 .until{
   margin: 0.5rem 0;
 }
+.until :before{
+  color: rgb(187,187,187);
+  margin-top: 9rem;
+
+
+}
 .a{
   border-right:0.1rem solid #f1f1f1 ;
   border-left: 0.1rem solid #f1f1f1;
@@ -160,6 +202,15 @@
   .van-icon-arrow:before{
     font-size: 1rem;
    position: absolute;
+    bottom: 0.3rem;
+  }
+  .all{
+    background: red;
+  }
+  .van-icon-arrow[data-v-c451727e]:before {
+    color: ;
+    font-size: 1rem;
+    position: absolute;
     bottom: 0.3rem;
   }
 </style>

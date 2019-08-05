@@ -11,7 +11,7 @@ import store from './store/index'
 //引入公共common.less 重置样式
 import "./style/common.less"
 
-
+import"../node_modules/animate.css/animate.css"
 
 //引入插件组件
 
@@ -34,8 +34,8 @@ import 'vant/lib/index.css';
 import { Icon } from 'vant';
 Vue.use(Icon);
 
-
 Vue.use(Vant);
+
 //移动端双击操作设置  // 防止页面双击，放大页面
 import FastClick from "fastclick"
 //使用fastclick
@@ -51,6 +51,7 @@ new Vue({
   el: '#app',
   router,
   store,
+
   components: { App },
   template: '<App/>'
 })
