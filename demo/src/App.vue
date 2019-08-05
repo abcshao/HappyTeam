@@ -16,9 +16,4 @@ export default {
 
 <style scoped  lang="less">
 
-#app {
-  .s-body{
-  }
-}
-
 </style>
