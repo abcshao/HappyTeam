@@ -1,6 +1,8 @@
 <template>
   <ul class="shop_ul" v-load-more="loaderMore" v-if="restaurantsList.length">
+
     <li class="shop_li clear" v-for="(item,index) in restaurantsList" :key="index">
+      <router-link :to="{path:'/restaurant',query:{id:item.id} }">
       <section class="shop_pic left">
         <img  :src="imgBaseUrl+item.image_path" class="shop_img">
       </section>
@@ -35,8 +37,10 @@
           <p class="fee_distance_right right">{{item.distance}}/{{item.order_lead_time}}</p>
         </div>
       </div>
+      </router-link>
     </li>
-    <li v-if="touchend">没有更多啦</li>
+
+    <li v-if="touchend" class="no_more">已经到底啦,亲</li>
   </ul>
 </template>
 
@@ -48,8 +52,7 @@
 
   export default {
         name: "shoplist",
-
-        props:['geohash'],
+        props:['geohash','restaurant_category_id','restaurant_category_ids','orderbytype','delivery_mode','support_ids','is_change'],
         mixins: [loadMore],
         data(){
           return{
@@ -64,23 +67,73 @@
           }
         },
       mounted(){
-
             this.getInitData();
       },
       methods:{
         // 获取商品列表
         async getInitData(){
-
-          // console.log(this.geohash);
           this.latitude=this.geohash.split(",")[0];
           this.longitude=this.geohash.split(",")[1];
           //获取附近商家的信息
-          let restaurantsList = await getrestaurants({latitude:this.latitude,longitude:this.longitude,offset:this.offset});
+          let restaurantsList = await getrestaurants({
+            latitude:this.latitude,
+            longitude:this.longitude,
+            offset:this.offset,
+            restaurant_category_id:this.restaurant_category_id?this.restaurant_category_id:'',
+          });
           this.restaurantsList=restaurantsList;
+          console.log(restaurantsList);
           if(restaurantsList.length<20){
             this.touchend=false;
           }
+        },
+        //监听父级传来的数据发生变化时，触发此函数重新根据属性值获取数据
+        async listenPropChange(){
+          this.offset = 0;
+          let supportStr = '';
+          let a=0;
+          this.support_ids.forEach(item => {
+            if (item.status) {
+              if(a==0){
+                a++;
+                supportStr+=item.id;
+              }else{
+                supportStr += '&support_ids[]=' + item.id;
+              }
 
+            }
+          });
+
+
+
+
+          let res = await getrestaurants({
+            latitude:this.latitude,
+            longitude:this.longitude,
+            offset:this.offset,
+            restaurant_category_id:'',
+            "restaurant_category_ids[]":this.restaurant_category_ids,
+            order_by:this.orderbytype?this.orderbytype:'',
+            'delivery_mode[]':this.delivery_mode,
+            'support_ids[]':supportStr,
+          });
+
+          // let ss='';
+          // let obj={
+          //   latitude:this.latitude,
+          //   longitude:this.longitude,
+          //   offset:this.offset,
+          //   restaurant_category_id:'',
+          //   "restaurant_category_ids[]":this.restaurant_category_ids,
+          //   order_by:this.orderbytype?this.orderbytype:'',
+          //   'delivery_mode[]':this.delivery_mode+supportStr,
+          // };
+          // for(let keys in obj ){
+          //   ss+="&"+keys+'='+obj[keys]
+          // }
+          // let res  = await getrestaurants_shai(ss.substr(1));
+          this.restaurantsList=res;
+          // console.log(res);
         },
 
         //根据 循环数据中的supports 中的 准  来判断是否是准时到达
@@ -107,21 +160,44 @@
           //没拉一页都要加载一次数据
           this.offset+=20;
           try {
-            let res = await getrestaurants({latitude:this.latitude,longitude:this.longitude,offset:this.offset});
+            let res = await getrestaurants({
+              latitude:this.latitude,
+              longitude:this.longitude,
+              offset:this.offset,
+              restaurant_category_id:this.restaurant_category_id?this.restaurant_category_id:'',
+              "restaurant_category_ids[]":this.restaurant_category_ids?this.restaurant_category_ids:'',
+              order_by:this.orderbytype?this.orderbytype:'',
+            });
             this.restaurantsList = [...this.restaurantsList, ...res];
-            console.log(res);
             if (res.length < 20) {
               this.touchend = true;
               return
             }
-
             this.preventRepeatReuqest = false;
           } catch (err) {
 
           }
         },
 
-      }
+      },
+        watch: {
+          //监听父级传来的restaurantCategoryIds，当值发生变化的时候重新获取餐馆数据，作用于排序和筛选
+          restaurant_category_ids: function (){
+           this.listenPropChange();
+          },
+          orderbytype:function () {
+            this.listenPropChange();
+          },
+          delivery_mode:function () {
+            this.listenPropChange();
+          },
+          is_change:function () {
+            // console.log(this.support_ids);
+            this.listenPropChange();
+          },
+          //数组监听比较麻烦 直接根据一个变量进行控制 调用加载这个函数
+
+        }
     }
 </script>
 
@@ -135,7 +211,6 @@
         margin-right: .5rem;
         img{
           width: 100%;
-
         }
       }
       .shop_detail{
@@ -210,6 +285,11 @@
         }
       }
     }
+  }
+  .no_more{
+    color: red;
+    width: 100%;
+    text-align: center;
   }
 
 </style>
