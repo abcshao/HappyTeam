@@ -16,13 +16,4 @@ export default {
 
 <style scoped  lang="less">
 
-<<<<<<< HEAD
-#app {
-  /*.s-body{*/
-    /*margin-top: 1.95rem;*/
-  /*}*/
-}
-
-=======
->>>>>>> 73e11ccb43a14b9237de04fb271ccb1afa04aef4
 </style>
