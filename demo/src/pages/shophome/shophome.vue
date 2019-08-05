@@ -17,7 +17,7 @@
          </div>
        </div>
     <div class="s-shop-home" style="margin-top: 1.8rem">
-        <carousel :list="getcarousellist"></carousel>
+        <carousel :list="getcarousellist" :geohash="geohash"></carousel>
       <div class="shop_list_container">
            <header class="shop_header">
              <i class="el-icon-s-shop" ></i>
@@ -57,7 +57,8 @@
        this.getcarousellist =await getEntryList();
         // 接收坐标数据
         this.geohash=this.$route.params.geohash;
-        let location= this.$route.params.geohash.split(",");
+
+         let location= this.$route.params.geohash.split(",");
         this.latitude=location[0];
         this.longitude=location[1];
         //根据经纬度坐标获取对应的地理位置  把获取的地址上传到头部
