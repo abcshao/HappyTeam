@@ -43,7 +43,10 @@ export const amend_c = (p) => post('/v2/changepassword',p);
 
 
 //获取红包数据
-export const getdiscounts=()=>get('/promotion/v2/users/1/hongbaos?limit=20&offset=0');
+export const getdiscounts=(p)=>get('/promotion/v2/users/'+p+'/hongbaos?limit=20&offset=0');
+
+//过去红包数据请求
+export const gethistory=(p)=>get('/promotion/v2/users/'+p+'/expired_hongbaos?limit=20&offset=0');
 
 
 //获取服务中心的数据
@@ -82,7 +85,14 @@ export const get_restaurant_message = (p) => get('/shopping/restaurant/'+p);
 
 export const get_restaurant_goods_list = (p) => get('/shopping/v2/menu',p);
 
+//搜索地址请求
+export const getadd=(p)=>get('/v1/pois',p)
 
+//添加收货地址
+export const postadd=(p,data)=>post('/v1/users/'+p+ '/addresses',data)
 
+//增加收货地址
+export const postaddB=(p)=>get('/v1/users/'+p+ '/addresses')
 
-
+//退出登录请求
+export const getExit=()=>get('/v2/signout');

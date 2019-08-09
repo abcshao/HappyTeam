@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <template>
     <div class="denglu">
       <!--头部-->
@@ -62,11 +60,13 @@
                   :duration="400">
         <Pop_c v-if="show" :popKuang="popKuang"></Pop_c>
       </transition>
+
     </div>
 </template>
 
 <script>
   import {yzmjmx, landing_c} from "../serivice/api"
+  import {mapActions,mapState} from "vuex"
   import Pop_c from "../components/Cpm_c/Pop_c"
     export default {
         name: "denglujmx",
@@ -82,10 +82,12 @@
             picture:"",
             show: false,
             popKuang:"",
+            allinfo:[],
           }
 
       },
       methods:{
+        ...mapActions(['SET_USER_INFO']),
         postPic(){
           yzmjmx().then((result)=>{
             this.picture=result.code
@@ -119,6 +121,7 @@
             if(result.type == "ERROR_PASSWORD"){
               this.show = true;
               this.popKuang = "密码错误";
+              return;
             }
 
             //判断验证码是否正确
@@ -126,10 +129,17 @@
               this.postPic();
               this.show = true;
               this.popKuang = "验证码不正确";
+              return;
+            }else {
+
             }
-            console.log(result);
+
+            this.SET_USER_INFO(result);
+            // this.allinfo = result;
+            // console.log(this.allinfo);
+            this.$router.push({path:"/minejmx"});
           }).catch((error)=>{
-            console.log(error);
+            // console.log(error);
           })
 
         },
@@ -141,6 +151,9 @@
         yzmjmx().then((result)=>{
           this.picture=result.code
         })
+      },
+      computed:{
+        ...mapState(['userinfo']),
       }
     }
 
@@ -227,4 +240,4 @@ position: relative;
   }
 
 </style>
->>>>>>> 73e11ccb43a14b9237de04fb271ccb1afa04aef4
+

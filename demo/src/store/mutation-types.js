@@ -1,5 +1,7 @@
 export const GET_CITY = 'GET_CITY';
 export const SET_RESTAURANT_CATEGORY_IDS = 'SET_RESTAURANT_CATEGORY_IDS';
 export const SET_CLASSIFY_BC = 'SET_CLASSIFY_BC';
+export const SET_USER_INFO = 'SET_USER_INFO';
+export const SET_ALL_INFO = 'SET_ALL_INFO';
 
 

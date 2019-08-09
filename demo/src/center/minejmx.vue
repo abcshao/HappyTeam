@@ -6,14 +6,15 @@
         @click-left="onClickLeft"
       />
     <!--上面个人中心界面-->
-      <div class="top">
-        <router-link :to="{path:'/dl'}">
+      <div class="top" @click="tz">
+        <!--<router-link :to="{path:'/account'}">-->
           <img src="//elm.cangdu.org/img/default.jpg" alt="" id="img">
-          <p id="p1">登录/注册</p>
+          <!--<img :src="'//elm.cangdu.org/img/'+obj.avatar" alt="" id="img">-->
+          <p id="p1">{{userinfo.username==undefined?"登录/注册":userinfo.username}}</p>
           <img src="../imags/download.png" alt="" id="img1">
-          <p id="p2">暂无绑定手机号</p>
+          <p id="p2">{{userinfo.mobile==undefined?"暂无绑定手机号":userinfo.mobile}}</p>
           <van-icon name="arrow" class="van1"/>
-        </router-link>
+        <!--</router-link>-->
       </div>
       <!--中间部分-->
       <van-row>
@@ -31,7 +32,7 @@
         <router-link :to="{path:'/discounts'}">
         <van-col span="8" class="a">
           <span class="left2">
-             <strong class="left1" style="color: #ff5f3e">3</strong>
+             <strong class="left1" style="color: #ff5f3e">{{userinfo.gift_amount==undefined?"0":userinfo.gift_amount}}</strong>
             个
           </span>
           <p class="left3">我的优惠</p>
@@ -60,7 +61,10 @@
            <van-cell title="积分商城" is-link  class="b"/>
         <!--</span>-->
         <!--<span>-->
-           <van-cell title="饿了么会员卡" is-link  />
+        <router-link :to="{path:'/member'}">
+          <van-cell title="饿了么会员卡" is-link  />
+        </router-link>
+
         <!--</span>-->
 
       </div>
@@ -73,10 +77,11 @@
         </span>
         </router-link>
 
-
+        <router-link :to="{path:'/past'}">
         <span>
            <van-cell title="下载饿了么APP" is-link  />
         </span>
+        </router-link>
 
       </div>
 
@@ -85,12 +90,39 @@
 </template>
 
 <script>
+  import {mapActions,mapState} from "vuex"
     export default {
         name: "minejmx",
+      data(){
+          return{
+
+          }
+      },
       methods:{
+        ...mapActions(['SET_USER_INFO']),
         onClickLeft(){
           this.$router.go(-1);
+        },
+        tz(){
+          if(this.userinfo==undefined){
+            this.$router.push({path:'/dl'})
+          }else{
+            this.$router.push({path:'/account'})
+          }
+
         }
+      },
+      mounted(){
+          if (this.userinfo.mobile==""){
+            this.userinfo.mobile="暂无绑定手机号"
+          }
+        console.log(this.userinfo.username)
+        },
+
+      computed:{
+        ...mapState(['userinfo']),
+
+
       }
     }
 </script>

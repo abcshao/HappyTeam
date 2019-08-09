@@ -1,4 +1,4 @@
-import {GET_CITY,SET_RESTAURANT_CATEGORY_IDS,SET_CLASSIFY_BC} from "./mutation-types"
+import {GET_CITY,SET_RESTAURANT_CATEGORY_IDS,SET_CLASSIFY_BC,SET_USER_INFO,SET_ALL_INFO} from "./mutation-types"
 
 export default {
     [GET_CITY]({commit}){
@@ -12,5 +12,13 @@ export default {
   [SET_CLASSIFY_BC]({commit},value){
     commit(SET_CLASSIFY_BC,value)
   },
+  //设置用户信息
+  [SET_USER_INFO]({commit},value){
+    commit(SET_USER_INFO,value)
+  },
 
+//  搜索地址
+  [SET_ALL_INFO]({commit},value){
+    commit(SET_ALL_INFO,value)
+  },
 }

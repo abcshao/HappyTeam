@@ -53,7 +53,7 @@
           })
         },
         btnLogoA_c(){
-          this.$router.push({path:"/dl"})
+          this.$router.go(-1);
         },
         btnAmend_c(){
           this.postPic();

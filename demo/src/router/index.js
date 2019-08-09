@@ -13,6 +13,15 @@ import jifenSM from "../explains/explain_jifen"
 import indent from "../center/indent"
 import serve from "../center/serve"
 import svip from "../center/svipQuestion"
+import account from "../center/account"
+import history from "../center/history"
+import past from "../center/past"
+import amend from "../center/amendusername"
+import site from "../center/site"
+import add from "../center/add"
+import member from "../center/member"
+import redact from "../center/redact"
+import countdown from "../center/countdown"
 const home = ()=>import("@/pages/home/home")
 const searchAddress = ()=>import("@/pages/searchAddress/searchAddress")
 const shophome = ()=>import("@/pages/shophome/shophome")
@@ -99,6 +108,42 @@ export default new Router({
     {
       path:"/svip",
       component:svip
+    },
+    {
+      path:'/account',
+      component:account
+    },
+    {
+      path:'/history',
+      component:history
+    },
+    {
+      path:'/past',
+      component:past
+    },
+    {
+      path:'/amend',
+      component:amend
+    },
+    {
+      path:'/site',
+      component:site
+    },
+    {
+      path:'/add',
+      component:add
+    },
+    {
+      path:'/member',
+      component:member
+    },
+    {
+      path:'/redact',
+      component:redact
+    },
+    {
+      path:'/countdown',
+      component:countdown
     },
     {
       path:"/restaurant",
