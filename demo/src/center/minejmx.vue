@@ -10,9 +10,9 @@
         <!--<router-link :to="{path:'/account'}">-->
           <img src="//elm.cangdu.org/img/default.jpg" alt="" id="img">
           <!--<img :src="'//elm.cangdu.org/img/'+obj.avatar" alt="" id="img">-->
-          <p id="p1">{{userinfo.username==undefined?"登录/注册":userinfo.username}}</p>
+          <p id="p1">{{Object.keys(userinfo).length==0?"登录/注册":userinfo.username}}</p>
           <img src="../imags/download.png" alt="" id="img1">
-          <p id="p2">{{userinfo.mobile==undefined?"暂无绑定手机号":userinfo.mobile}}</p>
+          <p id="p2">{{userinfo.mobile==''?"暂无绑定手机号":userinfo.mobile}}</p>
           <van-icon name="arrow" class="van1"/>
         <!--</router-link>-->
       </div>
@@ -104,12 +104,11 @@
           this.$router.go(-1);
         },
         tz(){
-          if(this.userinfo==undefined){
+          if(Object.keys(this.userinfo).length ==0){
             this.$router.push({path:'/dl'})
           }else{
             this.$router.push({path:'/account'})
           }
-
         }
       },
       mounted(){

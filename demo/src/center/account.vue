@@ -97,7 +97,7 @@
         getExit().then((result)=>{
           console.log(result)
           if (result.status==1){
-            // this.userinfo=[];
+            this.SET_USER_INFO({});
             this.$router.push({path:"/minejmx"});
 
           }
