@@ -41,6 +41,9 @@ export const landing_c = (p) => post('/v2/login',p);
 //修改用户密码
 export const amend_c = (p) => post('/v2/changepassword',p);
 
+//获取添加地址数据
+export  const address_c = (p) => post('v1/users/:user_id/addresses', p)
+
 
 //获取红包数据
 export const getdiscounts=()=>get('/promotion/v2/users/1/hongbaos?limit=20&offset=0');

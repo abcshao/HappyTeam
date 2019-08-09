@@ -13,6 +13,13 @@ import jifenSM from "../explains/explain_jifen"
 import indent from "../center/indent"
 import serve from "../center/serve"
 import svip from "../center/svipQuestion"
+import router_c from "../pages/payment/payment_c"
+import select from "../pages/payment/select_c"
+import site from "../pages/payment/site_c"
+import search_c from "../pages/payment/searchA_c"
+import remark from "../pages/payment/remark_c"
+import invoice_c from "../pages/payment/invoice_c"
+import member_c from "../center/member_c"
 const home = ()=>import("@/pages/home/home")
 const searchAddress = ()=>import("@/pages/searchAddress/searchAddress")
 const shophome = ()=>import("@/pages/shophome/shophome")
@@ -118,9 +125,37 @@ export default new Router({
           name:'restaurantrate',
           component:restaurantrate
         },
-
        ]
+        },
+    {
+      path:'/order',
+      component:router_c
+    },
+    {
+      path:'/select',
+      component:select
+    },
+    {
+      path:'/site',
+      component:site
+    },
+    {
+      path:'/searchA_c',
+      component:search_c
+    },
+    {
+      path:'/remark',
+      component:remark
+    },
+    {
+      path:'/invoice',
+      component:invoice_c
+    },
+    {
+      path:'/member',
+      component:member_c
     }
+
 
   ]
 })

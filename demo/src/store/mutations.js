@@ -1,4 +1,10 @@
-import {GET_CITY,SET_RESTAURANT_CATEGORY_IDS,SET_CLASSIFY_BC,SET_NAME} from "./mutation-types"
+import {GET_CITY,
+  SET_RESTAURANT_CATEGORY_IDS,
+  SET_CLASSIFY_BC,
+  SET_NAME,
+  SET_SEARCH_ADDRESS_NAME
+
+} from "./mutation-types"
 
 export default {
   [GET_CITY](state,value) {
@@ -12,6 +18,9 @@ export default {
   [SET_CLASSIFY_BC](state,value){
     state.classifyB_c=value;
 
+  },
+  [SET_SEARCH_ADDRESS_NAME](state,value){
+    state.searchAddressName=value;
   }
 
 }

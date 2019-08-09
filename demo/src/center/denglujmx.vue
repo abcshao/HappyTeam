@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <template>
     <div class="denglu">
       <!--头部-->
