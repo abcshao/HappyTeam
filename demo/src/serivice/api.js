@@ -85,7 +85,14 @@ export const get_restaurant_message = (p) => get('/shopping/restaurant/'+p);
 
 export const get_restaurant_goods_list = (p) => get('/shopping/v2/menu',p);
 
+//获取商店评价信息
 
+export const get_restaurant_rating = (p,offset=0)=>get("/ugc/v2/restaurants/"+p+"/ratings?offset="+offset+"&limit=10");
 
+//获取商店评价分数
 
+export const get_restaurant_rating_score = (p)=>get("/ugc/v2/restaurants/"+p+"/ratings/scores");
 
+//获取评价分类
+
+export const get_restaurant_rating_tags =(p)=>get("/ugc/v2/restaurants/"+p+"/ratings/tags");

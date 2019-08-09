@@ -62,6 +62,7 @@
             restaurantsList:[],
             offset: 0, // 批次加载店铺列表，每次加载20个 limit = 20
             imgBaseUrl,
+
             preventRepeatReuqest: false, //到达底部加载数据，防止重复加载
             touchend: false, //没有更多
           }
