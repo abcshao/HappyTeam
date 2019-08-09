@@ -199,7 +199,7 @@ export default new Router({
       component:invoice_c
     },
     {
-      path:'/member',
+      path:'/member_c',
       component:member_c
     }
 
