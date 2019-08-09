@@ -306,7 +306,7 @@
         width: 30%;
         font-size: .6rem;
         color: #666;
-        height: 21rem;
+        height: 27rem;
         overflow: auto;
         .s-tab-li{
           position: relative;
@@ -340,7 +340,7 @@
       }
       .s-content-list{
         width: 70%;
-        height: 21rem;
+        height: 27rem;
         overflow: auto;
         .s-content-list-title{
           padding:0 0.4rem;

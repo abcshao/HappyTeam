@@ -127,7 +127,7 @@
 
 <style scoped lang="less">
   .s-rate {
-    height: 21.6rem;
+    height: 29rem;
     overflow: auto;
     .rating_header {
       display: flex;
