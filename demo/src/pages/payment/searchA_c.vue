@@ -45,7 +45,7 @@
         methods: {
           ...mapActions(['SET_SEARCH_ADDRESS_NAME','GET_CITY']),
           btnReturnB_c() {
-            this.$router.push({path: '/site'})
+            this.$router.push({path: '/sitec'})
           },
           btnSearchA_c() {
             let params_c = {city_id: Number(this.cityA_c), keyword: this.searchQ_C, type: 'search'};
@@ -66,7 +66,7 @@
           },
           btnText_c(p){
             this.SET_SEARCH_ADDRESS_NAME(p);
-            this.$router.push({path:'/site'})
+            this.$router.push({path:'/sitec'})
             // this.$store.dispatch('setsearchAddressName',p)
           }
         }

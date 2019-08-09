@@ -28,7 +28,7 @@
       </li>
     </ul>
   </router-link>
-  <router-link :to="{path:'/site'}" class="skip_c">
+  <router-link :to="{path:'/sitec'}" class="skip_c">
     <i class="iconfont txtL_c">&#xe60e;</i>
     <span>新增收货地址</span>
   </router-link>
