@@ -1,5 +1,14 @@
-import {GET_CITY,SET_RESTAURANT_CATEGORY_IDS,SET_CLASSIFY_BC} from "./mutation-types"
+import {
+  GET_CITY,
+  SET_RESTAURANT_CATEGORY_IDS,
+  SET_CLASSIFY_BC, SET_NAME,
+  SET_SHOP_CAR_LIST,
+  REMOVE_SHOP_CAR_LIST,
+  INIT_SHOP_CAR_LIST,
+  CLEAT_SHOP_CAR_LIST, SET_RESTAURANT_GOODS, UPDATE_RESTAURANT_GOODS,
 
+} from "./mutation-types"
+import {setStore} from "../config/mUtils";
 export default {
     [GET_CITY]({commit}){
       commit(GET_CITY)
@@ -12,5 +21,24 @@ export default {
   [SET_CLASSIFY_BC]({commit},value){
     commit(SET_CLASSIFY_BC,value)
   },
-
+  [SET_SHOP_CAR_LIST]({commit},value){
+    commit(SET_SHOP_CAR_LIST,value)
+  },
+  [REMOVE_SHOP_CAR_LIST]({commit},value){
+    commit(REMOVE_SHOP_CAR_LIST,value)
+  },
+  [INIT_SHOP_CAR_LIST]({commit}){
+    commit(INIT_SHOP_CAR_LIST)
+  },
+  [CLEAT_SHOP_CAR_LIST]({commit},value){
+    commit(CLEAT_SHOP_CAR_LIST,value)
+  },
+  //存入购物车数据
+  [SET_RESTAURANT_GOODS]({commit},value){
+    commit(SET_RESTAURANT_GOODS,value)
+  },
+  //更新购物车数据
+  [UPDATE_RESTAURANT_GOODS]({commit}){
+    commit(UPDATE_RESTAURANT_GOODS);
+  }
 }
