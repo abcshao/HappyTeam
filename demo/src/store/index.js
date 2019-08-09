@@ -17,6 +17,9 @@ const state = {
   classifyB_c:0,//点击导航是否显示
   userinfo:[],//存储登录的信息
   all:[],//存储获取的地址的信息
+  searchAddressName:"",   //搜索地址的名字
+  shopCarList:{},//购物车id
+  restaurantgoods:[],//商店商品信息
 };
 
 export default new Vuex.Store({
@@ -24,7 +27,5 @@ export default new Vuex.Store({
   getters,
   actions,
   mutations,
-  // plugins: [vuexLocal.plugin],
   plugins: [createPersistedState()]
-
 })

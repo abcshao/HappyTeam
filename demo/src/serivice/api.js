@@ -41,6 +41,9 @@ export const landing_c = (p) => post('/v2/login',p);
 //修改用户密码
 export const amend_c = (p) => post('/v2/changepassword',p);
 
+//获取添加地址数据
+export  const address_c = (p) => post('v1/users/:user_id/addresses', p)
+
 
 //获取红包数据
 export const getdiscounts=(p)=>get('/promotion/v2/users/'+p+'/hongbaos?limit=20&offset=0');
@@ -85,6 +88,7 @@ export const get_restaurant_message = (p) => get('/shopping/restaurant/'+p);
 
 export const get_restaurant_goods_list = (p) => get('/shopping/v2/menu',p);
 
+
 //搜索地址请求
 export const getadd=(p)=>get('/v1/pois',p)
 
@@ -96,3 +100,15 @@ export const postaddB=(p)=>get('/v1/users/'+p+ '/addresses')
 
 //退出登录请求
 export const getExit=()=>get('/v2/signout');
+
+//获取商店评价信息
+
+export const get_restaurant_rating = (p,offset=0)=>get("/ugc/v2/restaurants/"+p+"/ratings?offset="+offset+"&limit=10");
+
+//获取商店评价分数
+
+export const get_restaurant_rating_score = (p)=>get("/ugc/v2/restaurants/"+p+"/ratings/scores");
+
+//获取评价分类
+
+export const get_restaurant_rating_tags =(p)=>get("/ugc/v2/restaurants/"+p+"/ratings/tags");
