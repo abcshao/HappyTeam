@@ -1,5 +1,8 @@
 <template>
-  <ul class="shop_ul" v-load-more="loaderMore" v-if="restaurantsList.length">
+  <div >
+
+
+  <ul class="shop_ul" v-load-more="loaderMore" v-if="restaurantsList.length>0">
 
     <li class="shop_li clear" v-for="(item,index) in restaurantsList" :key="index">
       <router-link :to="{path:'/restaurant',query:{id:item.id} }">
@@ -42,18 +45,28 @@
 
     <li v-if="touchend" class="no_more">已经到底啦,亲</li>
   </ul>
+  <ul v-else class="animation_opactiy">
+    <li class="shop_li" v-for="item in 10" :key="item">
+      <img src="../../../images/shopback.svg" class="list_back_svg">
+    </li>
+  </ul>
+    <loading v-if="showLoading"></loading>
+  </div>
 </template>
 
 <script>
   import {getrestaurants} from "../../../serivice/api";
   import {imgBaseUrl} from '../../../config/env'
   import {loadMore} from '../../../config/mixin'
-
+  import  loading  from "../../../components/Cpm_c/loading"
 
   export default {
         name: "shoplist",
         props:['geohash','restaurant_category_id','restaurant_category_ids','orderbytype','delivery_mode','support_ids','is_change'],
         mixins: [loadMore],
+       components:{
+         loading
+       },
         data(){
           return{
             rating_num:4.5,
@@ -62,7 +75,7 @@
             restaurantsList:[],
             offset: 0, // 批次加载店铺列表，每次加载20个 limit = 20
             imgBaseUrl,
-
+            showLoading:true,//页面是否加载完成
             preventRepeatReuqest: false, //到达底部加载数据，防止重复加载
             touchend: false, //没有更多
           }
@@ -83,13 +96,14 @@
             restaurant_category_id:this.restaurant_category_id?this.restaurant_category_id:'',
           });
           this.restaurantsList=restaurantsList;
-          console.log(restaurantsList);
+          this.showLoading=false;
           if(restaurantsList.length<20){
             this.touchend=false;
           }
         },
         //监听父级传来的数据发生变化时，触发此函数重新根据属性值获取数据
         async listenPropChange(){
+
           this.offset = 0;
           let supportStr = '';
           let a=0;
@@ -151,6 +165,8 @@
         },
         // 下拉加载数据
         async loaderMore() {
+          this.showLoading=true;
+
           if (this.touchend) {
             return
           } //防止重复请求
@@ -170,6 +186,8 @@
               order_by:this.orderbytype?this.orderbytype:'',
             });
             this.restaurantsList = [...this.restaurantsList, ...res];
+            this.showLoading=false;
+
             if (res.length < 20) {
               this.touchend = true;
               return

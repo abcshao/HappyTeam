@@ -37,9 +37,15 @@
       },
       methods:{
         ...mapActions(['SET_USER_INFO']),
+
         onClickLeft(){
           this.$router.push({path:'/account'});
         }
+      },
+      beforeRouteLeave(to, from, next) {
+        // 设置下一个路由的 meta
+        to.meta.keepAlive = false;  // B 跳转到 A 时，让 A 缓存，即不刷新
+        next();
       },
       mounted(){
         postaddB(this.userinfo.user_id).then((result)=>{
