@@ -1,7 +1,7 @@
 <template>
   <div class="order">
     <div class="s-header clear">
-      <i class="iconfont txtQ_c">&#xe606;</i>
+      <i class="iconfont txtQ_c" @click="btnReturnA_c">&#xe606;</i>
       <span>确认订单</span>
       <i class="iconfont txtW_c">&#xe601;</i>
       <div class="empty"></div>
@@ -101,6 +101,9 @@
           },
           btnPayB_c(){
             this.payA_c = false;
+          },
+          btnReturnA_c(){
+            this.$router.go(-1);  //返回上一层
           }
         }
     }
