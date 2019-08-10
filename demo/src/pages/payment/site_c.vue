@@ -99,6 +99,10 @@
             }
           },
           btnConfirm_c(){
+            let params = {user_id:this.userId_c,address:this.searchAddressName,address_detail:this.siteO_c,geohash:this.coordinate_c,name:this.nameA_c,phone:this.phoneA_c,tag:this.labelB_c,phone_bk:this.phoneB_c,tag_type:this.labelC_c}
+            address_c(params).then((result)=>{
+              console.log(result)
+            })
             if(this.nameA_c == ""){
               this.show = true;
               this.popKuang = "请输入姓名";
@@ -120,10 +124,6 @@
               this.popKuang = "标签错误";
               return;
             }
-            let params = {user_id:this.userId_c,address:this.searchAddressName,address_detail:this.siteO_c,geohash:this.coordinate_c,name:this.nameA_c,phone:this.phoneA_c,tag:this.labelB_c,phone_bk:this.phoneB_c,tag_type:this.labelC_c}
-            address_c(params).then((result)=>{
-              console.log(result)
-            })
           },
           btnShow_c(){
               this.showB_c = true;
