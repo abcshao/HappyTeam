@@ -21,6 +21,7 @@ const state = {
   shopCarList:{},//购物车id
   restaurantgoods:[],//商店商品信息
   geohash:"", //城市经纬度
+  latitude:[], //搜索历史
 };
 
 export default new Vuex.Store({

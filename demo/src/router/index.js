@@ -31,6 +31,9 @@ import search_c from "../pages/payment/searchA_c"
 import remark from "../pages/payment/remark_c"
 import invoice_c from "../pages/payment/invoice_c"
 import member_c from "../center/member_c"
+import searchP_c from "../pages/search/searchP_c"
+
+
 const home = ()=>import("@/pages/home/home")
 const searchAddress = ()=>import("@/pages/searchAddress/searchAddress")
 const shophome = ()=>import("@/pages/shophome/shophome")
@@ -204,6 +207,10 @@ export default new Router({
     {
       path:'/member_c',
       component:member_c
+    },
+    {
+      path:'/searchP_c',
+      component:searchP_c
     }
 
 

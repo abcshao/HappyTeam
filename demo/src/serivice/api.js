@@ -42,7 +42,10 @@ export const landing_c = (p) => post('/v2/login',p);
 export const amend_c = (p) => post('/v2/changepassword',p);
 
 //获取添加地址数据
-export  const address_c = (p) => post('v1/users/:user_id/addresses', p)
+export  const address_c = (p) => post('/v1/users/:user_id/addresses', p)
+
+//获取搜索
+export  const searchT_c = (p) => get('/v4/restaurants',p)
 
 
 //获取红包数据
