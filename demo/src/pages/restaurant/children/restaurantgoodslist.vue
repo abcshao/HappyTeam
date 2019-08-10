@@ -46,10 +46,12 @@
                         <button class="get-rule"  @touchstart="alertTip(val)">选规格</button>
                       </div>
                       <div v-else>
-                          <span v-show="val.specfoods[0].goodsnum>0">
+                        <transition name="fade" :duration="{ enter: 500, leave: 100 }" >
+                          <span v-if="val.specfoods[0].goodsnum>0">
                                 <i class="iconfont" style="font-size: 0.7rem;color: #3190e8;"  @touchstart="reduceCar(val)">&#xe656;</i>
                                 <span class="num">{{val.specfoods[0].goodsnum}}</span>
                           </span>
+                        </transition>
                         <i class="iconfont" style="font-size: 0.75rem;color: #3190e8;" @touchstart="btnss(val)">&#xe60d;</i>
                       </div>
                     </div>
@@ -61,7 +63,7 @@
       </ul>
       </section>
     </div>
-    <buy-cart :foods_message="foods_message" v-if="isalerttip" :shopid="id" ></buy-cart>
+    <buy-cart :foods_message="foods_message" v-if="isalerttip" :shopid="shopid" ></buy-cart>
     <div class="zhezhao"  v-if="iszhezhao"></div>
     <transition
       appear
@@ -70,9 +72,9 @@
       v-for="(item,index) in showMoveDot"
       :key = index
     >
-            <span class="move_dot" v-if="item">
-                <div class="qiu"></div>
-            </span>
+    <span class="move_dot" v-if="item">
+        <div class="qiu"></div>
+    </span>
     </transition>
   </div>
 </template>
@@ -274,6 +276,19 @@
 </script>
 
 <style scoped lang="less">
+  .fade-enter-active {
+    transition: all .3s ease;
+  }
+  .fade-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+  .fade-enter, .slide-fade-leave-to
+    /* .slide-fade-leave-active for below version 2.1.8 */ {
+    transform: translateX(10px);
+    opacity: 0;
+  }
+
+
   .move_dot{
     position: fixed;
     bottom: 30px;

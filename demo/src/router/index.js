@@ -154,7 +154,10 @@ export default new Router({
     },
     {
       path:'/redact',
-      component:redact
+      component:redact,
+      meta: {
+        keepAlive: true // 需要被缓存
+      }
     },
     {
       path:'/countdown',
