@@ -85,12 +85,13 @@
 
       </div>
 
-
+      <Sfooter></Sfooter>
     </div>
 </template>
 
 <script>
   import {mapActions,mapState} from "vuex"
+  import Sfooter from "../components/Sfooter/Sfooter";
     export default {
         name: "minejmx",
       data(){
@@ -122,7 +123,10 @@
         ...mapState(['userinfo']),
 
 
-      }
+      },
+      components: {
+          Sfooter,
+      },
     }
 </script>
 

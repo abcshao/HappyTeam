@@ -55,7 +55,7 @@
           </div>
             <div class="div4">
               <div >
-                <router-link :to="{}"><span class="ss">兑换红包</span></router-link>
+                <router-link :to="{path:'/conversion'}"><span class="ss">兑换红包</span></router-link>
               </div>
 
               <div>
@@ -255,7 +255,7 @@
     line-height: 1.2rem;
   }
   .link{
-    padding: .5rem 0 2.8rem;
+    padding: .5rem 0 2.3rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -267,14 +267,17 @@
   }
   .div4{
     width: 100%;
-    background: white;
+    line-height: 2rem;
   }
   .div4>div{
    float: left;
     width: 50%;
     text-align: center;
+    background: white;
+    border-right: 0.1rem;
+
   }
-  #ss{
+  .ss{
     font-size: .7rem;
     color: #555;
   }

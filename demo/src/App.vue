@@ -6,7 +6,7 @@
       <transition enter-active-class="animated fadeIn" leave-active-class="opacity 0">
       <router-view/>
       </transition>
-      
+
     </div>
   </div>
 </template>

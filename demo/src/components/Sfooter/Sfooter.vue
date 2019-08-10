@@ -19,7 +19,7 @@
                  <p>订单</p>
                </li>
                </router-link>
-               <router-link to="/shopname">
+               <router-link to="/minejmx">
                <li class="s-footer-li left">
                  <h4><i class="iconfont">&#xe601;</i></h4>
                  <p>我的</p>

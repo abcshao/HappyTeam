@@ -45,8 +45,6 @@
         postaddB(this.userinfo.user_id).then((result)=>{
           console.log(result);
           this.msg=result;
-
-
         })
       },
       computed: {

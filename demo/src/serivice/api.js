@@ -112,3 +112,7 @@ export const get_restaurant_rating_score = (p)=>get("/ugc/v2/restaurants/"+p+"/r
 //获取评价分类
 
 export const get_restaurant_rating_tags =(p)=>get("/ugc/v2/restaurants/"+p+"/ratings/tags");
+
+
+//获取兑换红包数据
+export const postconversion=(p)=>post("/v1/users/"+p+"/hongbao/exchange");

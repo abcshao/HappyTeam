@@ -23,6 +23,7 @@ import add from "../center/add"
 import member from "../center/member"
 import redact from "../center/redact"
 import countdown from "../center/countdown"
+import conversion from "../center/conversion"
 
 import router_c from "../pages/payment/payment_c"
 import select from "../pages/payment/select_c"
@@ -155,6 +156,10 @@ export default new Router({
       component:countdown
     },
     {
+      path:'/conversion',
+      component:conversion
+    },
+    {
       path:"/restaurant",
       component:restaurant,
       children:[
@@ -199,7 +204,7 @@ export default new Router({
       component:invoice_c
     },
     {
-      path:'/member',
+      path:'/member_c',
       component:member_c
     }
 
