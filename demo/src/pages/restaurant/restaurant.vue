@@ -49,9 +49,6 @@
          </div>
       <!--商店商品和评价页面的相互跳转-->
       <div class="ll"   :style="{top:restaurantMessage.activities !== undefined  && restaurantMessage.activities.length>0?'6.4rem':'5.3rem'   }">
-        <!--<router-view></router-view>-->
-
-
         <restaurantgoodslist v-if="isGoodsorRate=='goods'?true:false" :restaurant_goods_list="foodsList" :shopid="id"  ></restaurantgoodslist>
         <restaurantrate v-if="isGoodsorRate=='rate'" :ratelist="ratelist"  :ratescore = "ratescore"  :ratetags="ratetags"  :shopid="id" ></restaurantrate>
 

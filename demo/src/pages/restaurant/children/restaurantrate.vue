@@ -134,11 +134,9 @@
       background-color: #fff;
       padding: .8rem .5rem;
       margin-bottom: .5rem;
-
       .rating_header_left {
         flex: 3;
         text-align: center;
-
         p {
           &:first-of-type {
             font-size: 1.2rem;

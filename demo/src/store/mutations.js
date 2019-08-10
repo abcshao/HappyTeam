@@ -11,7 +11,8 @@ import {
   CLEAT_SHOP_CAR_LIST,
   SET_RESTAURANT_GOODS,
   UPDATE_RESTAURANT_GOODS,
-  SET_SEARCH_ADDRESS_NAME
+  SET_SEARCH_ADDRESS_NAME,
+  SET_GEO_HASH
 } from "./mutation-types"
 
 import {getStore,setStore}  from "../config/mUtils";
@@ -134,6 +135,9 @@ export default {
   //更新购物车数据
   [UPDATE_RESTAURANT_GOODS](state){
     state.restaurantgoods=state.restaurantgoods;
-
+  },
+  //设置geohash
+  [SET_GEO_HASH](state,value){
+    state.geohash=value;
   }
 }

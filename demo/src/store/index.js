@@ -20,6 +20,7 @@ const state = {
   searchAddressName:"",   //搜索地址的名字
   shopCarList:{},//购物车id
   restaurantgoods:[],//商店商品信息
+  geohash:"", //城市经纬度
 };
 
 export default new Vuex.Store({
