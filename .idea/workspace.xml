@@ -249,7 +249,7 @@
       <path value="$PROJECT_DIR$/demo/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="x" value="690" />
     <option name="y" value="8" />
     <option name="width" value="918" />
