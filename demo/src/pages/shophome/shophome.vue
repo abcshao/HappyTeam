@@ -17,7 +17,9 @@
          </div>
        </div>
     <div class="s-shop-home" style="margin-top: 1.8rem">
-        <carousel :list="getcarousellist" :geohash="geohash"></carousel>
+        <carousel :list="getcarousellist" :geohash="geohash" v-if="getcarousellist.length>0"></carousel>
+        <img src="../../images/fl.svg"  v-else class="animation_opactiy" >
+
       <div class="shop_list_container">
            <header class="shop_header">
              <i class="el-icon-s-shop" ></i>

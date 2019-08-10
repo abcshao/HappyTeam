@@ -44,6 +44,7 @@
   </div>
 </template>
 <script>
+  import {mapActions} from "vuex"
   import {getSearchCity} from "../../serivice/api"
   import {setStore,getStore,removeStore}  from "../../config/mUtils"
   import Sheader from "../../components/Sheader/Sheader";
@@ -67,6 +68,7 @@
       }
     },
     methods:{
+      ...mapActions(['SET_GEO_HASH']),
       searchCity(){
         this.isShowHistory=false;
         let params={city_id:Number(this.search_city_id),keyword:this.searchValue,type:'search'};
@@ -100,12 +102,14 @@
          this.latitude=this.searchPoisList[index].latitude;
          this.longitude= this.searchPoisList[index].longitude;
          this.setHistory(index);
+         this.SET_GEO_HASH(this.latitude+","+this.longitude);
         this.$router.push({name:'shophome',params:{geohash:this.latitude+","+this.longitude} });
       },
       //点击历史记录进行跳转
       dirmisteHistory(value){
         this.latitude=value.latitude;
         this.longitude= value.longitude;
+        this.SET_GEO_HASH(this.latitude+","+this.longitude);
         this.$router.push({name:'shophome',params:{geohash:this.latitude+","+this.longitude} });
 
       },

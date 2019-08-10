@@ -51,6 +51,8 @@
     width: 100%;
     height: 30rem;
     background-color: white !important;
+    position: fixed;
+    top: 0;
   .s-header {
     background-color: #3190e8;
     width: 100%;

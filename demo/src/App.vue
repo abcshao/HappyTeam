@@ -3,8 +3,13 @@
 
     <div class="s-body">
 
+      <transition enter-active-class="animated fadeIn" leave-active-class="opacity 0" >
+        <keep-alive>
+          <router-view v-if="$route.meta.keepAlive"></router-view>
+        </keep-alive>
+      </transition>
       <transition enter-active-class="animated fadeIn" leave-active-class="opacity 0">
-      <router-view/>
+        <router-view v-if="!$route.meta.keepAlive"></router-view>
       </transition>
 
     </div>

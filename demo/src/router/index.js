@@ -61,7 +61,10 @@ export default new Router({
     {
       path:'/shophome/:geohash',
       name:'shophome',
-      component:shophome
+      component:shophome,
+      meta: {
+        keepAlive: true // 需要被缓存
+      }
     },
     {
       path:"/filtrate",
@@ -149,7 +152,10 @@ export default new Router({
     },
     {
       path:'/redact',
-      component:redact
+      component:redact,
+      meta: {
+        keepAlive: true // 需要被缓存
+      }
     },
     {
       path:'/countdown',

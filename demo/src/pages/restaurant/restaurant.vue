@@ -49,11 +49,14 @@
          </div>
       <!--商店商品和评价页面的相互跳转-->
       <div class="ll"   :style="{top:restaurantMessage.activities !== undefined  && restaurantMessage.activities.length>0?'6.4rem':'5.3rem'   }">
-        <!--<router-view></router-view>-->
 
+       <transition name="pagechange">
 
         <restaurantgoodslist v-if="isGoodsorRate=='goods'?true:false" :restaurant_goods_list="foodsList" :shopid="id"  ></restaurantgoodslist>
+
+
         <restaurantrate v-if="isGoodsorRate=='rate'" :ratelist="ratelist"  :ratescore = "ratescore"  :ratetags="ratetags"  :shopid="id" ></restaurantrate>
+       </transition>
 
       </div>
          <!--点击活动时显示活动详细页面-->
@@ -71,6 +74,7 @@
                    <p>{{restaurantMessage.promotion_info}}</p>
                    <p class="delet_btn" ><i class="iconfont" @click="show_activity_details=!show_activity_details">&#xe613;</i></p>
          </div>
+
         <div class="shopcar" v-if="isGoodsorRate=='goods'?true:false">
           <div class="s-shopcar">
             <div class="cart_icon_container" :class="{cart_icon_active:allmoney>0}"   @click="showcartdata()">
@@ -84,6 +88,7 @@
               <span  class="gotopay_button_style" v-if="allmoney-restaurantMessage.float_minimum_order_amount>=0">去结算</span>
               <span  class="gotopay_button_style "   v-else>还差¥{{ Math.abs(allmoney-restaurantMessage.float_minimum_order_amount)   }}起送</span>
             </div>
+            <transition name="fadecar" >
             <div class="showcart" v-if="allmoney>0 && isshowcartdata ">
               <header >
                 <h4>购物车</h4>
@@ -111,12 +116,16 @@
                 </ul>
               </section>
             </div>
+            </transition>
             <div class="zhezhao"  v-if="iszhezhao && allmoney>0"></div>
           </div>
 
         </div>
 
-
+          <section class="animation_opactiy shop_back_svg_container" v-if="showLoading">
+            <img src="../../images/shop_back_svg.svg">
+          </section>
+           <loading v-if="showLoading"></loading>
 
 
     </div>
@@ -138,12 +147,14 @@
   import ShopCar from "../../components/Sfooter/shopCar";
   import Restaurantgoodslist from "./children/restaurantgoodslist";
   import Restaurantrate from "./children/restaurantrate";
+  import loading from "../../components/Cpm_c/loading"
     export default {
         name: "restaurant",
-        components: {Restaurantrate, Restaurantgoodslist, ShopCar},
+        components: {Restaurantrate, Restaurantgoodslist, ShopCar,loading},
         data(){
            return{
              id:null,//商店id
+             showLoading: true, //显示加载动画
              restaurantMessage:{},//餐馆详细信息
              show_activity_details:false,//显示活动详情页面是否显示
              isshowcartdata:false,
@@ -166,6 +177,7 @@
            this.ratescore = await get_restaurant_rating_score(this.id);
           //获取评价分类
            this.ratetags = await get_restaurant_rating_tags(this.id);
+           this.showLoading=false;
        },
         methods:{
           ...mapActions(['UPDATE_RESTAURANT_GOODS']),
@@ -260,6 +272,29 @@
 </script>
 
 <style scoped lang="less">
+  .fadecar-enter-active, .fadecar-leave-active {
+    transition: all .3s ease-out;
+  }
+  .fadecar-enter, .fadecar-leave-active {
+    opacity: 0;
+  }
+  .pagechange-enter-active, .pagechange-leave-active {
+    transition: all .3s ease-out;
+  }
+  .pagechange-enter, .pagechange-leave-active {
+    opacity: 0;
+  }
+
+  .shop_back_svg_container{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    img{
+      width: 100%;
+      height: 100%;
+    }
+    z-index: 1003;
+  }
   .ll{
     position: fixed;
     /*top: 6.4rem;*/
