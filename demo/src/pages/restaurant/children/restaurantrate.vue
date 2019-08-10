@@ -127,18 +127,16 @@
 
 <style scoped lang="less">
   .s-rate {
-    height: 21.6rem;
+    height: 29rem;
     overflow: auto;
     .rating_header {
       display: flex;
       background-color: #fff;
       padding: .8rem .5rem;
       margin-bottom: .5rem;
-
       .rating_header_left {
         flex: 3;
         text-align: center;
-
         p {
           &:first-of-type {
             font-size: 1.2rem;
