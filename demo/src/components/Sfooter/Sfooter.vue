@@ -1,7 +1,8 @@
 <template>
     <div class="s-footer">
       <ul class="s-footer-ul clear">
-        <router-link :to="{name:'shophome',params:{geohash:geohash}}">                 <li class="s-footer-li left">
+               <router-link :to="{name:'shophome',params:{geohash:geohash}}">
+                 <li class="s-footer-li left">
                  <h4><i class="iconfont">&#xe603;</i></h4>
                  <p>外卖</p>
                </li>
