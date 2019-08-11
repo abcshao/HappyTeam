@@ -23,6 +23,7 @@ import add from "../center/add"
 import member from "../center/member"
 import redact from "../center/redact"
 import countdown from "../center/countdown"
+import conversion from "../center/conversion"
 
 import router_c from "../pages/payment/payment_c"
 import select from "../pages/payment/select_c"
@@ -140,10 +141,7 @@ export default new Router({
       path:'/amend',
       component:amend
     },
-    {
-      path:'/sitec',
-      component:sitec
-    },
+
     {
       path:'/add',
       component:add
@@ -162,6 +160,10 @@ export default new Router({
     {
       path:'/countdown',
       component:countdown
+    },
+    {
+      path:'/conversion',
+      component:conversion
     },
     {
       path:"/restaurant",
@@ -185,28 +187,39 @@ export default new Router({
         },
     {
       path:'/order',
-      component:router_c
+      component:router_c,
+      children:[
+        {
+          path:'remark',
+          component:remark
+        },
+        {
+          path:'select',
+          component:select,
+          children:[
+            {
+              path:'sitec',
+              component:sitec
+            },
+          ],
+        },
+        {
+          path:'invoice',
+          component:invoice_c
+        },
+      ]
     },
+
     {
-      path:'/select',
-      component:select
-    },
-    {
-      path:'/site',
+      path:'site',
       component:site
     },
     {
       path:'/searchA_c',
       component:search_c
     },
-    {
-      path:'/remark',
-      component:remark
-    },
-    {
-      path:'/invoice',
-      component:invoice_c
-    },
+
+
     {
       path:'/member_c',
       component:member_c

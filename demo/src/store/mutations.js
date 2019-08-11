@@ -16,6 +16,9 @@ import {
   SET_SEARCH_RESTAURANT,
   DELETE_SEARCH,
   DELETE_ALL_SEARCH,
+  SET_REMARKS,
+  CHOSE_ADDRESS,
+  ADD_STATUS
 } from "./mutation-types"
 
 import {getStore,setStore}  from "../config/mUtils";
@@ -154,7 +157,23 @@ export default {
   },
 
   //删除所有搜索记录
-  [DELETE_ALL_SEARCH](state){
-    state.latitude=[];
+  [DELETE_ALL_SEARCH](state) {
+    state.latitude = [];
+  },
+  //设置备注数据
+  [SET_REMARKS](state,value){
+    state.remarks=value;
+  },
+  //选择的地址
+  [CHOSE_ADDRESS](state, {
+    address,
+    index
+  }) {
+    state.useraddress = address;
+    state.useraddressindex = index;
+  },
+  //检测添加地址成功直接跳转页面
+  [ADD_STATUS](state,value){
+    state.addStatus+=value;
   },
 }
