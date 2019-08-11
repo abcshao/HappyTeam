@@ -15,5 +15,9 @@ export const SET_RESTAURANT_GOODS ='SET_RESTAURANT_GOODS';
 export const UPDATE_RESTAURANT_GOODS ='UPDATE_RESTAURANT_GOODS';
 
 export const SET_GEO_HASH ='SET_GEO_HASH';//设置坐标
+export const SET_REMARKS ='SET_REMARKS';//设置备注记录
+export const CHOSE_ADDRESS ='CHOSE_ADDRESS';//根据下标选择对应的地址
+export const ADD_STATUS ='ADD_STATUS';//根据下标选择对应的地址
+
 
 

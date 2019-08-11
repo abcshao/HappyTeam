@@ -49,7 +49,7 @@
 
 <script>
   import {mapActions,mapState,} from "vuex"
-  import {address_c} from "../../serivice/api"
+  import {postadd} from "../../serivice/api"
 
   import Pop_c from "../../components/Cpm_c/Pop_c";
     export default {
@@ -67,42 +67,45 @@
             // searchAddressName:"",   //地址
             siteO_c:"",   //详细地址
             labelB_c:"",  //标签
-            userId_c:186655961,   //用户id
+            userId_c:null,   //用户id
             coordinate_c:"",  //经纬度
-            sexA_c:"1",    //性别
+            sexA_c:1,    //性别
             phoneB_c:"",  //备注电话
             labelC_c:"2", //标签类型
           }
         },
-
+      created(){
+        this.userId_c=this.userinfo.user_id;
+        this.coordinate_c=this.geohash;
+      },
       computed:{
-        ...mapState(['searchAddressName']),
+        ...mapState(['searchAddressName','userinfo','geohash']),
         showPro(){
           return this.$route.query.textN_c
         }
       },
         methods:{
+          ...mapActions(['ADD_STATUS']),
           btntxt_c(show){
             this.show = show;
           },
 
           btnReturnA_c(){
-            this.$router.push({path:"/select"})
+            this.$router.go(-1);
           },
           selectSort_c(index){
             if (index == 0){
               this.active = true;
               this.txtL_c = false;
+              this.sexA_c=1;
             }else if(index == 1){
               this.active = false;
               this.txtL_c = true;
+              this.sexA_c=2;
+
             }
           },
           btnConfirm_c(){
-            let params = {user_id:this.userId_c,address:this.searchAddressName,address_detail:this.siteO_c,geohash:this.coordinate_c,name:this.nameA_c,phone:this.phoneA_c,tag:this.labelB_c,phone_bk:this.phoneB_c,tag_type:this.labelC_c}
-            address_c(params).then((result)=>{
-              console.log(result)
-            })
             if(this.nameA_c == ""){
               this.show = true;
               this.popKuang = "请输入姓名";
@@ -117,6 +120,7 @@
               return;
             }else if(this.siteO_c == ""){
               this.show = true;
+              this.show = true;
               this.popKuang = "详细地址信息错误";
               return;
             }else if(this.labelB_c == ""){
@@ -124,6 +128,15 @@
               this.popKuang = "标签错误";
               return;
             }
+            let params = {sex:this.sexA_c,address:this.searchAddressName,address_detail:this.siteO_c,geohash:this.coordinate_c,name:this.nameA_c,phone:this.phoneA_c,tag:this.labelB_c,phone_bk:this.phoneB_c,tag_type:this.labelC_c}
+            postadd(this.userId_c,params).then((result)=>{
+              if(result.status==1){
+                this.ADD_STATUS(1);
+                // 传输一个vuex值判断是否传值，如果传值则直接更新下运行调用下接口
+                 this.$router.go(-1);
+               }
+            })
+
           },
           btnShow_c(){
               this.showB_c = true;
@@ -138,8 +151,15 @@
 .site {
   position: fixed;
   top: 0;
+  position: fixed;
+  top: 0;
   left: 0;
-  width: 100%;
+  right: 0;
+  bottom: 0;
+  background-color: #f5f5f5;
+  z-index: 100;
+  overflow: auto;
+
   .s-header {
     background-color: #3190e8;
     width: 100%;
@@ -148,6 +168,7 @@
     font-size: 0.8rem;
     line-height: 1.95rem;
     text-align: center;
+
     .txtQ_c {
       float: left;
       margin-left: 0.5rem;

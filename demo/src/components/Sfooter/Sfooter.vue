@@ -1,7 +1,7 @@
 <template>
     <div class="s-footer">
       <ul class="s-footer-ul clear">
-               <router-link to="/">
+               <router-link :to="{path:'msite',query:{geohash:'geohash'}}">
                  <li class="s-footer-li left">
                  <h4><i class="iconfont">&#xe603;</i></h4>
                  <p>外卖</p>
@@ -31,8 +31,19 @@
 </template>
 
 <script>
+  import {mapState} from "vuex"
     export default {
-        name: "Sfooter"
+        name: "Sfooter",
+        data(){
+            return {
+
+            }
+        },
+
+      computed:{
+          ...mapState(['geohash']),
+
+      }
     }
 </script>
 

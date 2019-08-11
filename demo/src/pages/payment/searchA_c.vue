@@ -8,7 +8,7 @@
       <div class="searchM_c">
       <form action="">
         <input type="search" placeholder="请输入小区/写字楼/学校等" class="searchQ_c" v-model="searchQ_C">
-        <button class="btnSearch_C" @click="btnSearchA_c">搜索</button>
+        <button class="btnSearch_C" @click.stop.prevent="btnSearchA_c">搜索</button>
       </form>
       <ul>
         <!--<router-link :to="{path:'/site',query:{textN_c:pro.name}}" v-for="(pro, index) in searchCity_c" :key="index">-->
@@ -48,9 +48,11 @@
             this.$router.go(-1);  //返回上一层
           },
           btnSearchA_c() {
+            console.log(1);
             let params_c = {city_id: Number(this.cityA_c), keyword: this.searchQ_C, type: 'search'};
             getSearchCity(params_c).then((result) => {
               this.searchCity_c = result;
+              console.log(result);
               // this.textN_c = this.searchCity_c.name
               // console.log(this.textN_c);
               if(result.name == "ERROR_QUERY_TYPE"){
@@ -66,7 +68,7 @@
           },
           btnText_c(p){
             this.SET_SEARCH_ADDRESS_NAME(p);
-            this.$router.push({path:'/sitec'})
+            this.$router.go(-1);
             // this.$store.dispatch('setsearchAddressName',p)
           }
         }

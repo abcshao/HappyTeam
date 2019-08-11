@@ -17,16 +17,14 @@
       </van-cell-group>
     </div>
     <div class="s-hot-city">
-      <van-cell title="热门城市"  />
-      <van-grid >
-        <van-grid-item
-          v-for="(value,index) in hotcity"
-          :key="index"
-          :text="value.name"
-          @click="goSearch(value)"
+      <h3 class="s-group-city-title"   >
+          热门城市
+        <span class="zimu" ></span>
+      </h3>
+      <ul class="s-group-city-list clear" >
+        <li class="left ellipsis" style="color:#3190E8;" @click="goSearch(value)"  v-for="(value,index) in hotcity" :key="index">{{value.name}}</li>
+      </ul>
 
-        />
-      </van-grid>
     </div>
     <div class="s-group-city">
       <template v-for="(item,index) in getOrderCity">
@@ -102,17 +100,40 @@
 <style scoped lang="less">
   .s-home{
     .s-local-city{
-      .fontss{
-        font-size: 0.2rem;
-      }
+
       .fonttt span{
         color: #3190E8;
       }
     }
     .s-hot-city{
+      background-color: white;
       margin-top: 0.5rem;
-      .fontss{
-        font-size: 0.2rem;
+
+      .s-group-city-title{
+        padding:0 0.75rem;
+        border-bottom: 1px solid #e4e4e4;
+        border-top: 1px solid #e4e4e4;
+        color: #7D7E80;
+        font-size: 0.5rem;
+        line-height: 1.5rem;
+        .zimu{
+          font-size: 0.5rem;
+        }
+      }
+      .s-group-city-list{
+        text-align: center;
+        li{
+          width: 25%;
+          font-size: 0.5rem;
+          line-height: 1.95rem;
+          box-sizing: border-box;
+          border-bottom: 1px solid #e4e4e4;
+          border-right: 1px solid #e4e4e4;
+          color: #7D7E80;
+          &:nth-child(4n){
+            border-right: 0;
+          }
+        }
       }
 
 

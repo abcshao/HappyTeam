@@ -1,4 +1,4 @@
-import {get , post} from "../config/http"
+import {get , post,Orderpost} from "../config/http"
 
 //使用axios 调用接口 封装的方法 ，以后调用接口 直接在这里设置function函数
 // // 获取商品列表
@@ -40,9 +40,9 @@ export const landing_c = (p) => post('/v2/login',p);
 
 //修改用户密码
 export const amend_c = (p) => post('/v2/changepassword',p);
-
-//获取添加地址数据
-export  const address_c = (p) => post('v1/users/:user_id/addresses', p)
+//
+// //获取添加地址数据
+// export  const address_c = (p) => Orderpost('v1/users/:user_id/addresses', p)
 
 
 //获取红包数据
@@ -112,3 +112,15 @@ export const get_restaurant_rating_score = (p)=>get("/ugc/v2/restaurants/"+p+"/r
 //获取评价分类
 
 export const get_restaurant_rating_tags =(p)=>get("/ugc/v2/restaurants/"+p+"/ratings/tags");
+
+//订单提交
+
+export const get_restaurant_send_order =(p)=>Orderpost("/v1/carts/checkout",p);
+
+// 获取备注信息
+
+export const get_restaurant_remarks =(p,sig)=>get("/v1/carts/"+p+"/remarks",sig);
+
+//下单付款操作
+
+export const get_xia_orders =(user_id,cart_id,data)=>Orderpost("/v1/users/"+user_id+"/carts/"+cart_id+"/orders",data);

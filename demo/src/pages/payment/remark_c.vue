@@ -1,7 +1,7 @@
 <template>
     <div class="remark">
       <div class="s-header clear">
-        <i class="iconfont txtQ_c" @click="btnReturnB_c">&#xe606;</i>
+        <i class="iconfont txtQ_c" @click="$router.go(-1)">&#xe606;</i>
         <span>订单备注</span>
       </div>
       <div class="boxQ_c">
@@ -14,49 +14,89 @@
       </div>
       <div class="boxW_c">
         <p>其他备注</p>
-        <textarea  rows="5" class="textH_c" placeholder="请输入备注内容(可不填)"></textarea>
+        <textarea  rows="5" class="textH_c" placeholder="请输入备注内容(可不填)" v-model="self_mess"></textarea>
       </div>
       <div class="btnAffirm_C" @click="btnAffirmA_c">确定</div>
     </div>
 </template>
 
 <script>
+  import {mapActions} from "vuex"
+   import {get_restaurant_remarks} from "../../serivice/api"
     export default {
         name: "remark_c",
         data(){
           return {
             remarkText:{},
-            remark_c:[["不要辣","少点辣","多点辣"],["不要香菜"],["不要洋葱"],["少点醋"],["多点葱"],["去冰","少冰"]],
-            show:false
+            remark_c:[],
+            show:false,
+            orderid:null,
+            sig:null,
+            self_mess:null,
           }
         },
+       created(){
+           this.orderid=this.$route.query.id;
+           this.sig=this.$route.query.sig;
+       },
+       async mounted(){
+            var result  =await get_restaurant_remarks(this.orderid,{sig:this.sig});
+            this.remark_c=result.remarks;
+
+       },
         methods:{
-          btnReturnB_c(){
-            this.$router.push({path:'/order'})
-          },
+          ...mapActions(['SET_REMARKS']),
+          // btnReturnB_c(){
+          //   this.$router.go(-1);
+          // },
           // selectSort_c(p){
           //   console.log(p)
           //   this.active=!this.active;
           // },
           btnAffirmA_c(){
+              if(this.self_mess){
+               var newdata  = this.newremark+this.self_mess;
+              }else{
+                var newdata =     this.newremark.split(",");
+                newdata.pop();
+                var newdata  =  newdata.join(",")
+              }
+              this.SET_REMARKS(newdata);
+              this.$router.go(-1);
           },
           active(index,inde,text){
 
             this.remarkText[index] = [inde,text];
             this.remarkText = Object.assign({},this.remarkText);
+
+            console.log(this.remarkText);
             // this.show=true
           },
 
-        }
+        },
+      computed:{
+          newremark(){
+            var str = "";
+            Object.values(this.remarkText).forEach(item=>{
+                 str+=item[1]+","
+            });
+
+
+            return str;
+          }
+      }
     }
 </script>
 
 <style scoped lang="less">
 .remark {
+
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  right: 0;
+  bottom: 0;
+  background-color: #f5f5f5;
   color: #333;
 .s-header {
   background-color: #3190e8;
