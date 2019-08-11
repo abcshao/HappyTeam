@@ -23,6 +23,7 @@ import add from "../center/add"
 import member from "../center/member"
 import redact from "../center/redact"
 import countdown from "../center/countdown"
+import conversion from "../center/conversion"
 
 import router_c from "../pages/payment/payment_c"
 import select from "../pages/payment/select_c"
@@ -156,6 +157,10 @@ export default new Router({
     {
       path:'/countdown',
       component:countdown
+    },
+    {
+      path:'/conversion',
+      component:conversion
     },
     {
       path:"/restaurant",

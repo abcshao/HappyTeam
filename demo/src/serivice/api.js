@@ -113,6 +113,7 @@ export const get_restaurant_rating_score = (p)=>get("/ugc/v2/restaurants/"+p+"/r
 
 export const get_restaurant_rating_tags =(p)=>get("/ugc/v2/restaurants/"+p+"/ratings/tags");
 
+
 //订单提交
 
 export const get_restaurant_send_order =(p)=>Orderpost("/v1/carts/checkout",p);
@@ -124,3 +125,8 @@ export const get_restaurant_remarks =(p,sig)=>get("/v1/carts/"+p+"/remarks",sig)
 //下单付款操作
 
 export const get_xia_orders =(user_id,cart_id,data)=>Orderpost("/v1/users/"+user_id+"/carts/"+cart_id+"/orders",data);
+
+
+//获取兑换红包数据
+export const postconversion=(p)=>post("/v1/users/"+p+"/hongbao/exchange");
+
