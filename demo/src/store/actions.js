@@ -12,7 +12,8 @@ import {
   SET_RESTAURANT_GOODS,
   UPDATE_RESTAURANT_GOODS,
   SET_SEARCH_ADDRESS_NAME,
-  SET_GEO_HASH
+  SET_GEO_HASH, SET_SEARCH_RESTAURANT,
+  DELETE_SEARCH, DELETE_ALL_SEARCH,
 } from "./mutation-types"
 import {setStore} from "../config/mUtils";
 export default {
@@ -66,6 +67,20 @@ export default {
   //设置geohash
   [SET_GEO_HASH]({commit},value){
     commit(SET_GEO_HASH,value);
-  }
+  },
 
+  //搜索餐馆
+  [SET_SEARCH_RESTAURANT]({commit},value){
+    commit(SET_SEARCH_RESTAURANT,value);
+  },
+
+  //删除搜索历史记录
+  [DELETE_SEARCH]({commit},value){
+    commit(DELETE_SEARCH,value);
+  },
+
+  //删除所有搜索历史记录
+  [DELETE_ALL_SEARCH]({commit},value){
+    commit(DELETE_ALL_SEARCH,value);
+  }
 }

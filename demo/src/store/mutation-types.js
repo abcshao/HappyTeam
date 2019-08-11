@@ -17,3 +17,9 @@ export const UPDATE_RESTAURANT_GOODS ='UPDATE_RESTAURANT_GOODS';
 export const SET_GEO_HASH ='SET_GEO_HASH';//设置坐标
 
 
+export const SET_SEARCH_RESTAURANT ='SET_SEARCH_RESTAURANT';
+
+export const DELETE_SEARCH ='DELETE_SEARCH';    //删除单个历史记录
+
+export const DELETE_ALL_SEARCH ='DELETE_ALL_SEARCH';   //删除所有历史记录
+
