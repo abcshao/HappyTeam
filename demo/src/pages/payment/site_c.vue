@@ -1,5 +1,6 @@
 <template>
 <div class="site">
+
   <div class="s-header clear">
     <i class="iconfont txtQ_c" @click="btnReturnA_c">&#xe606;</i>
     <span>添加地址</span>
@@ -28,7 +29,7 @@
     <div class="siteB_c clear">
       <span>送餐地址</span>
       <div>
-        <router-link :to="{path:'/searchA_c'}">
+        <router-link :to="{path:'/order/select/sitec/searchA_c'}">
           <input type="text" class="siteQ_c" v-model="searchAddressName" disabled placeholder="小区/写字楼/学校等">
         </router-link>
       <input type="text" placeholder="详细地址( 如门牌号等 )" v-model="siteO_c">
@@ -44,6 +45,11 @@
               :duration="400">
     <Pop_c v-if="show" :popKuang="popKuang"></Pop_c>
   </transition>
+  <transition name="fade">
+
+  <router-view></router-view>
+  </transition>
+
 </div>
 </template>
 
@@ -148,6 +154,12 @@
 </script>
 
 <style scoped lang="less">
+  .fade-enter-active, .fade-leave-active {
+    transition: all .3s ease-out;
+  }
+  .fade-enter, .fade-leave-active {
+    opacity: 0;
+  }
 .site {
   position: fixed;
   top: 0;

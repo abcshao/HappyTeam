@@ -12,10 +12,10 @@
     <!---->
     <div class="content">
 
-      <input type="text" placeholder="请输入兑换码" v-model="exchangecode" class="input" @input="inputfirst">
+      <input type="text" placeholder="请输入兑换码" v-model="exchangecode" class="input" >
 
      <div class="div1">
-       <input type="text" placeholder="验证码" v-model="captchacode" class="input1">
+       <input type="text" placeholder="验证码" v-model="captchacode" class="input1" maxlength="4">
        <!--验证码-->
        <div class="yzm">
          <img :src=code1 alt="">
@@ -57,19 +57,30 @@
         cheack1:false,
       }
     },
+    watch:{
+      exchangecode(){
+        if(this.exchangecode.length>0 && this.captchacode.length==4){
+          this.cheack1=true;
+        }else{
+          this.cheack1=false;
+        }
+      },
+      captchacode(){
+        if(this.exchangecode.length>0 && this.captchacode.length==4){
+          console.log(1);
+          this.cheack1=true;
+        }else{
+          this.cheack1=false;
+        }
+      }
+
+    },
     methods: {
       ...mapActions(['SET_USER_INFO']),
       btntxt_c(show){
         this.show = show;
       },
-      //输入框内的有值的时候，按钮改变颜色
-      // inputfirst(){
-      //   if(this.exchangecode>0 || this.captchacode.length=4){
-      //               this.cheack1=true;
-      //         } else{
-      //           this.cheack1=false;
-      //         }
-      // },
+
       exchange(){
         postconversion({
           user_id:this.userinfo.user_id,
@@ -114,8 +125,7 @@
 </script>
 
 <style scoped lang="less">
-  /*@import "_changePackage";*/
-  /*导航栏*/
+
   .van-nav-bar {
     background-color: #3190e8;
   }
@@ -167,9 +177,9 @@
       border-radius: .2rem;
     }
   .convert1{
-    background-color: #ccc;
+    background-color: #4cd964;
     font-size: .7rem;
-    color: #4cd964;
+    color: white;
     text-align: center;
     margin: .7rem .7rem;
     line-height: 1.8rem;

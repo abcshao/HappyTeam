@@ -1,5 +1,4 @@
 <template>
-
      <div>
        <div class="s-header">
         <div class="search left" slot="search">
@@ -8,12 +7,13 @@
         <div class="title left ellipsis">
           <router-link to="/"> <span>{{localaddress}}</span></router-link>
         </div>
-         <div class="right">
-           <router-link :to="{path:'/dl'}">
-         <span>
-        <i class="iconfont">&#xe607;</i>
+         <div class="right" @click="tz">
+           <!--<router-link :to="{path:'/minejmx'}">-->
+         <span >
+           <span v-if="islogin">登陆/注册</span>
+           <i class="iconfont" v-else>&#xe607;</i>
       </span>
-           </router-link>
+           <!--</router-link>-->
          </div>
        </div>
     <div class="s-shop-home" style="margin-top: 1.8rem">
@@ -38,6 +38,7 @@
     import Sheader from "../../components/Sheader/Sheader";
     import shoplist from "./children/shoplist"
     import Sfooter from "../../components/Sfooter/Sfooter";
+    import {mapActions,mapState} from "vuex"
     export default {
       name: "shophome",
 
@@ -51,6 +52,8 @@
              restaurantsList:[],//附近商品列表
              geohash:'',
              hasGetData:false,//判断地理位置是否有相关的数据，如果没有的话不显示附近的商铺
+             show:false,
+
            }
       },
      async mounted() {
@@ -67,8 +70,21 @@
         var item =  await pois(location);
         this.localaddress=item.name;
         this.hasGetData=true;
+
+
+      //  头部是否登录判断
+
+
       },
       methods:{
+        ...mapActions(['SET_USER_INFO']),
+        tz(){
+          if(Object.keys(this.userinfo).length ==0){
+            this.$router.push({path:'/dl'});
+          }else{
+            this.$router.push({path:'/minejmx'});
+          }
+        }
         // 获取商品列表
         // async getInitData(){
         //   //获取附近商家的信息
@@ -76,7 +92,17 @@
         //   console.log(restaurantsList)
         //
         // }
-      }
+      },
+      computed:{
+        ...mapState(['userinfo']),
+        islogin(){
+          if(Object.keys(this.userinfo).length ==0){
+            return true;
+          }else{
+            return false;
+          }
+        }
+      },
 
     }
 </script>

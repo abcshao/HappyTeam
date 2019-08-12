@@ -63,6 +63,9 @@
 </script>
 
 <style scoped>
+  li:nth-child(1){
+    background: #fff8c3;
+  }
   .van-nav-bar {
     background-color: #3190e8;
   }

@@ -136,3 +136,8 @@ export const get_xia_orders =(user_id,cart_id,data)=>Orderpost("/v1/users/"+user
 //获取兑换红包数据
 export const postconversion=(p)=>post("/v1/users/"+p+"/hongbao/exchange");
 
+
+//获取订单列表
+export const getorder=(p)=>get("/bos/v2/users/"+p+"/orders?limit=10&offset=0");
+
+

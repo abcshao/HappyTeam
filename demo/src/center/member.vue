@@ -7,11 +7,11 @@
       />
       <div class="all">
         <p class="p">为账户
-        <span class="span">123456</span>
+        <span class="span">{{userinfo.username}}</span>
           购买会员
         </p>
         <div class="vip">
-          <router-link :to="{}">
+          <router-link :to="{path:'/sale'}">
             <span class="span1">会员特权</span>
             <span class="span2">会员说明<i class="iconfont">&#xe714;</i></span>
           </router-link>
@@ -53,14 +53,14 @@
           </div>
         </div>
         <div class="bottom">
-          <router-link :to="{}">
+          <router-link :to="{path:'/member_c'}">
             <span class="span1">兑换会员</span>
             <span class="span2">使用卡号卡密<i class="iconfont">&#xe714;</i></span>
           </router-link>
         </div>
 
         <div class="bottom">
-          <router-link :to="{}">
+          <router-link :to="{path:'/invoice'}">
             <span class="span1">购买记录</span>
             <span class="span2">开发票<i class="iconfont">&#xe714;</i></span>
           </router-link>
@@ -71,12 +71,17 @@
 </template>
 
 <script>
+  import {mapActions,mapState} from "vuex"
     export default {
         name: "member",
       methods:{
+        ...mapActions(['SET_USER_INFO']),
         onClickLeft(){
           this.$router.go(-1);
         }
+      },
+      computed:{
+        ...mapState(['userinfo']),
       },
     }
 </script>
