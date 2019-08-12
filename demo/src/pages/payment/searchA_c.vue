@@ -83,6 +83,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 1000;
 .s-header {
   background-color: #3190e8;
   width: 100%;

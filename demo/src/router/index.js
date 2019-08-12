@@ -199,7 +199,13 @@ export default new Router({
           children:[
             {
               path:'sitec',
-              component:sitec
+              component:sitec,
+              children:[
+                {
+                  path:'searchA_c',
+                  component:search_c
+                },
+              ],
             },
           ],
         },
@@ -214,10 +220,7 @@ export default new Router({
       path:'site',
       component:site
     },
-    {
-      path:'/searchA_c',
-      component:search_c
-    },
+
 
 
     {

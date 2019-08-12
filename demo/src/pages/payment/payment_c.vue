@@ -11,6 +11,7 @@
       <div class="leftB_c">
       <i class="iconfont txtE_c">&#xe600;</i>
         <div class="leftName_c">
+          <div v-if="useraddress">
       <div class="name_c">
         <span class="txtX_c ellipsis">{{useraddress.name}}</span>
         <span v-if="useraddress.sex==1">先生</span>
@@ -21,6 +22,19 @@
         <span class="txtZ_c" >{{useraddress.tag}}</span>
         <span>{{useraddress.address_detail}}</span>
       </div>
+          </div>
+          <div v-else>
+            <div class="name_c">
+              <span class="txtX_c ">添加一个收获地址</span>
+
+              <span></span>
+            </div>
+            <div class="shop_c">
+              <span class="txtZ_c" ></span>
+              <span></span>
+            </div>
+
+          </div>
         </div>
       </div>
       <i class="iconfont txtR_c">&#xe714;</i>
