@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="129b0e92-a2f3-41b7-8aab-dc9cd5e2c899" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/components/Sfooter/Sfooter.vue" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/components/Sfooter/Sfooter.vue" afterDir="false" />
-    </list>
+    <list default="true" id="129b0e92-a2f3-41b7-8aab-dc9cd5e2c899" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -24,9 +21,10 @@
           <entry key="project.open.time.12" value="3" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.14" value="1" />
+          <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="13" />
+          <entry key="project.opened" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -139,7 +137,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/demo/src/pages/payment/payment_c.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3060">
+            <state relative-caret-position="36">
               <caret line="5" column="42" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
               <folding>
                 <element signature="n#div#1;n#div#0;n#template#0;n#!!top" />
@@ -253,7 +251,7 @@
       <path value="$PROJECT_DIR$/demo/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="x" value="497" />
     <option name="y" value="3" />
     <option name="width" value="1104" />
@@ -297,7 +295,7 @@
               <item name="HappyTeam" type="462c0819:PsiDirectoryNode" />
               <item name="demo" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="center" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="HappyTeam" type="b2602c69:ProjectViewProjectNode" />
@@ -321,6 +319,14 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
               <item name="payment" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HappyTeam" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HappyTeam" type="462c0819:PsiDirectoryNode" />
+              <item name="demo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="restaurant" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="HappyTeam" type="b2602c69:ProjectViewProjectNode" />
@@ -390,17 +396,18 @@
       <workItem from="1565399762869" duration="24179000" />
       <workItem from="1565507164070" duration="7783000" />
       <workItem from="1565571646453" duration="182000" />
+      <workItem from="1565571861840" duration="234000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="275872000" />
+    <option name="totallyTimeSpent" value="276128000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <frame x="497" y="3" width="1104" height="867" extended-state="0" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.20152092" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.29831144" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.052560646" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
@@ -745,7 +752,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/demo/src/pages/payment/payment_c.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3060">
+        <state relative-caret-position="36">
           <caret line="5" column="42" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
           <folding>
             <element signature="n#div#1;n#div#0;n#template#0;n#!!top" />
