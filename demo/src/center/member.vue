@@ -46,7 +46,7 @@
               <span class="span3">一个月</span>
               <span class="span4">￥20</span>
             </div>
-            <router-link :to="{path:'/countdown'}">
+            <router-link :to="{path:'/countdown1'}">
               <div class="open4" >购买</div>
             </router-link>
 

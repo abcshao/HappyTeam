@@ -23,6 +23,7 @@ import add from "../center/add"
 import member from "../center/member"
 import redact from "../center/redact"
 import countdown from "../center/countdown"
+import countdown1 from "../center/countdown1"
 import conversion from "../center/conversion"
 // import member_c from "../center/member_c"
 import invoice from "../center/invoice"
@@ -243,7 +244,10 @@ export default new Router({
       path:'site',
       component:site
     },
-
+    {
+      path:'/countdown1',
+      component:countdown1
+    },
 
 
     {
