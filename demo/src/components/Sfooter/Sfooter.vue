@@ -26,7 +26,6 @@
                </li>
                </router-link>
              </ul>
-
     </div>
 </template>
 
