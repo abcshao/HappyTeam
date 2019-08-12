@@ -41,6 +41,7 @@ import invoice_c from "../pages/payment/invoice_c"
 
 import member_c from "../center/member_c"
 import searchP_c from "../pages/search/searchP_c"
+import awardB_c from "../center/awardA_c"
 
 
 const home = ()=>import("@/pages/home/home")
@@ -257,6 +258,10 @@ export default new Router({
     {
       path:'/searchP_c',
       component:searchP_c
+    },
+    {
+      path:'/awardB_c',
+      component:awardB_c
     }
 
 
