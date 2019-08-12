@@ -164,10 +164,6 @@ export default new Router({
       }
     },
     {
-      path:'/countdown',
-      component:countdown
-    },
-    {
       path:'/conversion',
       component:conversion
     },
@@ -226,6 +222,10 @@ export default new Router({
               ],
             },
           ],
+        },
+        {
+          path:'countdown',
+          component:countdown
         },
         {
           path:'invoice',

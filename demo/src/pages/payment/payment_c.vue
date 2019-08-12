@@ -2,41 +2,39 @@
   <div class="order" v-if="orderresult">
     <div class="s-header clear" >
       <i class="iconfont txtQ_c" @click="btnReturnA_c">&#xe606;</i>
-      <span>确认订单</span>
-      <i class="iconfont txtW_c">&#xe601;</i>
+      <span class="sure_order">确认订单</span>
+       <router-link to="/minejmx" v-if="Object.keys(userinfo).length>0"><i class="iconfont txtW_c"   >&#xe601;</i></router-link>
+       <router-link :to="{path:'/dl'}" v-else><span class="txtW_c">登录|注册</span></router-link>
       <div class="empty"></div>
     </div>
     <router-link :to="{path:'/order/select',query:{id:orderid,sig:sig}}">
     <div class="site_c">
-      <div class="leftB_c">
+      <div class="leftB_c"    v-if="Object.keys(userinfo).length>0 && this.address.length>0 || Object.keys(useraddress).length>0 ">
       <i class="iconfont txtE_c">&#xe600;</i>
         <div class="leftName_c">
-          <div v-if="useraddress">
-      <div class="name_c">
-        <span class="txtX_c ellipsis">{{useraddress.name}}</span>
-        <span v-if="useraddress.sex==1">先生</span>
-        <span v-else-if="useraddress.sex==2">女士</span>
-        <span>{{useraddress.phone}}</span>
-      </div>
-      <div class="shop_c">
-        <span class="txtZ_c" >{{useraddress.tag}}</span>
-        <span>{{useraddress.address_detail}}</span>
-      </div>
-          </div>
-          <div v-else>
-            <div class="name_c">
-              <span class="txtX_c ">添加一个收获地址</span>
 
-              <span></span>
-            </div>
-            <div class="shop_c">
-              <span class="txtZ_c" ></span>
-              <span></span>
-            </div>
-
-          </div>
+                <div class="name_c">
+                  <span class="txtX_c ellipsis">{{useraddress.name}}</span>
+                  <span v-if="useraddress.sex==1">先生</span>
+                  <span v-else-if="useraddress.sex==2">女士</span>
+                  <span>{{useraddress.phone}}</span>
+                </div>
+                <div class="shop_c">
+                  <span class="txtZ_c" >{{useraddress.tag}}</span>
+                  <span>{{useraddress.address_detail}}</span>
+                </div>
         </div>
       </div>
+       <div class="newleftBc left" v-else>
+           <div>
+             <i class="iconfont txtE_c" style="color: #3190e8;">&#xe600;</i>
+
+             <span class="">请添加一个收货地址</span>
+
+           </div>
+
+       </div>
+
       <i class="iconfont txtR_c">&#xe714;</i>
       <div class="empty"></div>
     </div>
@@ -122,16 +120,23 @@
     <transition name = 'fade'>
       <router-view></router-view>
     </transition>
-
+    <transition name="fade" enter-active-class="animated bounceIn"
+                :duration="400">
+      <Pop_c v-if="show" :popKuang="popKuang"></Pop_c>
+    </transition>
   </div>
+
+
 </template>
 
 <script>
   import {mapState,mapActions,mapGetters} from "vuex"
   import {get_restaurant_send_order,postaddB,get_xia_orders} from "../../serivice/api"
+  import Pop_c from "../../components/Cpm_c/Pop_c";
     export default {
         name: "payment_c",
-        data(){
+      components: {Pop_c},
+      data(){
           return {
             payA_c:false,
             geohash:"",//经纬度
@@ -145,11 +150,11 @@
             goods_group:[],
             restaurant_info:[],
             business_license_image:'',
-
+            show:false,
+            popKuang:'',
           }
         },
        async created(){
-          console.log(this.orderresult);
           if(Object.keys(this.userinfo).length==0){
              this.$router.push({path:'dl'});
              return ;
@@ -169,9 +174,11 @@
             come_from: "web"
           });
           // 获取收货地址
-
+          console.log(this.userid);
           this.address = await postaddB(this.userid);
-          this.CHOSE_ADDRESS({address:this.address[0],index:0});
+           if(this.address.length>0){
+             this.CHOSE_ADDRESS({address:this.address[0],index:0});
+           }
           this.address_id=this.useraddress.id;
           this.goods_group =this.orderresult.cart.groups;
           this.sig=this.orderresult.sig;
@@ -197,7 +204,7 @@
           },
           //下单操作
         async  xiadanBtn(){
-            console.log(1);
+
             var result = await get_xia_orders(this.userid,this.shopid,{
               address_id:this.address_id,
               deliver_time:"",
@@ -208,11 +215,16 @@
               sig:this.sig
             });
 
-            if(result.status==1){
-              console.log(1);
-              this.$router.push("/")
+          if(result.status==1){
+              this.$router.push("/order/countdown")
+            }else{
+               this.popKuang="下单失败";
+              this.show = true;
             }
-          }
+          },
+          btntxt_c(){
+            this.show = false;
+          },
         },
         computed:{
           ...mapState(['userinfo','remarks','useraddress']),
@@ -271,6 +283,13 @@
       float: left;
       margin-left: 0.5rem;
     }
+    .sure_order{
+      color: #ffff;
+    }
+    a{
+      color: #fff;
+      /*font-size: 0.7rem;*/
+    }
     span {
       margin-right: 0.4rem;
       font-weight: bold;
@@ -292,6 +311,11 @@
     background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADQAAAAGCAYAAACMyr1NAAAAAXNSR0IArs4c6QAAANxJREFUOBFjZICCpoUPWhn+M7rD+OTQjP8ZztQmymfg0/tr95JlDAz/I/GpISTHyMiwj9Ul1hmbOiaQYNfSx6qUegZkDisD01QQjQv837NMD+iYCFzyxIr/Z2asxqWWBSTx49e/LAZGXEqIFP/PcLgiUfYyPtV/GP62/P9PmU3AANnM6hhzApc9TB3zH+sCrbDFpYBYcQ42pmn41P7av8QC6BlffGoIyTEyMv5nYWCuwaeO6TfDv2x8CoiSY/y/syxa9jY+tYx//7fikydGDhggKxhdoi4Ro3bYqAEAknE5DXYMR0IAAAAASUVORK5CYII=) 0 100% repeat-x;
     background-color: #fff;
     background-size: auto .12rem;
+    .newleftBc{
+      width: 80%;
+      padding-left:0.5rem ;
+      color: #333;
+    }
     .leftB_c {
       width: 80%;
       display: inline-block;
@@ -307,6 +331,11 @@
       .leftName_c{
         display: inline-block;
         margin-left: 0.3rem;
+
+        .new_name_c{
+
+
+        }
       }
       .name_c {
         width: 10rem;

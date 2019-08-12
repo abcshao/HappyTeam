@@ -40,7 +40,7 @@
       <input type="text" placeholder="无/家/学校/公司" v-model="labelB_c">
     </div>
   </div>
-  <div class="btnA_c"@click="btnConfirm_c">确定</div>
+  <div class="btnA_c" @click="btnConfirm_c">确定</div>
   <transition name="fade" enter-active-class="animated bounceIn"
               :duration="400">
     <Pop_c v-if="show" :popKuang="popKuang"></Pop_c>
