@@ -7,11 +7,9 @@
   </div>
 
 
-
-
   <div class="skipB_c">
-    <ul style=" margin-top: 1.95rem;">
-      <li v-for="(item,index) in address" :key="index"  @click="selectzhi(item,index)">
+    <ul style=" margin-top: 1.95rem;" v-if="address && userid">
+      <li v-for="(item,index) in address" :key="index"  @click="selectzhi(item,index)" >
         <div class="site_c">
           <div class="leftB_c">
             <i class="iconfont txtE_c" v-if="index==useraddressindex">&#xe619;</i>
@@ -49,10 +47,10 @@
       name: "select_c",
       data(){
         return{
-           userid:null,
+           userid:'',
           orderid:null,
           sig:null,
-          address:[],
+          address:'',
         }
       },
       methods:{
@@ -94,7 +92,6 @@
 
 <style scoped lang="less">
   .select {
-
     background-color: white !important;
     position: fixed;
     top: 0;

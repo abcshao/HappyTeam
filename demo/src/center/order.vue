@@ -28,26 +28,31 @@
                 <p class="p">{{pro.status_bar.title}}</p>
               </div>
               <div class="div2">
-                <p>{{pro.restaurant_name}}</p>
-                <p>￥2500.00</p>
+                <p>{{allGoodsname(pro)}}</p>
+                <p>{{pro.total_amount}}</p>
               </div>
               </router-link>
               <!--再来一单-->
               <div class="top_bottom">
-                <span>再来一单</span>
+                <router-link :to="{path:'/restaurant',query:{id:pro.restaurant_id}}">
+              <span>再来一单</span>
+                </router-link>
               </div>
             </div>
           </li>
         </ul>
       </div>
+      <sfooter></sfooter>
     </div>
 </template>
 
 <script>
   import {mapActions,mapState} from "vuex"
   import {getorder} from "../serivice/api"
+  import Sfooter from "../components/Sfooter/Sfooter";
     export default {
         name: "order",
+      components: {Sfooter},
       data(){
           return{
         orderArry:[],
@@ -57,12 +62,22 @@
         ...mapActions(['SET_USER_INFO']),
         onClickLeft(){
           this.$router.go(-1);
+        },
+        //合并产品名称
+        allGoodsname(val){
+          var str = "";
+           val.basket.group[0].forEach(item=>{
+             if(item.name !=undefined){
+               str+=item.name
+             }
+           });
+          return str;
         }
       },
       mounted(){
           console.log(this.userinfo);
         getorder(this.userinfo.user_id).then((result)=>{
-          console.log(result)
+
           this.orderArry=result;
         })
       },

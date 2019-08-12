@@ -77,10 +77,11 @@
           if(this.radio==1){
             console.log("当前是支付宝支付")
             this.reveal=true
-            // this.$router.push({path:"/download"})
+            this.$router.push({path:"/order_jmx"})
           }else {
             console.log("当前是微信支付")
             this.reveal=true
+            this.$router.push({path:"/order_jmx"})
 
           }
         }
@@ -92,7 +93,17 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="less">
+  .down{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #f5f5f5;
+    color: #333;
+    z-index:10000;
+  }
   .van-nav-bar__title{
     color: white;
     font-weight:700;

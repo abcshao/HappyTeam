@@ -1,7 +1,7 @@
 <template>
   <div class="searchP_c">
     <div class="s-header clear">
-      <i class="iconfont txtQ_c">&#xe606;</i>
+      <i class="iconfont txtQ_c" @click="$router.go(-1)">&#xe606;</i>
       <span>搜索</span>
     </div>
     <form action="" class="submitA_c">
