@@ -6,7 +6,7 @@
     </div>
     <form action="" class="submitA_c">
       <input type="search" placeholder="请输入商家或美食名称" class="searchL_c" v-model="textJ_c">
-      <input type="submit" class="submitL_c" @click.stop.prevent="btnSearch_C">
+      <input type="submit" class="submitL_c" @click.stop.prevent="btnSearch_C" value="提交">
     </form>
     <div class="merchantA_c" v-if="btnTextA_c">
       <h4>商家</h4>
