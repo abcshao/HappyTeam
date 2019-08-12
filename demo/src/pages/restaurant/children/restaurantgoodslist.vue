@@ -24,7 +24,7 @@
               <span>{{item.description}}</span>
             </div>
             <ul class="s-goods-list">
-              <li class="s-goods-list-li clear" v-for="(val,key) in item.foods" :key="key">
+              <li class="s-goods-list-li clear" v-for="(val,key) in item.foods" :key="key" @click="setgoodsdetail(val)">
                 <div class="goods-img left">
                   <img :src="'//elm.cangdu.org/img/'+val.image_path" alt="">
                 </div>
@@ -41,18 +41,18 @@
                     <div class="btn right">
                       <div v-if="val.specifications.length">
                          <span v-show="allNum(val)>0">
-                            <i class="iconfont" style="font-size: 0.7rem" @touchstart="reducemoreCar()" >&#xe656;</i><span class="num">{{allNum(val)}}</span>
+                            <i class="iconfont" style="font-size: 0.7rem" @touchstart.stop.prevent="reducemoreCar()" >&#xe656;</i><span class="num">{{allNum(val)}}</span>
                          </span>
-                        <button class="get-rule"  @touchstart="alertTip(val)">选规格</button>
+                        <button class="get-rule"  @touchstart.stop.prevent="alertTip(val)">选规格</button>
                       </div>
                       <div v-else>
                         <transition name="fade" :duration="{ enter: 500, leave: 100 }" >
                           <span v-if="val.specfoods[0].goodsnum>0">
-                                <i class="iconfont" style="font-size: 0.7rem;color: #3190e8;"  @touchstart="reduceCar(val)">&#xe656;</i>
+                                <i class="iconfont" style="font-size: 0.7rem;color: #3190e8;"  @touchstart.stop.prevent="reduceCar(val)">&#xe656;</i>
                                 <span class="num">{{val.specfoods[0].goodsnum}}</span>
                           </span>
                         </transition>
-                        <i class="iconfont" style="font-size: 0.75rem;color: #3190e8;" @touchstart="btnss(val)">&#xe60d;</i>
+                        <i class="iconfont" style="font-size: 0.75rem;color: #3190e8;" @touchstart.stop.prevent="btnss(val)">&#xe60d;</i>
                       </div>
                     </div>
                   </li>
@@ -64,6 +64,9 @@
       </section>
     </div>
     <buy-cart :foods_message="foods_message" v-if="isalerttip" :shopid="shopid" ></buy-cart>
+    <transition enter-active-class="animated fadeIn" leave-active-class="opacity 0" >
+         <goodsdetail :goodsdetail="goodsdetail" v-if="showgoodsdetail"></goodsdetail>
+    </transition>
     <div class="zhezhao"  v-if="iszhezhao"></div>
     <transition
       appear
@@ -84,9 +87,10 @@
   import {mapActions,mapState,mapGetters} from "vuex"
   import Bscroll from 'better-scroll'
   import BuyCart from "../buyCart";
+  import Goodsdetail from "./children/goodsdetail";
   export default {
     name: "restaurantgoodslist",
-    components: {BuyCart},
+    components: {Goodsdetail, BuyCart},
     props:['restaurant_goods_list','shopid'],
     data(){
            return{
@@ -106,10 +110,21 @@
              elLeft:'',
              elBottom:'',
              windowHeight:null,
+             goodsdetail:'',
+             showgoodsdetail:false,
            }
         },
         methods:{
           ...mapActions(['SET_SHOP_CAR_LIST','REMOVE_SHOP_CAR_LIST','SET_RESTAURANT_GOODS','UPDATE_RESTAURANT_GOODS']),
+             //设置商品详情
+            setgoodsdetail(val){
+                this.goodsdetail=val;
+                this.showgoodsdetail=true;
+            },
+            disapearpage(){
+             this.showgoodsdetail=false;
+            },
+
              //计算总数量
              allNum(val){
                 var allnum=0;
