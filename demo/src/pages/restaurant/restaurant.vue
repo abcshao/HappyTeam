@@ -77,7 +77,7 @@
 
         <div class="shopcar" v-if="isGoodsorRate=='goods'?true:false">
           <div class="s-shopcar">
-            <div class="cart_icon_container" :class="{cart_icon_active:allmoney>0}"   @click="showcartdata()">
+            <div class="cart_icon_container" :class="{cart_icon_active:allmoney>0,moveanimate:isshowAnimate}"   @click="showcartdata()" ref="cartContainer">
               <i class="iconfont" style="color: white;">&#xe60c;</i>
             </div>
             <div  class="cart_num">
@@ -164,6 +164,7 @@
              ratelist:[],//获取评价数据
              ratescore:[],//获取评价分数
              ratetags:[],//获取评价分类
+             isshowAnimate:false,//判断动画是否显示
            }
         },
        async created() {
@@ -240,7 +241,19 @@
             }else{
               this.isshowcartdata=true;
             }
-          }
+          },
+          //监听圆点是否进入购物车
+          listenInCart(){
+            if (!this.isshowAnimate) {
+              this.isshowAnimate = true;
+              this.$refs.cartContainer.addEventListener('animationend', () => {
+                this.isshowAnimate = false;
+              })
+              this.$refs.cartContainer.addEventListener('webkitAnimationEnd', () => {
+                this.isshowAnimate = false;
+              })
+            }
+          },
         },
       computed:{
         ...mapGetters([
@@ -274,6 +287,18 @@
 </script>
 
 <style scoped lang="less">
+
+  @keyframes movein {
+    0%   { transform: scale(1) }
+    25%  { transform: scale(.8) }
+    50%  { transform: scale(1.1) }
+    75%  { transform: scale(.9) }
+    100% { transform: scale(1) }
+  }
+  .moveanimate{
+    animation: movein 0.5s ease-in-out;
+  }
+
   .fadecar-enter-active, .fadecar-leave-active {
     transition: all .3s ease-out;
   }

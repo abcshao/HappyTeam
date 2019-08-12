@@ -28,6 +28,7 @@ import conversion from "../center/conversion"
 import invoice from "../center/invoice"
 import sale from "../center/sale"
 import order from "../center/order"
+import order_xj from "../center/order_xj"
 
 import router_c from "../pages/payment/payment_c"
 import select from "../pages/payment/select_c"
@@ -158,15 +159,15 @@ export default new Router({
       component:member
     },
     {
+      path:'/order_xj',
+      component:order_xj
+    },
+    {
       path:'/redact',
       component:redact,
       meta: {
         keepAlive: true // 需要被缓存
       }
-    },
-    {
-      path:'/countdown',
-      component:countdown
     },
     {
       path:'/conversion',
@@ -227,6 +228,10 @@ export default new Router({
               ],
             },
           ],
+        },
+        {
+          path:'countdown',
+          component:countdown
         },
         {
           path:'invoice',

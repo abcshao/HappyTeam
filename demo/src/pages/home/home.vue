@@ -3,12 +3,15 @@
     <div class="div1">
       <router-link :to="{path:'/home'}"></router-link>
       <span class="span1">ele.me</span>
-      <router-link :to="{path:'/dl'}">
          <span class="span2">
-           <span v-if="islogin">登陆/注册</span>
-           <i class="iconfont" v-else>&#xe607;</i>
-      </span>
-      </router-link>
+                 <router-link :to="{path:'/dl'}" v-if="islogin">
+
+           <span  >登陆/注册</span>
+                         </router-link>
+          <router-link v-else :to="{path:'/minejmx'}">
+                       <i class="iconfont" >&#xe607;</i>
+          </router-link>
+         </span>
 
     </div>
     <div class="s-local-city">
@@ -109,6 +112,9 @@
 </script>
 
 <style scoped lang="less">
+   .fontss{
+     font-size: 0.7rem;
+   }
   .s-home{
     .s-local-city{
 
@@ -203,5 +209,9 @@
     position: absolute;
     right: .5rem;
     top: 0.2rem;
+    a{
+      color: #fff;
+      font-size: 0.7rem;
+    }
   }
 </style>

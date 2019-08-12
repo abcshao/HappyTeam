@@ -13,7 +13,7 @@
                  <p>搜索</p>
                </li>
                </router-link>
-               <router-link to="/">
+               <router-link to="/order_jmx">
                <li class="s-footer-li left">
                  <h4><i class="iconfont">&#xe602;</i></h4>
                  <p>订单</p>

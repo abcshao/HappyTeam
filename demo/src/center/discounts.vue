@@ -59,7 +59,7 @@
               </div>
 
               <div>
-                <router-link :to="{}"><span class="ss">推荐有奖</span></router-link>
+                <router-link :to="{path:'/awardB_c'}"><span class="ss">推荐有奖</span></router-link>
               </div>
             </div>
         </van-tab>

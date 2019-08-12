@@ -189,6 +189,9 @@
             el.children[0].style.transition = 'transform .55s linear';
             this.showMoveDot = this.showMoveDot.map(item => false);
             el.children[0].style.opacity = 1;
+            el.children[0].addEventListener('transitionend', () => {
+              this.$parent.listenInCart();
+            })
           },
           //删除对应的购物车
           reduceCar(val){

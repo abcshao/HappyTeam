@@ -140,4 +140,5 @@ export const postconversion=(p)=>post("/v1/users/"+p+"/hongbao/exchange");
 //获取订单列表
 export const getorder=(p)=>get("/bos/v2/users/"+p+"/orders?limit=10&offset=0");
 
-
+//获取订单详情列表
+export const getorder_xj=(p)=>get("/bos/v1/users/"+p.user_id+"/orders/"+p.order_id+"/snapshot")
