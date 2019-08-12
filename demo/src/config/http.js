@@ -27,10 +27,10 @@ axios.interceptors.request.use(
     // 每次发送请求之前判断是否存在token，如果存在，则统一在http请求的header都加上token，不用每次请求都手动添加了
     // 即使本地存在token，也有可能token是过期的，所以在响应拦截器中要对返回状态进行判断
     config.withCredentials = true; // 允许携带token ,这个是解决跨域产生的相关问题
-    config.headers = {
-      'access-token': "",
-      'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-    };
+    // config.headers = {
+    //   'access-token': "",
+    //   'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+    // };
     return config;
   },
   error => {
@@ -131,6 +131,19 @@ export function post(url, params={}) {
 
   return new Promise((resolve, reject) => {
     axios.post(url, QS.stringify(params))
+      .then(res => {
+        resolve(res.data);
+      })
+      .catch(err => {
+        reject(err.data)
+      })
+  });
+}
+
+export function Orderpost(url, params={}) {
+
+  return new Promise((resolve, reject) => {
+    axios.post(url, params)
       .then(res => {
         resolve(res.data);
       })

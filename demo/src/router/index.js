@@ -24,7 +24,7 @@ import member from "../center/member"
 import redact from "../center/redact"
 import countdown from "../center/countdown"
 import conversion from "../center/conversion"
-import member_c from "../center/member_c"
+// import member_c from "../center/member_c"
 import invoice from "../center/invoice"
 import sale from "../center/sale"
 import order from "../center/order"
@@ -35,6 +35,11 @@ import sitec from "../pages/payment/site_c"
 import search_c from "../pages/payment/searchA_c"
 import remark from "../pages/payment/remark_c"
 import invoice_c from "../pages/payment/invoice_c"
+
+
+import member_c from "../center/member_c"
+import searchP_c from "../pages/search/searchP_c"
+
 
 const home = ()=>import("@/pages/home/home")
 const searchAddress = ()=>import("@/pages/searchAddress/searchAddress")
@@ -142,10 +147,7 @@ export default new Router({
       path:'/amend',
       component:amend
     },
-    {
-      path:'/sitec',
-      component:sitec
-    },
+
     {
       path:'/add',
       component:add
@@ -203,31 +205,46 @@ export default new Router({
         },
     {
       path:'/order',
-      component:router_c
+      component:router_c,
+      children:[
+        {
+          path:'remark',
+          component:remark
+        },
+        {
+          path:'select',
+          component:select,
+          children:[
+            {
+              path:'sitec',
+              component:sitec
+            },
+          ],
+        },
+        {
+          path:'invoice',
+          component:invoice_c
+        },
+      ]
     },
+
     {
-      path:'/select',
-      component:select
-    },
-    {
-      path:'/site',
+      path:'site',
       component:site
     },
     {
       path:'/searchA_c',
       component:search_c
     },
-    {
-      path:'/remark',
-      component:remark
-    },
-    {
-      path:'/invoice',
-      component:invoice_c
-    },
+
+
     {
       path:'/member_c',
       component:member_c
+    },
+    {
+      path:'/searchP_c',
+      component:searchP_c
     }
 
 

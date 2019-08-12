@@ -22,13 +22,13 @@
         },
         methods:{
           btnReturnC_c(){
-            this.$router.push({path:'/order'})
+            this.$router.go(-1)
           },
           selectSort_c(){
             this.active = !this.active
           },
           btnQ_c(){
-            this.$router.push({path:'/order'})
+            this.$router.go(-1)
           }
         }
     }
@@ -39,7 +39,12 @@
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
+  bottom:0;
   width: 100%;
+  height: 100%;
+  background-color: #f5f5f5;
+
   color: #333;
   .s-header {
     background-color: #3190e8;

@@ -1,24 +1,25 @@
 <template>
-  <div class="order">
-    <div class="s-header clear">
+  <div class="order" v-if="orderresult">
+    <div class="s-header clear" >
       <i class="iconfont txtQ_c" @click="btnReturnA_c">&#xe606;</i>
       <span>确认订单</span>
       <i class="iconfont txtW_c">&#xe601;</i>
       <div class="empty"></div>
     </div>
-    <router-link :to="{path:'/select'}">
+    <router-link :to="{path:'/order/select',query:{id:orderid,sig:sig}}">
     <div class="site_c">
       <div class="leftB_c">
       <i class="iconfont txtE_c">&#xe600;</i>
         <div class="leftName_c">
       <div class="name_c">
-        <span class="txtX_c">陈</span>
-        <span>先生</span>
-        <span>陈</span>
+        <span class="txtX_c ellipsis">{{useraddress.name}}</span>
+        <span v-if="useraddress.sex==1">先生</span>
+        <span v-else-if="useraddress.sex==2">女士</span>
+        <span>{{useraddress.phone}}</span>
       </div>
       <div class="shop_c">
-        <span class="txtZ_c">其味无穷</span>
-        <span>青蛙多所</span>
+        <span class="txtZ_c" >{{useraddress.tag}}</span>
+        <span>{{useraddress.address_detail}}</span>
       </div>
         </div>
       </div>
@@ -30,7 +31,7 @@
       <div class="leftBox_c"></div>
       <span>送达时间</span>
       <div class="predict_c">
-        <p>尽快送达 | 预计 21:45</p>
+        <p>尽快送达 | 预计 {{orderresult.delivery_reach_time}}</p>
         <p>蜂鸟专送</p>
         <div class="empty"></div>
       </div>
@@ -39,7 +40,8 @@
     <div class="payA_c">
       <div class="payB_c" @click="btnPayA_c">
         <span>支付方式</span>
-        <span>在线支付</span>
+
+        <span >在线支付</span>
         <i class="iconfont txtLogoA_c">&#xe714;</i>
         <div class="empty"></div>
       </div>
@@ -50,52 +52,126 @@
     </div>
     <div class="cost_c">
       <ul>
-        <li class="shopA_c"><img src="http://elm.cangdu.org/img/16c40699fae50011.jpg" class="imgLogo_c"><span>mark1111333</span></li>
-        <li class="moneyA_c"><p>12221</p><div><span>x 2</span><span>￥20</span></div></li>
-        <li><p>餐盒</p><div><span class="moneyB_c">￥13918</span></div></li>
-        <li><p>配送费</p><div><span class="moneyC_c">￥4</span></div></li>
+        <li class="shopA_c">
+          <img :src="'http://elm.cangdu.org/img/'+business_license_image" class="imgLogo_c">
+          <span>{{restaurant_info.name}}</span>
+        </li>
+        <li class="moneyA_c" v-for="(item,index) in  orderresult.cart.groups[0]  ">
+          <p>12</p>
+          <div>
+            <span>x {{item.quantity}}</span>
+            <span>￥{{item.price}}</span>
+          </div>
+        </li>
+        <li v-for="(item,index) in orderresult.cart.extra">
+          <p>{{item.name}}</p>
+          <div>
+
+            <span class="moneyB_c">￥{{item.price}}</span>
+          </div>
+        </li>
+        <li>
+          <p>配送费</p>
+          <div>
+            <span class="moneyC_c">￥{{orderresult.cart.deliver_amount}}</span>
+          </div>
+        </li>
       </ul>
     </div>
     <div class="allSum_c">
-      <p>订单 ￥12962</p>
-      <span>待支付 ￥13962</span>
+      <p>订单 ￥{{orderresult.cart.total}}</p>
+      <span>待支付 ￥{{orderresult.cart.total}}</span>
       <div class="empty"></div>
     </div>
     <div class="txtP_c">
-      <router-link :to="{path:'/remark'}">
-      <span class="txtI_c">订单备注</span><span class="txtU_c">口味、偏好等</span> <i class="iconfont txtLogoB_c">&#xe714;</i>
+      <router-link :to="{path:'/order/remark',query:{id:orderid,sig:sig}}">
+      <span class="txtI_c">订单备注</span><span class="txtU_c">{{remarks==""?'口味、偏好等':remarks }}</span> <i class="iconfont txtLogoB_c">&#xe714;</i>
       </router-link>
     </div>
     <div class="txtO_c">
-      <router-link :to="{path:'/invoice'}">
+      <router-link :to="{path:'/order/invoice'}">
       <span class="txtY_c">发票抬头</span><span class="txtU_c">不需要开发票</span> <i class="iconfont txtLogoB_c">&#xe714;</i>
       </router-link>
     </div>
     <div class="buttonA_c">
-      <p>待支付 ￥13962</p><p>确认下单</p>
+      <p>待支付 ￥{{orderresult.cart.total}}</p><p @click="xiadanBtn">确认下单</p>
     </div>
     <div class="payQ_c" v-show="payA_c">
       <div class="wayB_c" @click="btnPayB_c"></div>
     <div class="wayA_c" >
       <p>支付方式</p>
       <ul>
-        <li class="moneyP_c clear"><span>货到付款( 商家不支持货到付款 )</span><i class="iconfont txtN_c right">&#xe619;</i></li>
-        <li><span>在线支付</span><i class="iconfont txtV_c right">&#xe619;</i></li>
+        <li   v-for="(item,index) in orderresult.payments" :class="{moneyP_c:item.select_state==1}"><span>{{item.name}}( {{item.description}} )</span><i class="iconfont  right" :class="{txtV_c:item.select_state==1}">&#xe619;</i></li>
       </ul>
     </div>
   </div>
+    <transition name = 'fade'>
+      <router-view></router-view>
+    </transition>
+
   </div>
 </template>
 
 <script>
+  import {mapState,mapActions,mapGetters} from "vuex"
+  import {get_restaurant_send_order,postaddB,get_xia_orders} from "../../serivice/api"
     export default {
         name: "payment_c",
         data(){
           return {
             payA_c:false,
+            geohash:"",//经纬度
+            shopid:'',//商店id
+            userid:'',//用户id
+            orderresult:"",
+            address:[],//获取收货地址
+            sig:'',
+            orderid:'',
+            address_id:'',
+            goods_group:[],
+            restaurant_info:[],
+            business_license_image:'',
+
           }
         },
+       async created(){
+          console.log(this.orderresult);
+          if(Object.keys(this.userinfo).length==0){
+             this.$router.push({path:'dl'});
+             return ;
+          }
+          this.userid=this.userinfo.user_id;
+          this.geohash=this.$route.query.geohash;
+          this.shopid=this.$route.query.shopid;
+
+       },
+      async mounted(){
+        if(this.geohash){
+          //发起订单请求
+          this.orderresult  =await get_restaurant_send_order({
+            geohash:this.geohash,
+            restaurant_id:this.shopid,
+            entities:[this.entities],
+            come_from: "web"
+          });
+          // 获取收货地址
+
+          this.address = await postaddB(this.userid);
+          this.CHOSE_ADDRESS({address:this.address[0],index:0});
+          this.address_id=this.useraddress.id;
+          this.goods_group =this.orderresult.cart.groups;
+          this.sig=this.orderresult.sig;
+          this.orderid=this.orderresult.id;
+          this.restaurant_info=this.orderresult.cart.restaurant_info;
+          this.business_license_image=this.restaurant_info.license.business_license_image
+        }
+
+
+
+
+      },
         methods:{
+          ...mapActions(['CHOSE_ADDRESS']),
           btnPayA_c(){
             this.payA_c = true;
           },
@@ -104,12 +180,66 @@
           },
           btnReturnA_c(){
             this.$router.go(-1);  //返回上一层
+          },
+          //下单操作
+        async  xiadanBtn(){
+            console.log(1);
+            var result = await get_xia_orders(this.userid,this.shopid,{
+              address_id:this.address_id,
+              deliver_time:"",
+              description:"",
+              entities:this.goods_group,
+              geohash:this.geohash,
+              paymethod_id:1,
+              sig:this.sig
+            });
+
+            if(result.status==1){
+              console.log(1);
+              this.$router.push("/")
+            }
           }
+        },
+        computed:{
+          ...mapState(['userinfo','remarks','useraddress']),
+          ...mapGetters(['allcartlist']),
+          //获取对应的商店的购物车数据
+          allcartdata(){
+             return this.allcartlist(this.shopid)
+          },
+          // 购物车数据[{attrs:[],extra:{},id:食品id,name:食品名称,
+          //   packing_fee:打包费,price:价格,quantity:数量,sku_id:规格id,specs:规格,stock:存量,}]
+          //购物车数据拼接
+          entities(){
+             var arr = [];
+              this.allcartdata.forEach(item=>{
+                arr.push({
+                  attrs:[],
+                  extra:{},
+                  id:item.food_id,
+                  name:item.ds,
+                  packing_fee:item.packing_fee,
+                  price:item.price,
+                  quantity:item.goodsnum,
+                  sku_id:item.sku_id,
+                  specs:item.specs,
+                  stock:item.stock,
+                })
+              })
+            return arr;
+          },
+
         }
     }
 </script>
 
 <style scoped lang="less">
+  .fade-enter-active, .fade-leave-active {
+    transition: all .3s ease-out;
+  }
+  .fade-enter, .fade-leave-active {
+    opacity: 0;
+  }
 .order {
   position: relative;
   overflow: auto;
@@ -149,7 +279,7 @@
     background-color: #fff;
     background-size: auto .12rem;
     .leftB_c {
-      width: 10rem;
+      width: 80%;
       display: inline-block;
       height: 3.5rem;
       box-sizing: border-box;
@@ -165,10 +295,12 @@
         margin-left: 0.3rem;
       }
       .name_c {
-        width: 5rem;
+        width: 10rem;
         line-height: 1rem;
         margin-top: 0.7rem;
         .txtX_c {
+          width: 2rem;
+          display: inline-block;
           font-size: 0.8rem;
           font-weight: bold;
         }
@@ -312,17 +444,12 @@
             color: #f60;
           }
           :nth-child(2){
-            margin-left: 1.3rem;
+            margin-left: 0.3rem;
           }
         }
       }
     }
-    .moneyB_c {
-      margin-left: 1.1rem;
-    }
-    .moneyC_c {
-      margin-left: 2.7rem;
-    }
+
   }
   .allSum_c {
     width: 100%;
@@ -454,7 +581,7 @@
     bottom: 0;
     background: white;
     font-size: 0.7rem;
-    color: #333;
+    color: #ccc;
     position: fixed;
     bottom: 0;
     z-index: 200;
@@ -485,7 +612,7 @@
         }
       }
       .moneyP_c {
-        color: #ccc;
+        color: #333;
       }
     }
   }

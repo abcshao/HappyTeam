@@ -34,6 +34,7 @@ export default {
     var result =  state.restaurantgoods.filter(item=>{
       return  item.restaurant_id== id;
     });
+
     result.forEach(item=>{
       item.foods.forEach(it=>{
           var type  =  it.specifications.length>0?'spec_type':'normal_type';

@@ -84,7 +84,7 @@
               <div class="money" >¥ {{allmoney}}</div>
               <div class="pei_money">配送费¥{{restaurantMessage.float_delivery_fee}}</div>
             </div>
-            <div class="gotopay " :class="{color_green:allmoney-restaurantMessage.float_minimum_order_amount>=0}">
+            <div class="gotopay " :class="{color_green:allmoney-restaurantMessage.float_minimum_order_amount>=0}"    @touchstart = "btnorder">
               <span  class="gotopay_button_style" v-if="allmoney-restaurantMessage.float_minimum_order_amount>=0">去结算</span>
               <span  class="gotopay_button_style "   v-else>还差¥{{ Math.abs(allmoney-restaurantMessage.float_minimum_order_amount)   }}起送</span>
             </div>
@@ -142,7 +142,7 @@
     get_restaurant_rating_score,
     get_restaurant_rating_tags
   }  from "../../serivice/api";
-  import {mapGetters,mapActions} from "vuex"
+  import {mapGetters,mapActions,mapState} from "vuex"
 
   import ShopCar from "../../components/Sfooter/shopCar";
   import Restaurantgoodslist from "./children/restaurantgoodslist";
@@ -181,6 +181,10 @@
        },
         methods:{
           ...mapActions(['UPDATE_RESTAURANT_GOODS']),
+           //点击提交订单页面
+          btnorder(){
+            this.$router.push({path:"/order",query:{geohash:this.geohash,shopid:this.id}})
+          },
            //点击切换页面
           changePage(val){
             if(val==1){
@@ -243,6 +247,7 @@
           'shopcard',
           'allcartlist',
         ]),
+        ...mapState(['geohash']),
         cardata(){
           return this.shopcard(this.id);
         },
@@ -262,12 +267,9 @@
                 })
             })
           });
-
           return allmoney;
         }
       },
-
-
     }
 </script>
 
