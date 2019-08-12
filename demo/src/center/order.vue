@@ -16,6 +16,7 @@
             <!--右边订单详情-->
             <div class="right">
               <!--状态和订单状态-->
+              <router-link :to="{path:'/order_xj',query:{user_id: pro.user_id,order_id :pro.id}}">
               <div class="right_top">
                 <div class="div1">
                   <h4>
@@ -30,9 +31,10 @@
                 <p>{{pro.restaurant_name}}</p>
                 <p>￥2500.00</p>
               </div>
+              </router-link>
               <!--再来一单-->
               <div class="top_bottom">
-              <span>再来一单</span>
+                <span>再来一单</span>
               </div>
             </div>
           </li>
@@ -58,6 +60,7 @@
         }
       },
       mounted(){
+          console.log(this.userinfo);
         getorder(this.userinfo.user_id).then((result)=>{
           console.log(result)
           this.orderArry=result;
@@ -65,6 +68,8 @@
       },
       computed:{
         ...mapState(['userinfo']),
+
+
       },
     }
 </script>

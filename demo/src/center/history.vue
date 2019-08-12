@@ -28,7 +28,7 @@
 
             <!--剩余日期-->
             <div class="div3">
-              {{value.description_map.validity_delta}}
+              <!--<img src="http://www.w3.org/1999/xlink" alt="">-->
             </div>
           </section>
           <div class="bottom">

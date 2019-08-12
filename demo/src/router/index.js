@@ -28,6 +28,7 @@ import conversion from "../center/conversion"
 import invoice from "../center/invoice"
 import sale from "../center/sale"
 import order from "../center/order"
+import order_xj from "../center/order_xj"
 
 import router_c from "../pages/payment/payment_c"
 import select from "../pages/payment/select_c"
@@ -155,6 +156,10 @@ export default new Router({
     {
       path:'/member',
       component:member
+    },
+    {
+      path:'/order_xj',
+      component:order_xj
     },
     {
       path:'/redact',
