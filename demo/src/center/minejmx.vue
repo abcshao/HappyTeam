@@ -8,8 +8,10 @@
     <!--上面个人中心界面-->
       <div class="top" @click="tz">
         <!--<router-link :to="{path:'/account'}">-->
-          <img src="//elm.cangdu.org/img/default.jpg" alt="" id="img">
-          <!--<img :src="'//elm.cangdu.org/img/'+obj.avatar" alt="" id="img">-->
+          <!--<img src="//elm.cangdu.org/img/default.jpg" alt="" id="img">-->
+        <div class="divimg">
+          <img :src="'//elm.cangdu.org/img/'+userinfo.avatar" alt="" id="img">
+        </div>
           <p id="p1">{{Object.keys(userinfo).length==0?"登录/注册":userinfo.username}}</p>
           <img src="../imags/download.png" alt="" id="img1">
           <p id="p2">{{userinfo.mobile==''?"暂无绑定手机号":userinfo.mobile}}</p>
@@ -55,7 +57,10 @@
       <!--单元格-->
       <div class="until">
         <!--<span class="all">-->
+        <router-link :to="{path:'/order_jmx'}">
           <van-cell title="我的订单" is-link />
+        </router-link>
+
         <!--</span>-->
         <!--<span>-->
            <van-cell title="积分商城" is-link  class="b"/>
@@ -121,8 +126,6 @@
 
       computed:{
         ...mapState(['userinfo']),
-
-
       },
       components: {
           Sfooter,
@@ -157,11 +160,18 @@
     position: relative;
     padding: 0.5rem 0.5rem;
   }
+  .divimg{
+    width: 3rem;
+    height: 3rem;
+  }
 #img{
   width: 3rem;
   border-radius: 50%;
 }
 #img1{
+  position: absolute;
+  top: 2.5rem;
+  left: 3.8rem;
   border-radius: 30%;
 }
   .top p{

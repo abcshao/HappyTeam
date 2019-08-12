@@ -137,7 +137,7 @@
             this.SET_USER_INFO(result);
             // this.allinfo = result;
             // console.log(this.allinfo);
-            this.$router.push({path:"/minejmx"});
+            this.$router.go(-1);
           }).catch((error)=>{
             // console.log(error);
           })

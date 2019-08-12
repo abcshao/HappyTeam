@@ -24,6 +24,10 @@ import member from "../center/member"
 import redact from "../center/redact"
 import countdown from "../center/countdown"
 import conversion from "../center/conversion"
+// import member_c from "../center/member_c"
+import invoice from "../center/invoice"
+import sale from "../center/sale"
+import order from "../center/order"
 
 import router_c from "../pages/payment/payment_c"
 import select from "../pages/payment/select_c"
@@ -31,6 +35,8 @@ import sitec from "../pages/payment/site_c"
 import search_c from "../pages/payment/searchA_c"
 import remark from "../pages/payment/remark_c"
 import invoice_c from "../pages/payment/invoice_c"
+
+
 import member_c from "../center/member_c"
 import searchP_c from "../pages/search/searchP_c"
 
@@ -164,6 +170,18 @@ export default new Router({
     {
       path:'/conversion',
       component:conversion
+    },
+    {
+      path:'/invoice',
+      component:invoice
+    },
+    {
+      path:"/sale",
+      component:sale
+    },
+    {
+      path:'/order_jmx',
+      component:order
     },
     {
       path:"/restaurant",
