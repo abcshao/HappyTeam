@@ -116,3 +116,7 @@ export const get_restaurant_rating_tags =(p)=>get("/ugc/v2/restaurants/"+p+"/rat
 
 //获取兑换红包数据
 export const postconversion=(p)=>post("/v1/users/"+p+"/hongbao/exchange");
+
+
+//获取订单列表
+export const getorder=(p)=>get("/bos/v2/users/"+p+"/orders?limit=10&offset=0");

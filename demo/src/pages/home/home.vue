@@ -5,7 +5,8 @@
       <span class="span1">ele.me</span>
       <router-link :to="{path:'/dl'}">
          <span class="span2">
-        <i class="iconfont">&#xe607;</i>
+           <span v-if="islogin">登陆/注册</span>
+           <i class="iconfont" v-else>&#xe607;</i>
       </span>
       </router-link>
 
@@ -46,7 +47,7 @@
 
 <script>
   import {cityGuess,hotcity,groupcity} from "@/serivice/api"
-
+  import {mapActions,mapState} from "vuex"
   export default {
         name: "home",
         data(){
@@ -55,6 +56,7 @@
             guessCityid: '', //当前城市id
             hotcity: [],     //热门城市列表
             groupcity: {},   //所有城市列表
+            show:false,
           }
         },
         mounted(){
@@ -76,6 +78,7 @@
           })
         },
         computed:{
+          ...mapState(['userinfo']),
           getOrderCity(){
             //存储的必须是对象，这个可以用字符串作为对象
              var arr= {};
@@ -85,9 +88,17 @@
                 }
               }
               return arr;
+          },
+          islogin(){
+            if(Object.keys(this.userinfo).length ==0){
+              return true;
+            }else{
+              return false;
+            }
           }
         },
     methods:{
+      ...mapActions(['SET_USER_INFO']),
           //点击跳转到对应的城市地址搜索页面
       goSearch(value){
         this.$router.push({name:'searchaddress',params:{city:value.id,guessCity:value.name} })
