@@ -1,109 +1,114 @@
 <template>
-    <div class="down">
-      <van-nav-bar
-        title="在线支付"
-        left-arrow
-        @click-left="onClickLeft"
-      />
+  <div class="down">
+    <van-nav-bar
+      title="在线支付"
+      left-arrow
+      @click-left="onClickLeft"
+    />
 
-      <div class="box1">
-        <p class="p1">支付剩余时间</p>
-        <div class="box2">
-          <van-count-down :time="time" />
-        </div>
+    <div class="box1">
+      <p class="p1">支付剩余时间</p>
+      <div class="box2">
+        <van-count-down :time="time" />
       </div>
-      <div class="box3">
-        <p class="p2">选择支付方式</p>
-      </div>
-
-      <div class="box4">
-        <!--<van-radio-group v-model="radio">-->
-        <div class="box5">
-          <img src="../imags/zfb.png" alt="">
-          <span class="s1">支付宝</span>
-          <!--<van-radio-group v-model="radio" class="pull-right radio1">-->
-            <!--<van-radio name="1" checked-color="#07c160"></van-radio>-->
-          <!--</van-radio-group>-->
-        </div>
-        <div class="box5">
-          <img src="../imags/wx.jpg" alt="" >
-          <span class="s1">微信</span>
-          <!--<van-radio-group v-model="radio" class="pull-right radio1 ">-->
-            <!--<van-radio name="2" checked-color="#07c160"></van-radio>-->
-          <!--</van-radio-group>-->
-
-        </div>
-      </div>
-      <div class="box_btn">
-        <button class="btn btn-success" @click="btnconfirm">确认支付</button>
-      </div>
-      <!--<transition name="fade">-->
-        <!--<div class="popup" v-if="reveal">-->
-          <!--&lt;!&ndash;圆圈&ndash;&gt;-->
-          <!--<div class="popup_box1">-->
-            <!--<span class="popup_s1"></span>-->
-            <!--<span class=" popup_s2"></span>-->
-          <!--</div>-->
-          <!--<p>当前环境无法支付，请打开官方APP进行付款</p>-->
-          <!--<div class="popup_box2" @click="close">-->
-            <!--确认-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</transition>-->
-
-
     </div>
+    <div class="box3">
+      <p class="p2">选择支付方式</p>
+    </div>
+
+    <div class="box4">
+      <!--<van-radio-group v-model="radio">-->
+      <div class="box5">
+        <img src="../imags/zfb.png" alt="">
+        <span class="s1">支付宝</span>
+        <!--<van-radio-group v-model="radio" class="pull-right radio1">-->
+        <!--<van-radio name="1" checked-color="#07c160"></van-radio>-->
+        <!--</van-radio-group>-->
+      </div>
+      <div class="box5">
+        <img src="../imags/wx.jpg" alt="" >
+        <span class="s1">微信</span>
+        <!--<van-radio-group v-model="radio" class="pull-right radio1 ">-->
+        <!--<van-radio name="2" checked-color="#07c160"></van-radio>-->
+        <!--</van-radio-group>-->
+
+      </div>
+    </div>
+    <div class="box_btn">
+      <button class="btn btn-success" @click="btnconfirm">确认支付</button>
+    </div>
+    <!--<transition name="fade">-->
+    <!--<div class="popup" v-if="reveal">-->
+    <!--&lt;!&ndash;圆圈&ndash;&gt;-->
+    <!--<div class="popup_box1">-->
+    <!--<span class="popup_s1"></span>-->
+    <!--<span class=" popup_s2"></span>-->
+    <!--</div>-->
+    <!--<p>当前环境无法支付，请打开官方APP进行付款</p>-->
+    <!--<div class="popup_box2" @click="close">-->
+    <!--确认-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</transition>-->
+
+    <transition name="fade" enter-active-class="animated bounceIn"
+                :duration="400">
+      <Pop_c v-if="show" :popKuang="popKuang"></Pop_c>
+    </transition>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: "countdown",
-      data(){
-        return{
-          time:  15 * 60 * 1000,
-          radio:"1",
-          reveal:false
-        }
+  import Pop_c from "../components/Cpm_c/Pop_c";
+  export default {
+    name: "countdown1",
+    components: {Pop_c},
+    data(){
+      return{
+        time:  15 * 60 * 1000,
+        radio:"1",
+        reveal:false,
+        show:false,
+        popKuang:"",
+      }
+    },
+    methods:{
+      btntxt_c(show){
+        this.show = show;
       },
-      methods:{
-        onClickLeft(){
-          this.$router.go(-1)
-        },
-        close(){
-          this.reveal=false
-          // this.$router.push({path:""})
-        },
-        btnconfirm(){
-          if(this.radio==1){
-            console.log("当前是支付宝支付")
-            this.reveal=true
-            this.$router.push({path:"/order_jmx"})
-          }else {
-            console.log("当前是微信支付")
-            this.reveal=true
-            this.$router.push({path:"/order_jmx"})
+      onClickLeft(){
+        this.$router.go(-1)
+      },
+      close(){
+        this.reveal=false
+        // this.$router.push({path:""})
+      },
+      btnconfirm(){
+        if(this.radio==1){
+          console.log("当前是支付宝支付")
+          this.reveal=true
 
-          }
+        }else {
+          console.log("当前是微信支付")
+          this.reveal=true
+
+
         }
-      },
-      //下方跳转索引 通过vuex变换存储
-      // created(){
-      //   this.$store.commit('changeTab', 2);
-      // },
+      }
+    },
+    mounted(){
+      this.show = true;
+      this.popKuang = "请在饿了么APP中打开";
     }
+    //下方跳转索引 通过vuex变换存储
+    // created(){
+    //   this.$store.commit('changeTab', 2);
+    // },
+  }
 </script>
 
 <style scoped lang="less">
-  .down{
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #f5f5f5;
-    color: #333;
-    z-index:10000;
-  }
+
   .van-nav-bar__title{
     color: white;
     font-weight:700;
@@ -153,6 +158,9 @@
   .box5{
     /*padding: .4rem .7rem;*/
     border-bottom: .025rem solid #f5f5f5;
+    img {
+      border-radius: 50%;
+    }
   }
   .s1{
     display: inline-block;
