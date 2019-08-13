@@ -149,7 +149,9 @@ export default {
 
   //搜索餐馆
   [SET_SEARCH_RESTAURANT](state,value){
-    state.latitude.push(value);
+     if(!state.latitude.includes(value)){
+       state.latitude.push(value);
+     }
   },
   //删除搜索历史记录
   [DELETE_SEARCH](state,value){

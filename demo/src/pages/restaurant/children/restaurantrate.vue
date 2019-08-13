@@ -1,5 +1,6 @@
 <template>
-  <div class="s-rate" >
+  <div class="s-rate"  ref = "ratemove">
+   <div>
 
     <header class="rating_header">
       <section class="rating_header_left">
@@ -96,16 +97,38 @@
 
     </ul>
 
-
+   </div>
+      <loading v-if="is_loading"></loading>
+      <div v-if="isdataend">没有数据啦，亲</div>
   </div>
 </template>
 
 <script>
+  import  loading from "../../../components/Cpm_c/loading"
   import {loadMore} from '../../../config/mixin'
 
+  import BScroll from "better-scroll"
+  import  {
+
+    get_restaurant_rating,
+
+  }  from "../../../serivice/api";
   export default {
     name: "restaurantrate",
-    props:['ratelist','ratescore','ratetags'],
+    props:['ratelist','ratescore','ratetags','shopid'],
+    components:{
+      loading
+    },
+    data(){
+      return {
+        pagescroll:'',
+        offset:0,
+        num:1,
+        isOnlylink:false,
+        is_loading:false,
+        isdataend:false,
+      }
+    },
     methods:{
       getImgPath(path){
         //传递过来的图片地址需要处理后才能正常使用
@@ -121,7 +144,43 @@
         let url = '/' + path.substr(0, 1) + '/' + path.substr(1, 2) + '/' + path.substr(3) + suffix;
         return 'https://fuss10.elemecdn.com' + url
       },
-    }
+      //页面滚动操作
+      getInitdata(){
+        this.pagescroll = new BScroll(this.$refs.ratemove,{
+          click: true,
+          probeType: 3, //动画运行过程中实时派发 scroll 事件。
+        });
+        this.pagescroll.on("scroll",(pos)=>{
+          if ( Math.abs(Math.round(pos.y)) >=  Math.abs(Math.round(this.pagescroll.maxScrollY))  ) {
+            this.is_loading=true;
+            //加载方法
+            this.loadData();
+            this.pagescroll.refresh();
+          }
+        });
+      },
+      loadData(){
+        if(this.isOnlylink){
+           return;
+        }
+        this.isOnlylink=true;
+        this.offset=this.offset+10;
+        get_restaurant_rating(this.shopid,this.offset).then((res)=>{
+          this.is_loading=false;
+          this.isOnlylink=false;
+          if(res.length<=10){
+            this.isdataend=true;
+          }
+           this.$parent.changeRate(res);
+         });
+      }
+    },
+    mounted(){
+         this.$nextTick(()=>{
+           this.getInitdata();
+         })
+    },
+
   }
 </script>
 

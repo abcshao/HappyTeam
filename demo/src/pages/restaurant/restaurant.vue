@@ -18,16 +18,14 @@
                                 <span>配送费约¥{{restaurantMessage.float_delivery_fee}}</span>
 
                         </p>
-                          <i class="iconfont right">&#xe612;</i>
+                          <i class="iconfont right"></i>
                        <p>公告:{{restaurantMessage.promotion_info}}</p>
                         </router-link>
                     </li>
 
                     <li class="s-activity clear left" @click="show_activity_details=!show_activity_details"    v-if="restaurantMessage.activities !== undefined  && restaurantMessage.activities.length>0">
-
-
                       <span class="icon" :style="{backgroundColor:'#'+restaurantMessage.activities[0].icon_color}">{{restaurantMessage.activities[0].icon_name}}</span>  <span>{{restaurantMessage.activities[0].description}}(APP专享)</span>
-                      <span class="right"><i class="iconfont">&#xe612;</i></span>
+                      <span class="right">{{restaurantMessage.activities.length}}个活动 <i class="iconfont">&#xe612;</i></span>
                     </li>
 
                   </ul>
@@ -79,6 +77,8 @@
           <div class="s-shopcar">
             <div class="cart_icon_container" :class="{cart_icon_active:allmoney>0,moveanimate:isshowAnimate}"   @click="showcartdata()" ref="cartContainer">
               <i class="iconfont" style="color: white;">&#xe60c;</i>
+              <span class="category_num"  v-if="allnum>0" >{{allnum}}</span>
+
             </div>
             <div  class="cart_num">
               <div class="money" >¥ {{allmoney}}</div>
@@ -126,8 +126,6 @@
             <img src="../../images/shop_back_svg.svg">
           </section>
            <loading v-if="showLoading"></loading>
-
-
     </div>
 
 
@@ -182,6 +180,12 @@
        },
         methods:{
           ...mapActions(['UPDATE_RESTAURANT_GOODS']),
+          //子元素修改父元素的值
+          changeRate(newda){
+            this.ratelist = [...this.ratelist,...newda];
+
+          },
+
            //点击提交订单页面
           btnorder(){
             this.$router.push({path:"/order",query:{geohash:this.geohash,shopid:this.id}})
@@ -259,6 +263,7 @@
         ...mapGetters([
           'shopcard',
           'allcartlist',
+          'allcategorynum'
         ]),
         ...mapState(['geohash']),
         cardata(){
@@ -267,6 +272,14 @@
         //获取购物车所购买的数据
         cartlist(){
            return this.allcartlist(this.id);
+        },
+        //获取总数量
+        allnum(){
+          var allnum=0;
+           this.allcategorynum(this.id).forEach(item=>{
+              allnum+=item;
+           })
+          return allnum
         },
         //在此处调用 vuex 为啥没有数据
         allmoney(){
@@ -426,7 +439,7 @@
      top: 0;
      left: 0;
      right: 0;
-     background-color: darkgrey;
+     background-color: #262626;
      z-index: 1001;
      color:white;
      h2{
@@ -496,6 +509,21 @@
          top: -.7rem;
          width: 2.3rem;
          height: 2.3rem;
+         .category_num{
+           position: absolute;
+           top: -0.3rem;
+           right: -0.1rem;
+           background-color: #ff461d;
+           line-height: .6rem;
+           text-align: center;
+           border-radius: 50%;
+           border: .025rem solid #ff461d;
+           min-width: .6rem;
+           height: .6rem;
+           font-size: .5rem;
+           color: #fff;
+           font-family: Helvetica Neue,Tahoma,Arial;
+         }
        }
        .cart_icon_active{
          background-color: #3190e8;

@@ -12,7 +12,6 @@ export default {
     var result =  state.restaurantgoods.filter(item=>{
       return  item.restaurant_id== id;
     });
-
     result.forEach(item=>{
       var num = 0;
       item.foods.forEach(it=>{

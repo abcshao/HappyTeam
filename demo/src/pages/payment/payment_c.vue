@@ -204,7 +204,6 @@
           },
           //下单操作
         async  xiadanBtn(){
-
             var result = await get_xia_orders(this.userid,this.shopid,{
               address_id:this.address_id,
               deliver_time:"",
@@ -219,7 +218,7 @@
               this.$router.push("/order/countdown")
             }else{
                this.popKuang="下单失败";
-              this.show = true;
+               this.show = true;
             }
           },
           btntxt_c(){
@@ -255,7 +254,12 @@
             return arr;
           },
 
-        }
+        },
+      watch:{
+          address_id(){
+            this.address_id=this.useraddress.id;
+          }
+      }
     }
 </script>
 

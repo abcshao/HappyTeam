@@ -242,7 +242,7 @@ export default new Router({
     },
 
     {
-      path:'site',
+      path:'/site',
       component:site
     },
     {

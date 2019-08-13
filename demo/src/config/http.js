@@ -16,7 +16,7 @@ if (process.env.NODE_ENV == 'development') {
 }
 
 // 请求超时时间
-axios.defaults.timeout = 10000;
+axios.defaults.timeout = 100000;
 
 // post请求头
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
@@ -131,6 +131,24 @@ export function post(url, params={}) {
 
   return new Promise((resolve, reject) => {
     axios.post(url, QS.stringify(params))
+      .then(res => {
+        resolve(res.data);
+      })
+      .catch(err => {
+        reject(err.data)
+      })
+  });
+}
+/**
+ *  delete 删除效果
+ *
+ * */
+
+export function delData(url, params={}) {
+  return new Promise((resolve, reject) => {
+    axios.delete(url, {
+      params: params
+    })
       .then(res => {
         resolve(res.data);
       })
