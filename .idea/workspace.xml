@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="129b0e92-a2f3-41b7-8aab-dc9cd5e2c899" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/components/Cpm_c/Pop_c.vue" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/components/Cpm_c/Pop_c.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/center/countdown.vue" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/center/countdown.vue" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -84,17 +83,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/demo/src/center/awardA_c.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2268">
-              <caret line="63" column="17" selection-start-line="61" selection-start-column="10" selection-end-line="63" selection-end-column="17" />
+            <state relative-caret-position="2376">
+              <caret line="66" column="17" selection-start-line="66" selection-start-column="17" selection-end-line="66" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/demo/src/center/countdown.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-9319">
-              <caret line="47" column="23" lean-forward="true" selection-start-line="47" selection-start-column="23" selection-end-line="47" selection-end-column="23" />
+            <state relative-caret-position="468">
+              <caret line="40" column="24" lean-forward="true" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -108,7 +107,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/demo/src/center/countdown1.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1814">
@@ -224,9 +223,9 @@
         <option value="$PROJECT_DIR$/demo/src/pages/payment/remark_c.vue" />
         <option value="$PROJECT_DIR$/demo/config/index.js" />
         <option value="$PROJECT_DIR$/demo/src/center/countdown1.vue" />
-        <option value="$PROJECT_DIR$/demo/src/center/countdown.vue" />
         <option value="$PROJECT_DIR$/demo/src/style/common.less" />
         <option value="$PROJECT_DIR$/demo/src/components/Cpm_c/Pop_c.vue" />
+        <option value="$PROJECT_DIR$/demo/src/center/countdown.vue" />
       </list>
     </option>
   </component>
@@ -383,12 +382,12 @@
       <workItem from="1565507164070" duration="7783000" />
       <workItem from="1565571646453" duration="182000" />
       <workItem from="1565571861840" duration="27560000" />
-      <workItem from="1565675640268" duration="7721000" />
+      <workItem from="1565675640268" duration="7974000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="311153000" />
+    <option name="totallyTimeSpent" value="311406000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -623,8 +622,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/demo/src/center/awardA_c.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2268">
-          <caret line="63" column="17" selection-start-line="61" selection-start-column="10" selection-end-line="63" selection-end-column="17" />
+        <state relative-caret-position="2376">
+          <caret line="66" column="17" selection-start-line="66" selection-start-column="17" selection-end-line="66" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -662,13 +661,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo/src/center/countdown.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9319">
-          <caret line="47" column="23" lean-forward="true" selection-start-line="47" selection-start-column="23" selection-end-line="47" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/demo/src/components/Cpm_c/Pop_c.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -680,6 +672,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1814">
           <caret line="68" column="10" lean-forward="true" selection-start-line="68" selection-start-column="10" selection-end-line="68" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/src/center/countdown.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="40" column="24" lean-forward="true" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
         </state>
       </provider>
     </entry>
