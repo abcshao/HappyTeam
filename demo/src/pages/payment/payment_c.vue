@@ -106,7 +106,7 @@
       </router-link>
     </div>
     <div class="buttonA_c">
-      <p>待支付 ￥{{orderresult.cart.total}}</p><p @click="xiadanBtn">确认下单</p>
+      <p>待支付 ￥{{orderresult.cart.total}}</p><p @touchstart.stop.prevent="xiadanBtn">确认下单</p>
     </div>
     <div class="payQ_c" v-show="payA_c">
       <div class="wayB_c" @click="btnPayB_c"></div>
