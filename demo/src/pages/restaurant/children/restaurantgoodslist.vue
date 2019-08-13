@@ -20,7 +20,11 @@
       <ul >
           <li  v-for="(item,index) in foodsList">
             <div class="s-content-list-title" :key="index">
-              <b>{{item.name}}</b>
+              <b>
+                {{item.name}}
+
+
+              </b>
               <span>{{item.description}}</span>
             </div>
             <ul class="s-goods-list">
@@ -29,7 +33,19 @@
                   <img :src="'//elm.cangdu.org/img/'+val.image_path" alt="">
                 </div>
                 <ul class="goods-message left">
-                  <li class="goods-name">{{val.name}}</li>
+                  <li class="goods-name clear">
+                    {{val.name}}
+                    <!--<h4 class="new_sign left" >新品</h4>-->
+                    <!--<h4 class="right">2313</h4>-->
+                     <!--&lt;!&ndash;<ul  class="ite clear">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<li class="ite_lif left">14564</li>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<li class="right">14564</li>&ndash;&gt;-->
+                     <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+
+
+
+
+                  </li>
                   <li class="goods-desc">{{val.description}}</li>
                   <li >月售{{val.month_sales}}份 好评率{{val.satisfy_rate}}%</li>
                   <li class="clear">
@@ -59,6 +75,10 @@
                 </ul>
               </li>
             </ul>
+
+
+
+
           </li>
       </ul>
       </section>
@@ -402,6 +422,10 @@
               }
             }
             .goods-message{
+              .goods-name{
+
+              }
+
               li{
                 padding-top: 0.3rem;
               }

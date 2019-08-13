@@ -70,7 +70,7 @@
                     <span  class="youhui_message">商家公告</span>
                   </h3>
                    <p>{{restaurantMessage.promotion_info}}</p>
-                   <p class="delet_btn" ><i class="iconfont" @click="show_activity_details=!show_activity_details">&#xe613;</i></p>
+                   <p class="delet_btn" ><i class="iconfont" @click="show_activity_details=!show_activity_details">&#xe6cb;</i></p>
          </div>
 
         <div class="shopcar" v-if="isGoodsorRate=='goods'?true:false">
@@ -478,7 +478,8 @@
        bottom: 1.0rem;
        text-align: center;
        left: 0;
-       font-size: 2.5rem;
+       font-size: 2.2rem;
+       color: #444;
      }
    }
    .shopcar{
