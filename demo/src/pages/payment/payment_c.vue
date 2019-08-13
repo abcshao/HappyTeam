@@ -174,7 +174,7 @@
             come_from: "web"
           });
           // 获取收货地址
-          console.log(this.userid);
+
           this.address = await postaddB(this.userid);
            if(this.address.length>0){
              this.CHOSE_ADDRESS({address:this.address[0],index:0});
@@ -192,7 +192,7 @@
 
       },
         methods:{
-          ...mapActions(['CHOSE_ADDRESS']),
+          ...mapActions(['CHOSE_ADDRESS','UPDATE_RESTAURANT_GOODS']),
           btnPayA_c(){
             this.payA_c = true;
           },
@@ -204,7 +204,14 @@
           },
           //下单操作
         async  xiadanBtn(){
-            var result = await get_xia_orders(this.userid,this.shopid,{
+             if(!this.address_id){
+               this.popKuang="请填写地址";
+               this.show = true;
+               return ;
+             }
+
+
+          var result = await get_xia_orders(this.userid,this.shopid,{
               address_id:this.address_id,
               deliver_time:"",
               description:"",
@@ -215,7 +222,11 @@
             });
 
           if(result.status==1){
-              this.$router.push("/order/countdown")
+            this.allcartdata.forEach(item=>{
+              item.goodsnum=0;
+            });
+            this.UPDATE_RESTAURANT_GOODS();
+            this.$router.push("/order/countdown");
             }else{
                this.popKuang="下单失败";
                this.show = true;
@@ -232,6 +243,7 @@
           allcartdata(){
              return this.allcartlist(this.shopid)
           },
+
           // 购物车数据[{attrs:[],extra:{},id:食品id,name:食品名称,
           //   packing_fee:打包费,price:价格,quantity:数量,sku_id:规格id,specs:规格,stock:存量,}]
           //购物车数据拼接
@@ -256,7 +268,7 @@
 
         },
       watch:{
-          address_id(){
+        useraddress(){
             this.address_id=this.useraddress.id;
           }
       }

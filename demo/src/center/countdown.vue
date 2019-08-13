@@ -114,6 +114,14 @@
 </script>
 
 <style scoped lang="less">
+  .down{
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+  }
   .s-header {
     background-color: #3190e8;
     width: 100%;

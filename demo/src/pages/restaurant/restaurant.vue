@@ -213,8 +213,6 @@
           btnss(val){
             val.goodsnum++;
             this.UPDATE_RESTAURANT_GOODS();
-
-
           },
           //减少数量
           reduceCar(val){
