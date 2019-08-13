@@ -100,7 +100,7 @@
       methods:{
         ...mapActions(['SET_USER_INFO']),
         onClickLeft(){
-          this.$router.go(-1);
+          this.$router.push({path:'/minejmx'});
         },
 
       },

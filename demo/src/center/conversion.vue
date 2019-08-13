@@ -96,7 +96,7 @@
         });
       },
       onClickLeft() {
-        this.$router.go(-1);
+        this.$router.push({path:'/discounts'});
       },
       look(){
         yzmjmx().then((result)=>{
@@ -193,6 +193,8 @@
     padding: .4rem;
     border-radius: .15rem;
     position: relative;
+    background: white;
+    margin-left: 0.5rem;
   }
     img {
       width: 3.5rem;
