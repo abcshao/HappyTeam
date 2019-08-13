@@ -1,7 +1,10 @@
 <template>
     <div class="awardA_c">
       <div class="s-header clear">
-        <i class="iconfont txtQ_c">&#xe606;</i>
+        <router-link :to="{path:'/discounts'}">
+          <i class="iconfont txtQ_c">&#xe606;</i>
+        </router-link>
+
         <span>推荐有奖</span>
       </div>
       <div >
@@ -84,6 +87,7 @@
 .txtQ_c {
   float: left;
   margin-left: 0.5rem;
+  color: #F5F5F5;
 }
 span {
   margin-right: 0.9rem;
