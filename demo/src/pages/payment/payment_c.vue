@@ -117,7 +117,7 @@
       </ul>
     </div>
   </div>
-    <transition name = 'fade'>
+    <transition enter-active-class="animated fadeIn" leave-active-class="opacity 0" >
       <router-view></router-view>
     </transition>
     <transition name="fade" enter-active-class="animated bounceIn"
