@@ -1,11 +1,15 @@
 <template>
     <div class="down">
-      <van-nav-bar
-        title="在线支付"
-        left-arrow
-        @click-left="onClickLeft"
-      />
-
+      <!--<van-nav-bar-->
+        <!--title="在线支付"-->
+        <!--left-arrow-->
+        <!--@click-left="onClickLeft"-->
+      <!--/>-->
+      <div class="s-header clear">
+        <i class="iconfont txtQ_c"  @click="$router.go(-1)">&#xe606;</i>
+        <span>在线支付</span>
+        <div class="empty"></div>
+      </div>
       <div class="box1">
         <p class="p1">支付剩余时间</p>
         <div class="box2">
@@ -94,6 +98,23 @@
 </script>
 
 <style scoped lang="less">
+  .s-header {
+    background-color: #3190e8;
+    width: 100%;
+    height: 1.95rem;
+    color: white;
+    font-size: 0.8rem;
+    line-height: 1.95rem;
+    text-align: center;
+    .txtQ_c {
+      float: left;
+      margin-left: 0.5rem;
+    }
+    span {
+      margin-right: 0.9rem;
+      font-weight: bold;
+    }
+  }
   .down{
     position: fixed;
     top: 0;

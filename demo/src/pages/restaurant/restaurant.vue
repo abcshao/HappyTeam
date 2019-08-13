@@ -125,10 +125,7 @@
           <section class="animation_opactiy shop_back_svg_container" v-if="showLoading">
             <img src="../../images/shop_back_svg.svg">
           </section>
-
            <loading v-if="showLoading"></loading>
-
-
     </div>
 
 
@@ -442,7 +439,7 @@
      top: 0;
      left: 0;
      right: 0;
-     background-color: darkgrey;
+     background-color: #262626;
      z-index: 1001;
      color:white;
      h2{
