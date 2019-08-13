@@ -51,6 +51,7 @@
   p{
     margin-top: 0.9rem;
     font-size: 0.7rem;
+    line-height: 1rem;
   }
   /*确认*/
   div{
