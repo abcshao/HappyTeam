@@ -200,12 +200,20 @@
     top: 0;
     height: 1.95rem;
     padding: 0 0.75rem;
-    font-size: 1.0rem;
+
     color: white;
+    font-size: 0.8rem;
+
+
+    color: white;
+    .arrow-r{
+      text-align: center;
+      margin-left: -1.5rem;
+    }
     .left{
       width: 40%;
       .iconfont{
-        font-size: 1.2rem;
+        font-size: 0.8rem;
       }
     }
   }

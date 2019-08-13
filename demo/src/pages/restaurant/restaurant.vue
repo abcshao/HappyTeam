@@ -70,7 +70,7 @@
                     <span  class="youhui_message">商家公告</span>
                   </h3>
                    <p>{{restaurantMessage.promotion_info}}</p>
-                   <p class="delet_btn" ><i class="iconfont" @click="show_activity_details=!show_activity_details">&#xe613;</i></p>
+                   <p class="delet_btn" ><i class="iconfont" @click="show_activity_details=!show_activity_details">&#xe6cb;</i></p>
          </div>
 
         <div class="shopcar" v-if="isGoodsorRate=='goods'?true:false">
@@ -125,10 +125,7 @@
           <section class="animation_opactiy shop_back_svg_container" v-if="showLoading">
             <img src="../../images/shop_back_svg.svg">
           </section>
-
            <loading v-if="showLoading"></loading>
-
-
     </div>
 
 
@@ -216,8 +213,6 @@
           btnss(val){
             val.goodsnum++;
             this.UPDATE_RESTAURANT_GOODS();
-
-
           },
           //减少数量
           reduceCar(val){
@@ -442,7 +437,7 @@
      top: 0;
      left: 0;
      right: 0;
-     background-color: darkgrey;
+     background-color: #262626;
      z-index: 1001;
      color:white;
      h2{
@@ -481,7 +476,8 @@
        bottom: 1.0rem;
        text-align: center;
        left: 0;
-       font-size: 2.5rem;
+       font-size: 2.2rem;
+       color: #444;
      }
    }
    .shopcar{

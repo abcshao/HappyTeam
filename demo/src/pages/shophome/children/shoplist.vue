@@ -98,6 +98,8 @@
           this.restaurantsList=restaurantsList;
           this.showLoading=false;
           if(restaurantsList.length<20){
+            this.showLoading=false;
+
             this.touchend=false;
           }
         },
@@ -189,6 +191,8 @@
             this.showLoading=false;
 
             if (res.length < 20) {
+              this.showLoading=false;
+
               this.touchend = true;
               return
             }

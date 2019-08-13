@@ -63,12 +63,18 @@
     font-size: 0.5rem;
     .s-footer-ul{
       width: 100%;
+      .s-footer-li{
+        font-weight: 700;
+      }
       a{
         color: #666666;
         li{
           width: 25%;
           box-sizing: border-box;
         }
+      }
+      .iconfont{
+        font-size: 0.9rem;
       }
     }
   }

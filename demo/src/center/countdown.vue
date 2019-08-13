@@ -1,108 +1,143 @@
 <template>
-    <div class="down">
-      <van-nav-bar
-        title="在线支付"
-        left-arrow
-        @click-left="onClickLeft"
-      />
-
-      <div class="box1">
-        <p class="p1">支付剩余时间</p>
-        <div class="box2">
-          <van-count-down :time="time" />
-        </div>
-      </div>
-      <div class="box3">
-        <p class="p2">选择支付方式</p>
-      </div>
-
-      <div class="box4">
-        <!--<van-radio-group v-model="radio">-->
-        <div class="box5">
-          <img src="../imags/zfb.png" alt="">
-          <span class="s1">支付宝</span>
-          <!--<van-radio-group v-model="radio" class="pull-right radio1">-->
-            <!--<van-radio name="1" checked-color="#07c160"></van-radio>-->
-          <!--</van-radio-group>-->
-        </div>
-        <div class="box5">
-          <img src="../imags/wx.jpg" alt="" >
-          <span class="s1">微信</span>
-          <!--<van-radio-group v-model="radio" class="pull-right radio1 ">-->
-            <!--<van-radio name="2" checked-color="#07c160"></van-radio>-->
-          <!--</van-radio-group>-->
-
-        </div>
-      </div>
-      <div class="box_btn">
-        <button class="btn btn-success" @click="btnconfirm">确认支付</button>
-      </div>
-      <!--<transition name="fade">-->
-        <!--<div class="popup" v-if="reveal">-->
-          <!--&lt;!&ndash;圆圈&ndash;&gt;-->
-          <!--<div class="popup_box1">-->
-            <!--<span class="popup_s1"></span>-->
-            <!--<span class=" popup_s2"></span>-->
-          <!--</div>-->
-          <!--<p>当前环境无法支付，请打开官方APP进行付款</p>-->
-          <!--<div class="popup_box2" @click="close">-->
-            <!--确认-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</transition>-->
-
-
+  <div class="down">
+    <!--<van-nav-bar-->
+    <!--title="在线支付"-->
+    <!--left-arrow-->
+    <!--@click-left="onClickLeft"-->
+    <!--/>-->
+    <div class="s-header clear">
+      <i class="iconfont txtQ_c"  @click="$router.go(-1)">&#xe606;</i>
+      <span>在线支付</span>
+      <div class="empty"></div>
     </div>
+    <div class="box1">
+      <p class="p1">支付剩余时间</p>
+      <div class="box2">
+        <van-count-down :time="time" />
+      </div>
+    </div>
+    <div class="box3">
+      <p class="p2">选择支付方式</p>
+    </div>
+
+    <div class="box4">
+      <div class="box5 clear">
+        <img src="../imags/zfb.png">
+        <span class="s1">支付宝</span>
+        <i class="iconfont textC_c right" :class="{'textB_c':active == true}" @click="selectSort_c(0)">&#xe619;</i>
+      </div>
+      <div class="box5 clear">
+        <i class="iconfont left imgA_c">&#xe657;</i>
+        <span class="s1 s2">微信</span>
+        <i class="iconfont textC_c textD_c right" :class="{'textB_c':txtL_c == true}" @click="selectSort_c(1)">&#xe619;</i>
+      </div>
+    </div>
+    <div class="box_btn">
+      <button class="btn btn-success" @click="btnconfirm">确认支付</button>
+    </div>
+    <transition name="fade" enter-active-class="animated bounceIn"
+                :duration="400">
+      <Pop_c v-if="show" :popKuang="popKuang" class="boxK_c"></Pop_c>
+    </transition>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: "countdown",
-      data(){
-        return{
-          time:  15 * 60 * 1000,
-          radio:"1",
-          reveal:false
+  import Pop_c from "../components/Cpm_c/Pop_c";
+  export default {
+    name: "countdown1",
+    components: {Pop_c},
+    data(){
+      return{
+        time:  15 * 60 * 1000,
+        radio:1,
+        reveal:false,
+        show:false,
+        active:true,
+        txtL_c:false,
+        popKuang:"",
+        i:0,
+      }
+    },
+    methods:{
+      btntxt_c(show){
+        this.show = show;
+        if(this.i>=1){
+          this.$router.push({path:'/order_jmx'})
         }
+        this.i++;
       },
-      methods:{
-        onClickLeft(){
-          this.$router.go(-1)
-        },
-        close(){
-          this.reveal=false
-          // this.$router.push({path:""})
-        },
-        btnconfirm(){
-          if(this.radio==1){
-            console.log("当前是支付宝支付")
-            this.reveal=true
-            this.$router.push({path:"/order_jmx"})
-          }else {
-            console.log("当前是微信支付")
-            this.reveal=true
-            this.$router.push({path:"/order_jmx"})
+      onClickLeft(){
+        this.$router.go(-1)
+      },
+      close(){
+        this.reveal=false
+        // this.$router.push({path:""})
+      },
+      btnconfirm(){
+        if(this.radio==1){
+          console.log("当前是支付宝支付")
+          this.reveal=true
+          this.show = true;
+          this.popKuang = "当前环境无法支付 , 请打开官方APP进行付款";
+        }else {
+          console.log("当前是微信支付")
+          this.reveal=true;
+          this.show = true;
+          this.popKuang = "当前环境无法支付 , 请打开官方APP进行付款";
 
-          }
         }
       },
-      //下方跳转索引 通过vuex变换存储
-      // created(){
-      //   this.$store.commit('changeTab', 2);
-      // },
+      selectSort_c(index){
+        if (index == 0){
+          this.active = true;
+          this.txtL_c = false;
+          this.sexA_c=1;
+          this.radio=1
+        }else if(index == 1){
+          this.active = false;
+          this.txtL_c = true;
+          this.sexA_c=2;
+          this.radio=0
+        }
+      },
+    },
+    mounted(){
+      this.show = true;
+      this.popKuang = "暂不开放支付功能";
     }
+    //下方跳转索引 通过vuex变换存储
+    // created(){
+    //   this.$store.commit('changeTab', 2);
+    // },
+  }
 </script>
 
 <style scoped lang="less">
   .down{
     position: fixed;
-    top: 0;
     left: 0;
+    top: 0;
     right: 0;
     bottom: 0;
-    background-color: #f5f5f5;
-    color: #333;
-    z-index:10000;
+    background-color: #fff;
+  }
+  .s-header {
+    background-color: #3190e8;
+    width: 100%;
+    height: 1.95rem;
+    color: white;
+    font-size: 0.8rem;
+    line-height: 1.95rem;
+    text-align: center;
+    .txtQ_c {
+      float: left;
+      margin-left: 0.5rem;
+    }
+    span {
+      margin-right: 0.9rem;
+      font-weight: bold;
+    }
   }
   .van-nav-bar__title{
     color: white;
@@ -140,26 +175,36 @@
   }
   .box4{
     background: white;
-    /*line-height: 2.6rem;*/
+
   }
   .box4 img{
     width: 2rem;
-    height: 2rem;;
-    margin-right: .2rem;
+    /*height: 2rem;*/
+    /*margin-right: .2rem;*/
     vertical-align: middle;
-    padding-left: 0.5rem;
+    /*padding-left: 0.5rem;*/
+    /*background: rgb(64,185,74);*/
+    border-radius: 50%;
 
   }
   .box5{
-    /*padding: .4rem .7rem;*/
+    padding: 0.4rem .7rem;
+    height: 3rem;
     border-bottom: .025rem solid #f5f5f5;
+    .imgA_c {
+      font-size: 1.9rem;
+      color: rgb(69,193,68);
+    }
   }
   .s1{
     display: inline-block;
     font-size: .7rem;
     color: #666;
     margin-left: 2%;
-    padding: 1.2rem 0;
+  }
+  .s2 {
+    margin-left: 4%;
+    vertical-align: -0.2rem;
   }
   .van-radio{
     display: inline-block;
@@ -242,8 +287,29 @@
     animation: one .4s ease-in-out forwards;
 
   }
-
-
+  .boxK_c {
+    margin-top: -0.5rem;
+  }
+  .textC_c {
+    background: #ccc;
+    border-radius: 50%;
+    font-size: 0.6rem;
+    margin-top: 0.44rem;
+    line-height: 1rem;
+    color: white;
+    padding: 0.05rem 0.1rem;
+  }
+  .textB_c {
+    background: #4cd964;
+  }
+  .iconfont {
+    font-family: "iconfont" !important;
+    font-size: 18px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+  }
   @keyframes one {
     0%{
       transform: scale(0.9,0.9);
