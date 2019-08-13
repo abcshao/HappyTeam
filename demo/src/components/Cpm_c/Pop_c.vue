@@ -35,7 +35,7 @@
     width: 12.1rem;
     line-height: 40%;
     background: white;
-    position: absolute;
+    position: fixed;
     top:8rem;
     border-radius: 0.2rem;
     left: 1.86rem;
