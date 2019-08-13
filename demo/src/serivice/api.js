@@ -1,4 +1,4 @@
-import {get , post,Orderpost} from "../config/http"
+import {get , post,Orderpost,delData} from "../config/http"
 
 //使用axios 调用接口 封装的方法 ，以后调用接口 直接在这里设置function函数
 // // 获取商品列表
@@ -142,3 +142,7 @@ export const getorder=(p)=>get("/bos/v2/users/"+p+"/orders?limit=10&offset=0");
 
 //获取订单详情列表
 export const getorder_xj=(p)=>get("/bos/v1/users/"+p.user_id+"/orders/"+p.order_id+"/snapshot")
+
+//删除地址
+
+export const del_zhi=(p)=>delData("/v1/users/"+p.user_id+"/addresses/"+p.id);

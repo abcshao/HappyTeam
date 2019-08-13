@@ -113,7 +113,7 @@
 
 <style scoped lang="less">
    .fontss{
-     font-size: 0.7rem;
+     font-size: 0.55rem;
    }
   .s-home{
     .s-local-city{

@@ -2,7 +2,7 @@
      <div>
        <div class="s-header">
         <div class="search left" slot="search">
-          <router-link to="/searchP_c" class="el-icon-search"> </router-link>
+          <router-link to="/searchP_c" ><i class="iconfont">&#xe623;</i> </router-link>
         </div>
         <div class="title left ellipsis">
           <router-link to="/"> <span>{{localaddress}}</span></router-link>
