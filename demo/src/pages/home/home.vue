@@ -15,10 +15,30 @@
 
     </div>
     <div class="s-local-city">
-      <van-cell-group >
-        <van-cell title="当前定位城市:" value="定位不准时，请在列表中选择" value-class="fontss" />
-        <van-cell :title="guessCity" is-link :to="{name:'searchaddress',params:{city:guessCityid,guessCity:guessCity} }" title-class="fonttt"/>
-      </van-cell-group>
+      <div class="s-local-city-header clear">
+        <h3 class="s-local-city-title left"   >
+          当前定位城市:
+        </h3>
+        <p class="right">
+           定位不准时，请在列表中选择
+        </p>
+      </div>
+      <router-link :to="{name:'searchaddress',params:{city:guessCityid,guessCity:guessCity} }">
+      <div class="s-local-city-container clear">
+        <h3 class="s-local-city-title left"   >
+          {{guessCity}}
+        </h3>
+        <p class="right">
+          <i class="iconfont">&#xe612;</i>
+        </p>
+      </div>
+      </router-link>
+
+      <!--<div class="no"></div>-->
+      <!--<van-cell-group >-->
+        <!--<van-cell title="当前定位城市:" value="定位不准时，请在列表中选择" value-class="fontss" />-->
+        <!--<van-cell :title="guessCity" is-link :to="{name:'searchaddress',params:{city:guessCityid,guessCity:guessCity} }" title-class="fonttt"/>-->
+      <!--</van-cell-group>-->
     </div>
     <div class="s-hot-city">
       <h3 class="s-group-city-title"   >
@@ -118,6 +138,32 @@
   .s-home{
     .s-local-city{
 
+      background-color: white;
+
+
+      .s-local-city-header{
+         font-size: 0.6rem;
+        line-height: 1.8rem;
+        padding: 0 .45rem;
+        border-bottom: 1px solid #e4e4e4;
+        color: #666;
+       }
+      .s-local-city-container{
+        line-height: 1.8rem;
+        padding: 0 .45rem;
+        border-top: 1px solid #e4e4e4;
+        border-bottom: 2px solid #e4e4e4;
+        color: #3190e8;
+        font-size: 0.6rem;
+        color: #333;
+        .s-local-city-title{
+          color: #3190e8;
+        }
+        .iconfont{
+          font-size: 0.6rem;
+          color: #333;
+        }
+      }
       .fonttt span{
         color: #3190E8;
       }
